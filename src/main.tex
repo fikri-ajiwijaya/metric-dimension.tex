@@ -1,6 +1,9 @@
 \documentclass{article}
 
-\usepackage{arxiv}
+\usepackage{
+	arxiv,
+	cleveref
+}
 
 \title{Computing the Metric Dimension of Graphs using Satisfiability Modulo Theories}
 
@@ -29,13 +32,48 @@
 
 	\section{Distance Matrix}
 
-	...\textit{blah blah blah}...
+	The distance matrix of a graph is the matrix that contains all of the pair-wise distance between its vertices. That is, given the set of vertices \(V = \{v_1, v_2, \cdots, v_n\}\), the corresponding distance matrix is
+		\[
+			D^{(V)} = \left[
+				\begin{array}{cccc}
+					d(v_1, v_1) & d(v_1, v_2) & \cdots & d(v_1, v_n) \\
+					d(v_2, v_1) & d(v_2, v_2) & \cdots & d(v_2, v_n) \\
+					\vdots & \vdots & \ddots & \vdots \\
+					d(v_n, v_1) & d(v_n, v_2) & \cdots & d(v_n, v_n) \\
+				\end{array}
+			\right]
+		\]
+	where \(d(v_i, v_j)\) is the distance from vertex \(v_i\) to vertex \(v_j\).
+
+	Let us revisit the definition of metric dimension; The metric dimension of a graph is the minimum number of vertices needed to uniquely identify every vertex in the graph. This notion of identification is formally expressed through the representation. Denoted by \(r(v|W)\), the representation of a vertex \(v\) with respect to \(W\), is defined as the ordered tuple \(r(v|W) = (d(w_1, v), \cdots, d(w_k, v))\). Here, \(W = \{w_1, \cdots, w_k\}\) is an ordered set of vertices.
+
+	As such, the distance matrix of a graph has a close relationship to the graph metric dimension, where all possible representation within that graph can be obtained through slicing operations on the distance matrix.
+
+	Similarly, the same relationship exists between the edge distance matrix of a graph to the graph edge metric dimension. The edge distance matrix of a graph is the matrix that contains all of the distance from the vertices to the edges in that graph. That is, given the set of edges \(E = \{e_1, e_2, \cdots, e_m\}\), the corresponding edge distance matrix is
+		\[
+			D^{(E)} = \left[
+				\begin{array}{cccc}
+					d(v_1, e_1) & d(v_1, e_2) & \cdots & d(v_1, e_m) \\
+					d(v_2, e_1) & d(v_2, e_2) & \cdots & d(v_2, e_m) \\
+					\vdots & \vdots & \ddots & \vdots \\
+					d(v_n, e_1) & d(v_n, e_2) & \cdots & d(v_n, e_m) \\
+				\end{array}
+			\right]
+		\]
+	where \(d(v_i, e_j)\) is the distance from vertex \(v_i\) to edge \(e_j\). If the edge \(e\) connects the pair of vertices \(v, w\), then \(d(u, e)\) is defined as the minimum between \(d(u, v)\) and \(d(u, w)\).
+
+	The edge metric dimension of a graph is the minimum number of vertices needed to uniquely identify every edge in the graph. Subsequently, denoted by \(r(e|W)\), the representation of an edge \(e\) with respect to \(W\), is defined as the ordered tuple \(r(e|W) = (d(w_1,e), \cdots, d(w_k,e))\). Hence, \(W\) is still an ordered set of vertices.
+
+	Recalling the notion of unique identification, \(W\) is called a resolving set when the representations of all vertices in a graph with respect to \(W\) are unique. Likewise, \(W\) is an edge resolving set when the representations of all edges with respect to \(W\) are unique. Therefore, determining the metric dimension of a graph is a matter of finding the minimum cardinality among all possible resolving sets. Equivalently, the edge metric dimension is the minimum cardinality of its edge resolving sets.
+
+	In this paper, we formalize the complement of the resolving set as the invalid resolving set. Specifically, if \(W \subseteq V\) is not a resolving set, it is called as an invalid resolving set. Thus, the power set \(\mathcal{P}(V))\) is partitioned into these two disjoint classes. The same distinction is applied for edge resolving set, defining the invalid edge resolving set. While this distinction may appear trivial, it serves as the crucial key for the discussion in \cref{sec:formulation}.
 
 	\section{Distance Similarity Matrix}
 
 	...\textit{blah blah blah}...
 
 	\section{Constraints Formulation in Satisfiability Modulo Theories}
+	\label{sec:formulation}
 
 	...\textit{blah blah blah}...
 
