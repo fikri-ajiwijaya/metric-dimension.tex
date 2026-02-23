@@ -2,6 +2,7 @@
 
 \usepackage{
 	arxiv,
+	amssymb,
 	cleveref
 }
 
@@ -28,15 +29,70 @@
 
 	\section{Preliminaries}
 
-	\textit{...adjacency matrix?...}
+	First, let us discuss some notations that will be used throughout the rest of this paper. What will follow may seem unnecessarily redundant and verbose. However, the motivation for these explicit redefinitions is to make ``object-level'' operations explicit from the meta-level logical connectives such as \(\neg\), \(\vee\), \(\wedge\), and even \(=\) that are logical assertions. The need for unambiguous notation will be obvious for the discussions in the sections hereafter.
 
-	\textit{...Floyd-Warshall?...}
+	Given a boolean element \(b\), we define a unary boolean operation \((\sim\!b)\), and given a pair of elements \(c\) and \(d\), we define two binary boolean operations \((c = d)\) and \((c | d)\), as follows:
+	\[
+	\begin{array}{c@{\ }l}
+		(\sim\!b) &= \left\{ \begin{array}{l@{}lr}
+			\mathtt{True} &,& \neg b\\
+			\mathtt{False} &,& b
+		\end{array} \right. \\ [12pt]
+		(c = d) &= \left\{ \begin{array}{l@{}ll}
+			\mathtt{True} &,& c = d \\
+			\mathtt{False} &,& c \neq d
+		\end{array} \right. \\ [12pt]
+		(c | d) &= \left\{ \begin{array}{l@{}lc}
+			\mathtt{True} &,& c \vee d \\
+			\mathtt{False} &,& \neg c \wedge \neg d
+		\end{array} \right.
+	\end{array}
+	\]
+	All of these operations are overloaded for tuples to produce boolean tuples; or more rigorously, given a boolean \(k\)-tuple \(s = (s_1\ s_2\ \cdots\ s_k)\) and a pair of \(k\)-tuples \(t = (t_1\ t_2\ \cdots\ t_k)\) and \(u = (u_1\ u_2\ \cdots\ u_k)\),
+	\[
+	\begin{array}{c}
+		(\sim\!s) = ((\sim\!s_1)\enspace(\sim\!s_2)\enspace\cdots\enspace(\sim\!s_k)) \\ [6pt]
+		(t = u) = ((t_1 = u_1)\enspace(t_2 = u_2)\enspace\cdots\enspace(t_k = u_k)) \\ [6pt]
+		(t | u) = ((t_1 | u_1)\enspace(t_2 | u_2)\enspace\cdots\enspace(t_k | u_k))
+	\end{array}
+	\]
+	Hence, in general, the operations \((\sim\!b)\), \((c = d)\), and \((c | d)\) take values in \(\mathbb{B}\), with the specific overload for tuple where \((\sim\!s)\), \((t = u)\), and \((t | u)\) take values in \(\mathbb{B}^k\). Here, the symbol \(\mathbb{B}\) denotes the boolean space, that is \(\mathbb{B} = \{\mathtt{True}, \mathtt{False}\}\).
+
+	\textit{...examples...}
+
+	Next, we define slicing and stacking operations between tuples and matrices. Likewise previously, these definitions may seem obvious. Yet, the intensive use of these notations later on will often times prove terse to read. Therefore, there is no harm to provide clarification early on. Given \(n\) \(k\)-tuples \(s_1, s_2, \cdots, s_n\), they may be arranged as columns of a matrix
+	\[ \left[ s_1\enspace s_2\enspace \cdots\enspace s_n \right] \]
+	yielding the matrix with \(k\) rows and \(n\) columns; or more concisely, a matrix of dimension \(k \times n\). In the same way, given \(k\) elements \(c_1, c_2, \cdots, c_k\), they can be arranged into a tuple
+	\[ (c_1\ c_2\ \cdots\ c_k) \]
+	producing a \(k\)-tuple. Conversely, given a matrix \(A\) with \(k\) rows, the slicing operation denoted by
+	\[ A_{\displaystyle *j} \]
+	means to take the \(j\)-th column from the matrix and return it as a \(k\)-tuple. Similarly, given a tuple \(t\), the notation \(t_{\displaystyle i}\) means to take the \(i\)-th element from the tuple and return it as an element. Thus, it is possible to take the element of a matrix \(A\) from the \(i\)-th row and \(j\)-th column by composing the two operations as \((A_{\displaystyle *j})_{\displaystyle i}\). This is more familiarly denoted by the more concise notation \(A_{\displaystyle ij}\).
+
+	Following that, it is often done where by a ``correspondence'' between a ``set'' and a matrix is made. Given a set \(X\) with \(n\) elements and a matrix \(M\) with \(n\) rows, a correspondence between \(X\) and the rows of \(M\) means an element \(x \in X\) uniquely identifies a row in \(M\). Some examples where this happens is in the concept of the adjacency matrix of a graph and the distance matrix of a graph. Thus, let us define the slicing operation \(M|Y\), where \(Y \subseteq X\), to mean taking all the rows in \(M\) for all the corresponding elements in \(Y\), and preserve the original row order. As such, \(M|Y\) is a matrix with \(|Y|\) rows, and that \(M|X = M\). Here, \(|Y|\) is the cardinality of \(Y\).
+
+	Lastly, let us formalize the notion of the commonly done operation called masking. Given a \(k\)-tuple \(t\) and a \(k\)-boolean tuple \(b\), the operation \(t|b\) means to take all the elements in \(t\) where the corresponding element in \(b\) is \(\mathtt{True}\) and return it as a set. More rigorously,
+	\[ t|b = \{t_i : b_i = \mathtt{True}\} \]
+	Colloquially, when all elements in \(t\) are unique, then \(|\ t|b\ |\) is equal to the number of \(\mathtt{True}\) elements in \(b\).
+
+	\textit{...examples...}
+
+	Finally, let us introduce bijective functions that lift vertices in a graph into variables in satisfiability modulo theories. Given a vertex \(v\) in a graph, the function \(\mathtt{bool}(v)\) produces a corresponding boolean variable, and the function \(\mathtt{int}(v)\) produces a corresponding integer variable. Therefore, given \(V\) is the set of all vertices in the graph, \(\mathtt{bool}(V)\) is the set of all the corresponding boolean variables, and \(\mathtt{int}(V)\) is the set of all the corresponding integer variables.
+
+	In this paper, we often use a shortcut notation to denote solution and solution space. Given \(\mathtt{bool}(V)\) and a set of established constraints, we take an \(n\)-boolean tuple \(X\) as both a specific concrete model and an abstract model that encompasses all possible solutions. Here, \(X_{\displaystyle i}\) corresponds to the vertex \(v_i\) for \(V = \{v_1, v_2, \cdots, v_n\}\). As such, we are able to use the notation \(V|X\) to represent both a concrete solution and the abstract solution space from a set of constraints. We also extend this notational shortcut for when \(X\) is an integer model from \(\mathtt{int}(V)\), the notation \(V|X\) refers to the subset of vertices corresponding to non-zero entries in \(X\).
+
+	\textit{...examples...}
+
+	Second, let us formally define the notion of metric dimension.
 
 	\textit{...discuss non-resolving set?...}
 
 	\textit{...discuss monotonicity?...}
 
-	...\textit{blah blah blah}...
+	Third, let us briefly revisit the concept of an adjacency matrix of a graph.
+
+	\textit{...adjacency matrix?...}
+
+	\textit{...Floyd-Warshall?...}
 
 	\section{Distance Matrix}
 
