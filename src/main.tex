@@ -40,7 +40,7 @@
 
 	\section{Distance Matrix}
 
-	In this section, we will be discussing special relationship that the distance matrix have to the problem of metric dimension.
+	In this section, we discuss special relationship that the distance matrix have to the problem of metric dimension.
 
 	The distance matrix of a graph is the matrix that contains all of the pair-wise distance between its vertices. That is, given the set of vertices \(V = \{v_1, v_2, \cdots, v_n\}\), the corresponding distance matrix is
 		\[
@@ -57,7 +57,14 @@
 
 	Let us revisit the definition of metric dimension; The metric dimension of a graph is the minimum number of vertices needed to uniquely identify every vertex in the graph. This notion of identification is formally expressed through the representation. Denoted by \(r(v|W)\), the representation of a vertex \(v\) with respect to \(W\), is defined as the ordered tuple \(r(v|W) = (d(w_1, v), \cdots, d(w_k, v))\). Here, \(W = \{w_1, \cdots, w_k\}\) is an ordered set of vertices.
 
-	As such, the distance matrix of a graph has a close relationship to the graph metric dimension, where all possible representation within that graph can be obtained through slicing operations on the distance matrix.
+	As such, the distance matrix of a graph has a close relationship to the graph metric dimension, where all possible representation within that graph can be obtained through slicing operations on the distance matrix. Coloquically, the distance matrix can be expressed in terms of the representation, as follow:
+		\[
+			D^{(V)} = \left[
+				\begin{array}{cccc}
+					r(v_1|V) & r(v_2|V) & \cdots & r(v_n|V)
+				\end{array}
+			\right]
+		\]
 
 	Similarly, the same relationship exists between the edge distance matrix of a graph to the graph edge metric dimension. The edge distance matrix of a graph is the matrix that contains all of the distance from the vertices to the edges in that graph. That is, given the set of edges \(E = \{e_1, e_2, \cdots, e_m\}\), the corresponding edge distance matrix is
 		\[
@@ -74,15 +81,42 @@
 
 	\textit{...obtain \(D^{(E)}\) directly from \(D^{(V)}\)...}
 
-	The edge metric dimension of a graph is the minimum number of vertices needed to uniquely identify every edge in the graph. Subsequently, denoted by \(r(e|W)\), the representation of an edge \(e\) with respect to \(W\), is defined as the ordered tuple \(r(e|W) = (d(w_1,e), \cdots, d(w_k,e))\). Hence, \(W\) is still an ordered set of vertices.
+	The edge metric dimension of a graph is the minimum number of vertices needed to uniquely identify every edge in the graph. Subsequently, denoted by \(r(e|W)\), the representation of an edge \(e\) with respect to \(W\), is defined as the ordered tuple \(r(e|W) = (d(w_1,e), \cdots, d(w_k,e))\). Hence, \(W\) is still an ordered set of vertices. Thus, the edge distance matrix can also be expressed in terms of the representation, as follow:
+		\[
+			D^{(E)} = \left[
+				\begin{array}{cccc}
+					r(e_1|V) & r(e_2|V) & \cdots & r(e_n|V)
+				\end{array}
+			\right]
+		\]
 
 	Recalling the notion of unique identification, \(W\) is called a resolving set when the representations of all vertices in a graph with respect to \(W\) are unique. Likewise, \(W\) is an edge resolving set when the representations of all edges with respect to \(W\) are unique. Therefore, determining the metric dimension of a graph is a matter of finding the minimum cardinality among all possible resolving sets. Equivalently, the edge metric dimension is the minimum cardinality of its edge resolving sets.
 
-	In this paper, we formalize the complement of the resolving set as the invalid resolving set. Specifically, if \(W \subseteq V\) is not a resolving set, it is called as an invalid resolving set. Thus, the power set \(\mathcal{P}(V))\) is partitioned into these two disjoint classes. The same distinction is applied for edge resolving set, defining the invalid edge resolving set. While this distinction may appear trivial, it serves as the crucial key for the discussion in \cref{sec:formulation}.
+	% In this paper, we formalize the complement of the resolving set as the invalid resolving set. Specifically, if \(W \subseteq V\) is not a resolving set, it is called as an invalid resolving set. Thus, the power set \(\mathcal{P}(V))\) is partitioned into these two disjoint classes. The same distinction is applied for edge resolving set, defining the invalid edge resolving set. While this distinction may appear trivial, it serves as the crucial key for the discussion in \cref{sec:formulation}.
 
 	\section{Distance Similarity Matrix}
 
-	In this section, we will be discussing the special construction of the distance similarity matrix from the distance matrix, and what it means for the problem of metric dimension.
+	In this section, we will discuss the special construction of the distance similarity matrix from the distance matrix, and what it means for the problem of metric dimension.
+
+	This time, we'd like to formally express the idea of unique in uniquely identify every vertex or unique representation. Given a \(W\), the representation \(r(u|W)\) is not unique when there exists \(r(v|W)\) such that \(r(u|W) = r(v|W)\), for \(u \neq v\). However, when dealing with multiple candidate resolving sets, such as \(W, W', W''\), etc., where these sets aren't mutually exclusive, it'd be beneficial to be able to reuse computation. Hence, we'd like to introduce an operation instead returns ordered tuple of boolean.
+
+	Given two elements \(t_1\) and \(t_2\), the operator \((t_1 = t_2)\) returns the boolean value \(\mathtt{True}\) when \(t_1 = t_2\), and \(\mathtt{False}\) when \(t_1 \neq t_2\). This operator can then be extended for \((r(u|W) = r(v|W))\) to return the ordered tuple of boolean
+		\[ (r(u|W)=r(v|W)) = ((d(w_1, u)=d(w_1, v)), \cdots, (d(w_k, u)=d(w_k, v)))\]
+	Thus, the equality \(r(u|W)=r(v|W)\) can be evaluated on whether the tuple \((r(u|W)=r(v|W))\) contains all \(\mathtt{True}\).
+
+	Then, for the purposes of reusing computation, we can simply evaluate the tuple \((r(u|V)=r(v|V))\) once, and the tuples \((r(u|W)=r(v|W))\), \((r(u|W')=r(v|W'))\), \((r(u|W'')=r(v|W''))\), etc. can all be obtained from slicing operations on the tuple \((r(u|V)=r(v|V))\).
+
+	Finally, because for all of the columns in the distance matrix are representations with respect to \(V\), we can construct a boolean matrix that contains every single possible combination of pair-wise representation comparison, called the distance similarity matrix, as follow:
+		\[
+			B^{(V)} = \left[
+				\begin{array}{@{}c@{\ }c@{\ }c@{\ }c@{\ }c@{\ }c@{}}
+					(r(v_1|V)=r(v_2|V)) & \cdots & (r(v_1|V)=r(v_n|V)) & (r(v_2|V)=r(v_3|V)) & \cdots & (r(v_{n-1}|V)=r(v_n|V))
+				\end{array}
+			\right]
+		\]
+	The dimension of \(B^{(V)}\) is therefore \(\displaystyle n \times {n \choose 2}\).
+
+	Following this, we can now tackle the resolving set problem. For \(W\) to be a resolving, every single vertex in a graph must have a unique representation against it. Using the distance similarity matrix, simply pick all the appropariate rows that corresponds to \(W\). We denote this by \((B^{(V)}|W)\). Then, for all representation with respect to \(W\) to be unique, means that not a single column in \((B^{(V)}|W)\) contains all \(\mathrm{True}\). Otherwise, \(W\) is a non-resolving set.
 
 	\section{Constraints Formulation in Satisfiability Modulo Theories}
 	\label{sec:formulation}
