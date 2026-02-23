@@ -28,9 +28,19 @@
 
 	\section{Preliminaries}
 
+	\textit{...adjacency matrix?...}
+
+	\textit{...Floyd-Warshall?...}
+
+	\textit{...discuss non-resolving set?...}
+
+	\textit{...discuss monotonicity?...}
+
 	...\textit{blah blah blah}...
 
 	\section{Distance Matrix}
+
+	In this section, we will be discussing special relationship that the distance matrix have to the problem of metric dimension.
 
 	The distance matrix of a graph is the matrix that contains all of the pair-wise distance between its vertices. That is, given the set of vertices \(V = \{v_1, v_2, \cdots, v_n\}\), the corresponding distance matrix is
 		\[
@@ -43,7 +53,7 @@
 				\end{array}
 			\right]
 		\]
-	where \(d(v_i, v_j)\) is the distance from vertex \(v_i\) to vertex \(v_j\).
+	where \(d(v_i, v_j)\) is the distance from vertex \(v_i\) to vertex \(v_j\). Therefore, the dimension of \(D^{(V)}\) is \(n \times n\), because \(|V| = n\).
 
 	Let us revisit the definition of metric dimension; The metric dimension of a graph is the minimum number of vertices needed to uniquely identify every vertex in the graph. This notion of identification is formally expressed through the representation. Denoted by \(r(v|W)\), the representation of a vertex \(v\) with respect to \(W\), is defined as the ordered tuple \(r(v|W) = (d(w_1, v), \cdots, d(w_k, v))\). Here, \(W = \{w_1, \cdots, w_k\}\) is an ordered set of vertices.
 
@@ -60,7 +70,9 @@
 				\end{array}
 			\right]
 		\]
-	where \(d(v_i, e_j)\) is the distance from vertex \(v_i\) to edge \(e_j\). If the edge \(e\) connects the pair of vertices \(v, w\), then \(d(u, e)\) is defined as the minimum between \(d(u, v)\) and \(d(u, w)\).
+	where \(d(v_i, e_j)\) is the distance from vertex \(v_i\) to edge \(e_j\). If the edge \(e\) connects the pair of vertices \(v, w\), then \(d(u, e)\) is defined as the minimum between \(d(u, v)\) and \(d(u, w)\). Therefore, the dimension of \(D^{(E)}\) is \(n \times m\), because \(|E| = m\).
+
+	\textit{...obtain \(D^{(E)}\) directly from \(D^{(V)}\)...}
 
 	The edge metric dimension of a graph is the minimum number of vertices needed to uniquely identify every edge in the graph. Subsequently, denoted by \(r(e|W)\), the representation of an edge \(e\) with respect to \(W\), is defined as the ordered tuple \(r(e|W) = (d(w_1,e), \cdots, d(w_k,e))\). Hence, \(W\) is still an ordered set of vertices.
 
@@ -70,7 +82,7 @@
 
 	\section{Distance Similarity Matrix}
 
-	...\textit{blah blah blah}...
+	In this section, we will be discussing the special construction of the distance similarity matrix from the distance matrix, and what it means for the problem of metric dimension.
 
 	\section{Constraints Formulation in Satisfiability Modulo Theories}
 	\label{sec:formulation}
