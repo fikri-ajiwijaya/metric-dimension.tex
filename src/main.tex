@@ -238,7 +238,43 @@
 
 	\section{Distance Matrix}
 
-	...\textit{blah blah blah}...
+	If \(V = \{v_1, v_2, \cdots, v_n\}\), then the distance matrix of \(G\) has dimension \(n \times n\), and is as follow:
+	\[
+		D^{(V)} = \left[
+		\begin{array}{cccc}
+			d(v_1, v_1) & d(v_1, v_2) & \cdots & d(v_1, v_n) \\
+			d(v_2, v_1) & d(v_2, v_2) & \cdots & d(v_2, v_n) \\
+			\vdots & \vdots & \ddots & \vdots \\
+			d(v_n, v_1) & d(v_n, v_2) & \cdots & d(v_n, v_n)
+		\end{array}
+		\right]
+	\]
+
+	\(V\) has row correspondence and column correspondence with \(D^{(V)}\).
+
+	Thus, for \(v \in V\) and \(W \subseteq V\), the representation of \(v\) with respect to \(W\) is
+	\[
+		r(v|W) = D^{(V)}(W, \star)(\star, v)
+	\]
+
+	If \(E = \{e_1, e_2, \cdots, e_m\}\), then the edge distance matrix of \(G\) has dimension \(n \times m\), and is as follow:
+	\[
+		D^{(E)} = \left[
+		\begin{array}{cccc}
+			d(v_1, e_1) & d(v_1, e_2) & \cdots & d(v_1, e_m) \\
+			d(v_2, e_1) & d(v_2, e_2) & \cdots & d(v_2, e_m) \\
+			\vdots & \vdots & \ddots & \vdots \\
+			d(v_n, e_1) & d(v_n, e_2) & \cdots & d(v_n, e_m)
+		\end{array}
+		\right]
+	\]
+
+	\(V\) has row correspondence and \(E\) has column correspondence with \(D^{(E)}\).
+
+	Thus, for \(e \in E\) and \(W \subseteq V\), the representation of \(e\) with respect to \(W\) is
+	\[
+		r(e|W) = D^{(E)}(W, \star)(\star, e)
+	\]
 
 	\section{Distance Similarity Matrix}
 
