@@ -2,6 +2,7 @@
 
 \usepackage{
 	arxiv,
+	amsmath,
 	amssymb,
 	cleveref
 }
@@ -29,150 +30,219 @@
 
 	\section{Preliminaries}
 
-	First, let us discuss some notations that will be used throughout the rest of this paper. What will follow may seem unnecessarily redundant and verbose. However, the motivation for these explicit redefinitions is to make ``object-level'' operations explicit from the meta-level logical connectives such as \(\neg\), \(\vee\), \(\wedge\), and even \(=\) that are logical assertions. The need for unambiguous notation will be obvious for the discussions in the sections hereafter.
+	\subsection{Notations}
 
-	Given a boolean element \(b\), we define a unary boolean operation \((\sim\!b)\), and given a pair of elements \(c\) and \(d\), we define two binary boolean operations \((c = d)\) and \((c | d)\), as follows:
+	\subsubsection{Constructing tuples}
+
+	Let \(c_1, c_2, \cdots, c_k\) be constants.
+
+	\(c_1, c_2, \cdots, c_k\) may be arranged into a \(k\)-tuple as follow:
 	\[
-	\begin{array}{c@{\ }l}
-		(\sim\!b) &= \left\{ \begin{array}{l@{}lr}
-			\mathtt{True} &,& \neg b\\
-			\mathtt{False} &,& b
-		\end{array} \right. \\ [12pt]
-		(c = d) &= \left\{ \begin{array}{l@{}ll}
-			\mathtt{True} &,& c = d \\
-			\mathtt{False} &,& c \neq d
-		\end{array} \right. \\ [12pt]
-		(c | d) &= \left\{ \begin{array}{l@{}lc}
-			\mathtt{True} &,& c \vee d \\
-			\mathtt{False} &,& \neg c \wedge \neg d
-		\end{array} \right.
-	\end{array}
+		(c_1, c_2, \cdots, c_k)
 	\]
-	All of these operations are overloaded for tuples to produce boolean tuples; or more rigorously, given a boolean \(k\)-tuple \(s = (s_1\ s_2\ \cdots\ s_k)\) and a pair of \(k\)-tuples \(t = (t_1\ t_2\ \cdots\ t_k)\) and \(u = (u_1\ u_2\ \cdots\ u_k)\),
+
+	\subsubsection{Indexing tuples}
+
+	Let \(C\) be a \(k\)-tuple.
+
+	\(C(i)\) is the \(i\)-th element in tuple \(C\).
+
+	\subsubsection{Slicing tuples}
+
+	Let \(U\) be a set where \(|U| = k\).
+
+	For \(U\) to have correspondence with \(C\) means there exists a bijective function \(\mathtt{idx} : U \to \{1, \cdots, k\}\).
+
+	If \(u \in U\), then \(C(u) = C(\mathtt{idx}(u))\).
+
+	If \(\{u_1, \cdots, u_r\} \subseteq U\), then, preserving the element order of \(C\),
 	\[
-	\begin{array}{c}
-		(\sim\!s) = ((\sim\!s_1)\enspace(\sim\!s_2)\enspace\cdots\enspace(\sim\!s_k)) \\ [6pt]
-		(t = u) = ((t_1 = u_1)\enspace(t_2 = u_2)\enspace\cdots\enspace(t_k = u_k)) \\ [6pt]
-		(t | u) = ((t_1 | u_1)\enspace(t_2 | u_2)\enspace\cdots\enspace(t_k | u_k))
-	\end{array}
+		C(\{u_1,\cdots, u_r\}) = (C(u_1), \cdots, C(u_r))
 	\]
-	Hence, in general, the operations \((\sim\!b)\), \((c = d)\), and \((c | d)\) take values in \(\mathbb{B}\), with the specific overload for tuple where \((\sim\!s)\), \((t = u)\), and \((t | u)\) take values in \(\mathbb{B}^k\). Here, the symbol \(\mathbb{B}\) denotes the boolean space, that is \(\mathbb{B} = \{\mathtt{True}, \mathtt{False}\}\).
 
-	\textit{...examples...}
+	\subsubsection{Masking sets}
 
-	Next, we define slicing and stacking operations between tuples and matrices. Likewise previously, these definitions may seem obvious. Yet, the intensive use of these notations later on will often times prove terse to read. Therefore, there is no harm to provide clarification early on. Given \(n\) \(k\)-tuples \(s_1, s_2, \cdots, s_n\), they may be arranged as columns of a matrix
-	\[ \left[ s_1\enspace s_2\enspace \cdots\enspace s_n \right] \]
-	yielding the matrix with \(k\) rows and \(n\) columns; or more concisely, a matrix of dimension \(k \times n\). In the same way, given \(k\) elements \(c_1, c_2, \cdots, c_k\), they can be arranged into a tuple
-	\[ (c_1\ c_2\ \cdots\ c_k) \]
-	producing a \(k\)-tuple. Conversely, given a matrix \(A\) with \(k\) rows, the slicing operation denoted by
-	\[ A_{\displaystyle *j} \]
-	means to take the \(j\)-th column from the matrix and return it as a \(k\)-tuple. Similarly, given a tuple \(t\), the notation \(t_{\displaystyle i}\) means to take the \(i\)-th element from the tuple and return it as an element. Thus, it is possible to take the element of a matrix \(A\) from the \(i\)-th row and \(j\)-th column by composing the two operations as \((A_{\displaystyle *j})_{\displaystyle i}\). This is more familiarly denoted by the more concise notation \(A_{\displaystyle ij}\).
+	Let \(B\) be a \(k\)-Boolean tuple.
 
-	Following that, it is often done where by a ``correspondence'' between a ``set'' and a matrix is made. Given a set \(X\) with \(n\) elements and a matrix \(M\) with \(n\) rows, a correspondence between \(X\) and the rows of \(M\) means an element \(x \in X\) uniquely identifies a row in \(M\). Some examples where this happens is in the concept of the adjacency matrix of a graph and the distance matrix of a graph. Thus, let us define the slicing operation \(M|Y\), where \(Y \subseteq X\), to mean taking all the rows in \(M\) for all the corresponding elements in \(Y\), and preserve the original row order. As such, \(M|Y\) is a matrix with \(|Y|\) rows, and that \(M|X = M\). Here, \(|Y|\) is the cardinality of \(Y\).
+	If \(U\) has a correspondence with \(B\), then
+	\[
+		U(B) = \{ u \in U : B(u) = \mathtt{True}\}
+	\]
 
-	Lastly, let us formalize the notion of the commonly done operation called masking. Given a \(k\)-tuple \(t\) and a \(k\)-boolean tuple \(b\), the operation \(t|b\) means to take all the elements in \(t\) where the corresponding element in \(b\) is \(\mathtt{True}\) and return it as a set. More rigorously,
-	\[ t|b = \{t_i : b_i = \mathtt{True}\} \]
-	Colloquially, when all elements in \(t\) are unique, then \(|\ t|b\ |\) is equal to the number of \(\mathtt{True}\) elements in \(b\).
+	\subsubsection{Operations on tuples}
 
-	\textit{...examples...}
+	\[
+		\neg B = (\neg B(1), \cdots, \neg B(k))
+	\]
 
-	Finally, let us introduce bijective functions that lift vertices in a graph into variables in satisfiability modulo theories. Given a vertex \(v\) in a graph, the function \(\mathtt{bool}(v)\) produces a corresponding boolean variable, and the function \(\mathtt{int}(v)\) produces a corresponding integer variable. Therefore, given \(V\) is the set of all vertices in the graph, \(\mathtt{bool}(V)\) is the set of all the corresponding boolean variables, and \(\mathtt{int}(V)\) is the set of all the corresponding integer variables.
+	Let \(B_1\) and \(B_2\) be \(k\)-Boolean tuples.
 
-	In this paper, we often use a shortcut notation to denote solution and solution space. Given \(\mathtt{bool}(V)\) and a set of established constraints, we take an \(n\)-boolean tuple \(X\) as both a specific concrete model and an abstract model that encompasses all possible solutions. Here, \(X_{\displaystyle i}\) corresponds to the vertex \(v_i\) for \(V = \{v_1, v_2, \cdots, v_n\}\). As such, we are able to use the notation \(V|X\) to represent both a concrete solution and the abstract solution space from a set of constraints. We also extend this notational shortcut for when \(X\) is an integer model from \(\mathtt{int}(V)\), the notation \(V|X\) refers to the subset of vertices corresponding to non-zero entries in \(X\).
+	\[
+		B_1 \vee B_2 = (B_1(1) \vee B_2(1), \cdots, B_1(k) \vee B_2(k))
+	\]
 
-	\textit{...examples...}
+	Let \(C_1\) and \(C_2\) be \(k\)-tuples.
 
-	Second, let us formally define the notion of metric dimension.
+	\[
+		( C_1 = C_2 ) = (C_1(1) = C_2(1), \cdots, C_1(k) = C_2(k))
+	\]
 
-	\textit{...discuss non-resolving set?...}
+	\subsubsection{Constructing matrices}
 
-	\textit{...discuss monotonicity?...}
+	Let \(a_1, a_2, \cdots, a_n\) be \(m\)-tuples.
 
-	Third, let us briefly revisit the concept of an adjacency matrix of a graph.
+	\(a_1, a_2, \cdots, a_n\) may be arranged into the rows of an \(n \times m\) matrix as follow:
+	\[
+		\left[
+		\begin{array}{c}
+			a_1 \\
+			a_2 \\
+			\vdots \\
+			a_n
+		\end{array}
+		\right]
+	\]
 
-	\textit{...adjacency matrix?...}
+	\(a_1, a_2, \cdots, a_n\) may be arranged into the columns of an \(m \times n\) matrix as follow:
+	\[
+		\left[ a_1\enspace a_2\enspace \cdots\enspace a_n \right]
+	\]
 
-	\textit{...Floyd-Warshall?...}
+	Let \(A_1\) be an \(n_1 \times m\) matrix, \(A_2\) be an \(n_2 \times m\) matrix, \(\cdots\), and \(A_r\) be an \(n_r \times m\) matrix.
+
+	\(A_1\), \(A_2\), \(\cdots\), \(A_r\) may be stacked vertically into an \((n_1 + n_2 + \cdots + n_r) \times m\) matrix as follow:
+	\[
+		\left[
+		\begin{array}{c}
+			A_1 \\
+			A_2 \\
+			\vdots \\
+			A_r
+		\end{array}
+		\right]
+	\]
+
+	Let \(A'_1\) be an \(n \times m_1\) matrix, \(A'_2\) be an \(n \times m_2\) matrix, \(\cdots\), and \(A'_r\) be an \(n \times m_r\) matrix.
+
+	\(A'_1\), \(A'_2\), \(\cdots\), \(A'_r\) may be stacked horizontally into an \(n \times (m_1 + m_2 + \cdots + m_r)\) matrix as follow:
+	\[
+		\left[ A'_1\enspace A'_2\enspace \cdots\enspace A'_r \right]
+	\]
+
+	\subsubsection{Indexing matrices}
+
+	Let \(A\) be an \(n \times m\) matrix.
+
+	\(A(i, j)\) is the element at the \(i\)-th row and \(j\)-th column in matrix \(A\).
+
+	\[ A(i, \star) = (A(i, 1), \cdots, A(i, m)) \]
+
+	\[ A(\star, j) = (A(1, j), \cdots, A(n, j)) \]
+
+	\subsubsection{Slicing matrices}
+
+	Let \(S\) be a set where \(|S| = n\).
+
+	For \(S\) to have row correspondence with \(A\) means there exists a bijective function \(\mathtt{idx} : S \to \{1, \cdots, n\}\).
+
+	If \(s \in S\), then \(A(s, \star) = A(\mathtt{idx}(s), \star)\).
+
+	If \(\{s_1, \cdots, s_r\} \subseteq S\), then, preserving the row order of \(A\),
+	\[
+		A(\{s_1, \cdots, s_r\}, \star) = \left[
+		\begin{array}{c}
+			A(s_1, \star) \\
+			\vdots \\
+			A(s_r, \star)
+		\end{array}
+		\right]
+	\]
+
+	Let \(T\) be a set where \(|T| = m\).
+
+	For \(T\) to have column correspondence with \(A\) means there exists a bijective function \(\mathtt{idx} : T \to \{1, \cdots, m\}\).
+
+	If \(t \in T\), then \(A(\star, t) = A(\star, \mathtt{idx}(t))\).
+
+	If \(\{t_1, \cdots, t_r\} \subseteq T\), then, preserving the column order of \(A\),
+	\[
+		A(\star, \{t_1, \cdots, t_r\}) = \left[ A(\star, t_1)\enspace \cdots\enspace A(\star, t_r) \right]
+	\]
+
+	\subsection{Graphs}
+
+	\subsubsection{Distance}
+
+	Let \(G\) be a graph.
+
+	Let \(V\) be the set of vertices in \(G\).
+
+	Let \(E\) be the set of edges in \(G\).
+
+	For \(u, v \in V\), the distance from \(u\) to \(v\) is denoted by \(d(u, v)\).
+
+	For \(u, v, w \in V\) and \(e \in E\), if \(e\) is an edge between \(v\) and \(w\), then the distance from \(u\) to \(e\) is
+	\[
+		d(u, e) = \mathrm{min}(d(u, v), d(u, w))
+	\]
+
+	\subsubsection{Representation}
+
+	For \(v \in V\) and \(W = \{w_1, w_2, \cdots, w_k\} \subseteq V\), the representation of \(v\) with respect to \(W\) is
+	\[
+		r(v|W) = (d(w_1, v), d(w_2, v), \cdots, d(w_k, v))
+	\]
+
+	For \(e \in E\) and \(W = \{w_1, w_2, \cdots, w_k\} \subseteq V\), the representation of \(e\) with respect to \(W\) is
+	\[
+		r(e|W) = (d(w_1, e), d(w_2, e), \cdots, d(w_k, e))
+	\]
+
+	\subsubsection{Resolving set}
+
+	For \(W\) to be a resolving set means that
+	\[
+		\forall u, v \in V, u \neq v \implies r(u|W) \neq r(v|W)
+	\]
+
+	For \(W\) to be an edge resolving set means that
+	\[
+		\forall e, f \in E, e \neq f \implies r(e|W) \neq r(f|W)
+	\]
+
+	\subsubsection{Non-resolving set}
+
+	If \(W\) is not a resolving set, then \(W\) is a non-resolving set.
+
+	\(\mathcal{P}(V)\) is partitioned into the set of resolving sets and the set of non-resolving sets.
+
+	If \(W\) is not an edge resolving set, then \(W\) is an edge non-resolving set.
+
+	\(\mathcal{P}(V)\) is partitioned into the set of edge resolving sets and the set of edge non-resolving sets.
+
+	\subsubsection{Monotonicity}
+
+	If \(W\) is a resolving set, then a superset of \(W\) is a resolving set.
+
+	If \(W\) is a non-resolving set, then a subset of \(W\) is a non-resolving set.
+
+	If \(W\) is an edge resolving set, then a superset of \(W\) is an edge resolving set.
+
+	If \(W\) is an edge non-resolving set, then a subset of \(W\) is an edge non-resolving set.
+
+	\subsubsection{Metric dimension}
+
+	The metric dimension of a graph is the minimum cardinality of resolving sets of the graph.
+
+	The edge metric dimension of a graph is the minimum cardinality of edge resolving sets of the graph.
 
 	\section{Distance Matrix}
 
-	In this section, we discuss special relationship that the distance matrix have to the problem of metric dimension.
-
-	The distance matrix of a graph is the matrix that contains all of the pair-wise distance between its vertices. That is, given the set of vertices \(V = \{v_1, v_2, \cdots, v_n\}\), the corresponding distance matrix is
-		\[
-			D^{(V)} = \left[
-				\begin{array}{cccc}
-					d(v_1, v_1) & d(v_1, v_2) & \cdots & d(v_1, v_n) \\
-					d(v_2, v_1) & d(v_2, v_2) & \cdots & d(v_2, v_n) \\
-					\vdots & \vdots & \ddots & \vdots \\
-					d(v_n, v_1) & d(v_n, v_2) & \cdots & d(v_n, v_n) \\
-				\end{array}
-			\right]
-		\]
-	where \(d(v_i, v_j)\) is the distance from vertex \(v_i\) to vertex \(v_j\). Therefore, the dimension of \(D^{(V)}\) is \(n \times n\), because \(|V| = n\).
-
-	Let us revisit the definition of metric dimension; The metric dimension of a graph is the minimum number of vertices needed to uniquely identify every vertex in the graph. This notion of identification is formally expressed through the representation. Denoted by \(r(v|W)\), the representation of a vertex \(v\) with respect to \(W\), is defined as the ordered tuple \(r(v|W) = (d(w_1, v), \cdots, d(w_k, v))\). Here, \(W = \{w_1, \cdots, w_k\}\) is an ordered set of vertices.
-
-	As such, the distance matrix of a graph has a close relationship to the graph metric dimension, where all possible representation within that graph can be obtained through slicing operations on the distance matrix. Coloquically, the distance matrix can be expressed in terms of the representation, as follow:
-		\[
-			D^{(V)} = \left[
-				\begin{array}{cccc}
-					r(v_1|V) & r(v_2|V) & \cdots & r(v_n|V)
-				\end{array}
-			\right]
-		\]
-
-	Similarly, the same relationship exists between the edge distance matrix of a graph to the graph edge metric dimension. The edge distance matrix of a graph is the matrix that contains all of the distance from the vertices to the edges in that graph. That is, given the set of edges \(E = \{e_1, e_2, \cdots, e_m\}\), the corresponding edge distance matrix is
-		\[
-			D^{(E)} = \left[
-				\begin{array}{cccc}
-					d(v_1, e_1) & d(v_1, e_2) & \cdots & d(v_1, e_m) \\
-					d(v_2, e_1) & d(v_2, e_2) & \cdots & d(v_2, e_m) \\
-					\vdots & \vdots & \ddots & \vdots \\
-					d(v_n, e_1) & d(v_n, e_2) & \cdots & d(v_n, e_m) \\
-				\end{array}
-			\right]
-		\]
-	where \(d(v_i, e_j)\) is the distance from vertex \(v_i\) to edge \(e_j\). If the edge \(e\) connects the pair of vertices \(v, w\), then \(d(u, e)\) is defined as the minimum between \(d(u, v)\) and \(d(u, w)\). Therefore, the dimension of \(D^{(E)}\) is \(n \times m\), because \(|E| = m\).
-
-	\textit{...obtain \(D^{(E)}\) directly from \(D^{(V)}\)...}
-
-	The edge metric dimension of a graph is the minimum number of vertices needed to uniquely identify every edge in the graph. Subsequently, denoted by \(r(e|W)\), the representation of an edge \(e\) with respect to \(W\), is defined as the ordered tuple \(r(e|W) = (d(w_1,e), \cdots, d(w_k,e))\). Hence, \(W\) is still an ordered set of vertices. Thus, the edge distance matrix can also be expressed in terms of the representation, as follow:
-		\[
-			D^{(E)} = \left[
-				\begin{array}{cccc}
-					r(e_1|V) & r(e_2|V) & \cdots & r(e_n|V)
-				\end{array}
-			\right]
-		\]
-
-	Recalling the notion of unique identification, \(W\) is called a resolving set when the representations of all vertices in a graph with respect to \(W\) are unique. Likewise, \(W\) is an edge resolving set when the representations of all edges with respect to \(W\) are unique. Therefore, determining the metric dimension of a graph is a matter of finding the minimum cardinality among all possible resolving sets. Equivalently, the edge metric dimension is the minimum cardinality of its edge resolving sets.
-
-	% In this paper, we formalize the complement of the resolving set as the invalid resolving set. Specifically, if \(W \subseteq V\) is not a resolving set, it is called as an invalid resolving set. Thus, the power set \(\mathcal{P}(V))\) is partitioned into these two disjoint classes. The same distinction is applied for edge resolving set, defining the invalid edge resolving set. While this distinction may appear trivial, it serves as the crucial key for the discussion in \cref{sec:formulation}.
+	...\textit{blah blah blah}...
 
 	\section{Distance Similarity Matrix}
 
-	In this section, we will discuss the special construction of the distance similarity matrix from the distance matrix, and what it means for the problem of metric dimension.
-
-	This time, we'd like to formally express the idea of unique in uniquely identify every vertex or unique representation. Given a \(W\), the representation \(r(u|W)\) is not unique when there exists \(r(v|W)\) such that \(r(u|W) = r(v|W)\), for \(u \neq v\). However, when dealing with multiple candidate resolving sets, such as \(W, W', W''\), etc., where these sets aren't mutually exclusive, it'd be beneficial to be able to reuse computation. Hence, we'd like to introduce an operation instead returns ordered tuple of boolean.
-
-	Given two elements \(t_1\) and \(t_2\), the operator \((t_1 = t_2)\) returns the boolean value \(\mathtt{True}\) when \(t_1 = t_2\), and \(\mathtt{False}\) when \(t_1 \neq t_2\). This operator can then be extended for \((r(u|W) = r(v|W))\) to return the ordered tuple of boolean
-		\[ (r(u|W)=r(v|W)) = ((d(w_1, u)=d(w_1, v)), \cdots, (d(w_k, u)=d(w_k, v)))\]
-	Thus, the equality \(r(u|W)=r(v|W)\) can be evaluated on whether the tuple \((r(u|W)=r(v|W))\) contains all \(\mathtt{True}\).
-
-	Then, for the purposes of reusing computation, we can simply evaluate the tuple \((r(u|V)=r(v|V))\) once, and the tuples \((r(u|W)=r(v|W))\), \((r(u|W')=r(v|W'))\), \((r(u|W'')=r(v|W''))\), etc. can all be obtained from slicing operations on the tuple \((r(u|V)=r(v|V))\).
-
-	Finally, because for all of the columns in the distance matrix are representations with respect to \(V\), we can construct a boolean matrix that contains every single possible combination of pair-wise representation comparison, called the distance similarity matrix, as follow:
-		\[
-			B^{(V)} = \left[
-				\begin{array}{@{}c@{\ }c@{\ }c@{\ }c@{\ }c@{\ }c@{}}
-					(r(v_1|V)=r(v_2|V)) & \cdots & (r(v_1|V)=r(v_n|V)) & (r(v_2|V)=r(v_3|V)) & \cdots & (r(v_{n-1}|V)=r(v_n|V))
-				\end{array}
-			\right]
-		\]
-	The dimension of \(B^{(V)}\) is therefore \(\displaystyle n \times {n \choose 2}\).
-
-	Following this, we can now tackle the resolving set problem. For \(W\) to be a resolving, every single vertex in a graph must have a unique representation against it. Using the distance similarity matrix, simply pick all the appropariate rows that corresponds to \(W\). We denote this by \((B^{(V)}|W)\). Then, for all representation with respect to \(W\) to be unique, means that not a single column in \((B^{(V)}|W)\) contains all \(\mathrm{True}\). Otherwise, \(W\) is a non-resolving set.
+	...\textit{blah blah blah}...
 
 	\section{Constraints Formulation in Satisfiability Modulo Theories}
 	\label{sec:formulation}
