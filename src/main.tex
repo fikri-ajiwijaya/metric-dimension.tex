@@ -122,17 +122,12 @@
 
 	The edge metric dimension of a graph is the minimum cardinality of edge resolving sets of the graph.
 
+	\clearpage
 	\section{Distance Matrix}
 
-	Suppose \(G\) is a graph with a set of vertices \(V = \{v_1, v_2, \cdots, v_n\}\) and a set of edges \(E = \{e_1, e_2, \cdots, e_m\}\).
+	Here, we discuss the relationship between the distance matrix and representations. Suppose \(G\) is a graph with a set of vertices \(V = \{v_1, v_2, \cdots, v_n\}\) and a set of edges \(E = \{e_1, e_2, \cdots, e_m\}\).
 
-	Let us compute for a vertex \(v \in V\) its representation with respect to \(V\). We would obtain the tuple \(r(v|V) = (d(v_1, v), d(v_2, v), \cdots, d(v_n, v))\). Observe that, this tuple contains the distance from every other vertices to \(v\), where \(\forall u \in V, d(u, v) = r(v|V)(u)\). Such, for any \(W \subseteq V\), the representation of \(v\) with respect to \(W\) may be acquired by slicing directly from this tuple; that is, \(r(v|W) = r(v|V)(W)\).
-
-	Next, let us revisit the notion of resolving set. The set \(W \subseteq V\) is a resolving set of \(G\) if and only if the representation of all vertices with respect to it are unique. Thus, by definition, we must compute all possible representations with respect to \(W\) to even be able to begin quantifying whether \(W\) fulfill this criteria.
-
-	However, since determining the metric dimension of \(G\) is fundamentally a process of minimizing the cardinality of the resolving set. As such, by virtue of the search process, we'd have to evaluate various potential \(W \subseteq V\). Therefore, it'd be best to reuse as much computation as possible. This, we can do by computing all possible representations with respect to \(V\) instead, once, at the beginning. Then, all further possible representations may be obtained by slicing from these collections of precomputed values.
-
-	Fortunately, there exists already a structure that contains all this information. It is called the distance matrix, defined as follow:
+	The distance matrix of \(G\) is an \(n \times n\) matrix defined as follow:
 	\[
 		D^{(V)} = \left[
 		\begin{array}{cccc}
@@ -143,11 +138,9 @@
 		\end{array}
 		\right]
 	\]
-	This distance matrix has dimension \(n \times n\). The construction is made specifically such that \(V\) has both row and column correspondence with \(D^{(V)}\). Remark that the columns of the distance matrix are exactly the representations with respect to \(V\). Through slicing, we have \(r(v|V) = D^{(V)}(\star, v)\) for any \(v \in V\). Hence, together with our previous observation, we are able to obtain any representation from the distance matrix using \(r(v|W) = D^{(V)}(\star, v)(W)\).
+	The construction is made such that \(V\) has both row and column correspondence with \(D^{(V)}\). The columns of this matrix serves as the collection of all vertex representations with respect to \(V\). That is, for any \(v \in V\), its representation may be obtained by slicing the distance matrix, \(r(v|V) = D^{(V)}(\star, v)\). Then, representation with respect to any \(W \subseteq V\) may be acquired by further slicing from the representation with respect to \(V\), \(r(v|W) = D^{(V)}(\star, v)(W)\).
 
-	Equivalently, we can first select the rows of \(D^{(V)}\) according to \(W\). The columns of the submatrix \(D^{(V)}(W, \star)\) are exactly the representations with respect to \(W\). Then, we can select a column from the submatrix to obtain the representation for a specific vertex, giving \(r(v|W) = D^{(V)}(W, \star)(v)\).
-
-	If \(E = \{e_1, e_2, \cdots, e_m\}\), then the edge distance matrix of \(G\) has dimension \(n \times m\), and is as follow:
+	Similarly, the edge distance matrix of \(G\) is an \(n \times m\) matrix defined as follow:
 	\[
 		D^{(E)} = \left[
 		\begin{array}{cccc}
@@ -158,73 +151,24 @@
 		\end{array}
 		\right]
 	\]
-	\(V\) has row correspondence and \(E\) has column correspondence with \(D^{(E)}\).
-
-	Notice that the columns of \(D^{(E)}\) are representations with respect to \(V\); that is, for \(e \in E\), \(r(e|V) = D^{(E)}(\star, e)\).
-
-	Thus, the representation with respect to \(W\) is \(r(e|W) = D^{(E)}(\star, e)(W)\).
+	For the edge distance matrix, \(V\) has the row correspondence, while \(E\) has the column correspondence, with \(D^{(E)}\). The columns serves as the collection of all edge representations with respect to \(V\), such that, for any \(e \in E\), its representation is \(r(e|V) = D^{(E)}(\star, e)\). Likewise, the representation with respect to any \(W \subseteq V\) is obtained by means of \(r(e|W) = D^{(E)}(\star, e)(W)\).
 
 	\section{Distance Similarity Matrix}
 
-	A pair of \(k\)-tuples \(c\) and \(d\) is said to be equal if and only if \(\forall i \in \{1, \cdots, k\}, c(i) = d(i)\). This process, however, may be separated into two steps. One is to perform the pair-wise element comparisons to return Boolean values and keep their arranngement as a resulting \(k\)-Boolean tuple; in other words, \((c = d)\). Then, \(c = d \iff \forall i, (c = d)(i) = \mathtt{True}\). Conversely, \(c \neq d \iff \exists i, (c = d)(i) = \mathtt{False}\).
-
-	This two step evaluation is useful within the context of representations comparisons. For \(u, v \in V\), we may evaluate the tuple \((r(u|V) = r(v|V))\) once. Then, for any \(W \subseteq V\), evaluating whether the representations of \(u\) and \(v\) with respect to \(W\) differs or equal may be taken from slicing the previously computed tuple: \((r(u|V) = r(v|V))(W)\).
-
-	For \(u, v \in V, u \neq v\) and \(W \subseteq V\), whether the representation of \(u\) and \(v\) with respect to \(W\) differs, it may be tested through the following criteria:
-		\[ r(u|W) \neq r(v|W) \iff \mathtt{False} \in (r(u|W) = r(v|W)) \]
-
-	We may evaluate \((r(u|V) = r(v|V))\) once and realize that \(V\) has a correspondence with the resulting tuple. As such, the test for arbitrary \(W\) may be adjusted to reuse computation as follow:
-		\[ r(u|W) \neq r(v|W) \iff \mathtt{False} \in (r(u|V) = r(v|V))(W) \]
-
-	To determine whether \(W\) is a resolving set or a non-resolving set, it is necessary to perform this test for all combination of pairs of vertices in \(V\). We may evaluate all of these possible combinations with respect to \(V\) once and arrange them into columns in a matrix as follow:
+	Using our previously defined element-wise tuple comparison operation, we may express the equality between two representations with respect to \(W \subseteq V\) as follow:
 	\[
-		B^{(V)} = \left[\;
-			(r(v_1|V)\!=\!r(v_2|V))\;
-			\cdots\;
-			(r(v_1|V)\!=\!r(v_n|V))
-			\cdots\;
-			(r(v_{n-1}|V)\!=\!r(v_n|V))\;
-		\right]
-	\]
-	or by reusing \(D^{(V)}\) computation
-	\[
-		B^{(V)} = \left[\;
-			(D^{(V)}(\star, v_1)\!=\!D^{(V)}(\star, v_2))\;
-			\cdots\;
-			(D^{(V)}(\star, v_1)\!=\!D^{(V)}(\star, v_n))
-			\cdots\;
-			(D^{(V)}(\star, v_{n-1})\!=\!D^{(V)}(\star, v_n))\;
-		\right]
-	\]
-	This matrix is called the distance similarity matrix of \(G\), and has a dimension of \(n \times \binom{n}{2}\). Here, \(B^{(V)}\) preserves its row correspondence with \(V\). By observing whether all columns in \(B^{(V)}(W)\) contains \(\mathtt{False}\), \(W\) can be concluded to be a resolving set; or more rigorously,
-	\[
-		W \text{ is a resolving set} \iff \forall j, \enspace \texttt{False} \in B^{(V)}(W, \star)(\star, j)
+		u, v \in V,\enspace r(u|W) = r(v|W) \iff \bigwedge \limits_{\displaystyle i}^{|W|}\enspace (r(u|W) = r(v|W))(i)
 	\]
 
-	Similarly, we may construct an edge distance similarity matrix of dimension \(n \times \binom{m}{2}\) as follow:
+	Notice the Boolean tuple \((r(u|W) = r(v|W))\) can also be taken as the slice from where the representation comparison is with respect to \(V\), \((r(u|V) = r(v|V))\). Such, we have \((r(u|W) = r(v|W)) = (r(u|V) = r(v|V))(W)\). In the same way that the distance matrix contains all representations, we'd like to precompute all pair-wise combinations comparison of representations, \(\forall u, v \in V, u \neq v\). This is neatly organized as the distance similarity matrix of \(G\), defined as follow:
 	\[
-		B^{(E)} = \left[\;
-			(r(e_1|V)\!=\!r(e_2|V))\;
-			\cdots\;
-			(r(e_1|V)\!=\!r(e_m|V))
-			\cdots\;
-			(r(e_{m-1}|V)\!=\!r(e_m|V))\;
-		\right]
+		B^{(V)} = \left[\ (r(v_1|V)\!=\!r(v_2|V))\ \cdots\ (r(v_1|V)\!=\!r(v_n|V))\ \cdots\ (r(v_{n-1}|V)\!=\!r(v_n|V))\ \right]
 	\]
-	or by reusing \(D^{(E)}\) computation
+	or, using the precomputed distance matrix,
 	\[
-		B^{(E)} = \left[\;
-			(D^{(E)}(\star, e_1)\!=\!D^{(E)}(\star, e_2))\;
-			\cdots\;
-			(D^{(E)}(\star, e_1)\!=\!D^{(E)}(\star, e_m))
-			\cdots\;
-			(D^{(E)}(\star, e_{m-1})\!=\!D^{(E)}(\star, e_m))\;
-		\right]
+		B^{(V)} = \left[\ (D^{(V)}(\star, v_1)\!=\!D^{(V)}(\star, v_2))\ \cdots\ (D^{(V)}(\star, v_1)\!=\!D^{(V)}(\star, v_n))\ \cdots\ (D^{(V)}(\star, v_{n-1})\!=\!D^{(V)}(\star, v_n))\ \right]
 	\]
-	Likewise, \(B^{(E)}\) preserves its row correspondence with \(V\). By observing whether all columns in \(B^{(E)}(W)\) contains \(\mathtt{False}\), \(W\) can be concluded to be an edge resolving set; or more rigorously,
-	\[
-		W \text{ is an edge resolving set} \iff \forall j, \enspace \texttt{False} \in B^{(E)}(W, \star)(\star, j)
-	\]
+	The dimension of this matrix is \(n \times \binom{n}{2}\), and it preserves the \(V\) row correspondence with \(B^{(V)}\). Then, determining whether \(W \subseteq V\) is a resolving set is just a matter of showing that no columns in the submatrix \(B^{(V)}(W, \star)\) contains all \(\mathtt{True}\).
 
 	\section{Reduced Distance Similarity}
 
