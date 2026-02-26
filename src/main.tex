@@ -108,27 +108,6 @@
 		\left[ a_1\enspace a_2\enspace \cdots\enspace a_n \right]
 	\]
 
-	Let \(A_1\) be an \(n_1 \times m\) matrix, \(A_2\) be an \(n_2 \times m\) matrix, \(\cdots\), and \(A_r\) be an \(n_r \times m\) matrix.
-
-	\(A_1\), \(A_2\), \(\cdots\), \(A_r\) may be stacked vertically into an \((n_1 + n_2 + \cdots + n_r) \times m\) matrix as follow:
-	\[
-		\left[
-		\begin{array}{c}
-			A_1 \\
-			A_2 \\
-			\vdots \\
-			A_r
-		\end{array}
-		\right]
-	\]
-
-	Let \(A'_1\) be an \(n \times m_1\) matrix, \(A'_2\) be an \(n \times m_2\) matrix, \(\cdots\), and \(A'_r\) be an \(n \times m_r\) matrix.
-
-	\(A'_1\), \(A'_2\), \(\cdots\), \(A'_r\) may be stacked horizontally into an \(n \times (m_1 + m_2 + \cdots + m_r)\) matrix as follow:
-	\[
-		\left[ A'_1\enspace A'_2\enspace \cdots\enspace A'_r \right]
-	\]
-
 	\subsubsection{Indexing matrices}
 
 	Let \(A\) be an \(n \times m\) matrix.
@@ -252,6 +231,8 @@
 
 	\(V\) has row correspondence and column correspondence with \(D^{(V)}\).
 
+	Notice that for \(v \in V\), \(r(v|V) = D^{(V)}(\star, v)\).
+
 	Thus, for \(v \in V\) and \(W \subseteq V\), the representation of \(v\) with respect to \(W\) is
 	\[
 		r(v|W) = D^{(V)}(W, \star)(\star, v)
@@ -271,6 +252,8 @@
 
 	\(V\) has row correspondence and \(E\) has column correspondence with \(D^{(E)}\).
 
+	Notice that for \(e \in E\), \(r(e|V) = D^{(E)}(\star, e)\).
+
 	Thus, for \(e \in E\) and \(W \subseteq V\), the representation of \(e\) with respect to \(W\) is
 	\[
 		r(e|W) = D^{(E)}(W, \star)(\star, e)
@@ -278,10 +261,67 @@
 
 	\section{Distance Similarity Matrix}
 
+	For \(u, v \in V, u \neq v\) and \(W \subseteq V\), whether the representation of \(u\) and \(v\) with respect to \(W\) differs, it may be tested through the following criteria:
+		\[ r(u|W) \neq r(v|W) \iff \mathtt{False} \in (r(u|W) = r(v|W)) \]
+
+	We may evaluate \((r(u|V) = r(v|V))\) once and realize that \(V\) has a correspondence with the resulting tuple. As such, the test for arbitrary \(W\) may be adjusted to reuse computation as follow:
+		\[ r(u|W) \neq r(v|W) \iff \mathtt{False} \in (r(u|V) = r(v|V))(W) \]
+
+	To determine whether \(W\) is a resolving set or a non-resolving set, it is necessary to perform this test for all combination of pairs of vertices in \(V\). We may evaluate all of these possible combinations with respect to \(V\) once and arrange them into columns in a matrix as follow:
+	\[
+		B^{(V)} = \left[\;
+			(r(v_1|V)\!=\!r(v_2|V))\;
+			\cdots\;
+			(r(v_1|V)\!=\!r(v_n|V))
+			\cdots\;
+			(r(v_{n-1}|V)\!=\!r(v_n|V))\;
+		\right]
+	\]
+	or by reusing \(D^{(V)}\) computation
+	\[
+		B^{(V)} = \left[\;
+			(D^{(V)}(\star, 1)\!=\!D^{(V)}(\star, 2))\;
+			\cdots\;
+			(D^{(V)}(\star, 1)\!=\!D^{(V)}(\star, n))
+			\cdots\;
+			(D^{(V)}(\star, n\!-\!1)\!=\!D^{(V)}(\star, n))\;
+		\right]
+	\]
+	This matrix is called the distance similarity matrix of \(G\), and has a dimension of \(n \times \binom{n}{2}\). Here, \(B^{(V)}\) preserves its row correspondence with \(V\). By observing whether all columns in \(B^{(V)}(W)\) contains \(\mathtt{False}\), \(W\) can be concluded to be a resolving set; or more rigorously,
+	\[
+		W \text{ is a resolving set} \iff \forall j, \enspace \texttt{False} \in B^{(V)}(W, \star)(\star, j)
+	\]
+
+	Similarly, we may construct an edge distance similarity matrix of dimension \(n \times \binom{m}{2}\) as follow:
+	\[
+		B^{(E)} = \left[\;
+			(r(e_1|V)\!=\!r(e_2|V))\;
+			\cdots\;
+			(r(e_1|V)\!=\!r(e_m|V))
+			\cdots\;
+			(r(e_{m-1}|V)\!=\!r(e_m|V))\;
+		\right]
+	\]
+	or by reusing \(D^{(E)}\) computation
+	\[
+		B^{(E)} = \left[\;
+			(D^{(E)}(\star, 1)\!=\!D^{(E)}(\star, 2))\;
+			\cdots\;
+			(D^{(E)}(\star, 1)\!=\!D^{(E)}(\star, m))
+			\cdots\;
+			(D^{(E)}(\star, m\!-\!1)\!=\!D^{(E)}(\star, m))\;
+		\right]
+	\]
+	Likewise, \(B^{(E)}\) preserves its row correspondence with \(V\). By observing whether all columns in \(B^{(E)}(W)\) contains \(\mathtt{False}\), \(W\) can be concluded to be an edge resolving set; or more rigorously,
+	\[
+		W \text{ is an edge resolving set} \iff \forall j, \enspace \texttt{False} \in B^{(E)}(W, \star)(\star, j)
+	\]
+
+	\section{Reduced Distance Similarity}
+
 	...\textit{blah blah blah}...
 
 	\section{Constraints Formulation in Satisfiability Modulo Theories}
-	\label{sec:formulation}
 
 	...\textit{blah blah blah}...
 
