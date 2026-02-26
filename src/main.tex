@@ -124,7 +124,15 @@
 
 	\section{Distance Matrix}
 
-	If \(V = \{v_1, v_2, \cdots, v_n\}\), then the distance matrix of \(G\) has dimension \(n \times n\), and is as follow:
+	Suppose \(G\) is a graph with a set of vertices \(V = \{v_1, v_2, \cdots, v_n\}\) and a set of edges \(E = \{e_1, e_2, \cdots, e_m\}\).
+
+	Let us compute for a vertex \(v \in V\) its representation with respect to \(V\). We would obtain the tuple \(r(v|V) = (d(v_1, v), d(v_2, v), \cdots, d(v_n, v))\). Observe that, this tuple contains the distance from every other vertices to \(v\), where \(\forall u \in V, d(u, v) = r(v|V)(u)\). Such, for any \(W \subseteq V\), the representation of \(v\) with respect to \(W\) may be acquired by slicing directly from this tuple; that is, \(r(v|W) = r(v|V)(W)\).
+
+	Next, let us revisit the notion of resolving set. The set \(W \subseteq V\) is a resolving set of \(G\) if and only if the representation of all vertices with respect to it are unique. Thus, by definition, we must compute all possible representations with respect to \(W\) to even be able to begin quantifying whether \(W\) fulfill this criteria.
+
+	However, since determining the metric dimension of \(G\) is fundamentally a process of minimizing the cardinality of the resolving set. As such, by virtue of the search process, we'd have to evaluate various potential \(W \subseteq V\). Therefore, it'd be best to reuse as much computation as possible. This, we can do by computing all possible representations with respect to \(V\) instead, once, at the beginning. Then, all further possible representations may be obtained by slicing from these collections of precomputed values.
+
+	Fortunately, there exists already a structure that contains all this information. It is called the distance matrix, defined as follow:
 	\[
 		D^{(V)} = \left[
 		\begin{array}{cccc}
@@ -135,11 +143,9 @@
 		\end{array}
 		\right]
 	\]
-	\(V\) has row correspondence and column correspondence with \(D^{(V)}\).
+	This distance matrix has dimension \(n \times n\). The construction is made specifically such that \(V\) has both row and column correspondence with \(D^{(V)}\). Remark that the columns of the distance matrix are exactly the representations with respect to \(V\). Through slicing, we have \(r(v|V) = D^{(V)}(\star, v)\) for any \(v \in V\). Hence, together with our previous observation, we are able to obtain any representation from the distance matrix using \(r(v|W) = D^{(V)}(\star, v)(W)\).
 
-	Notice that the columns of \(D^{(V)}\) are representations with respect to \(V\); that is, for \(v \in V\), \(r(v|V) = D^{(V)}(\star, v)\).
-
-	Thus, the representation with respect to \(W\) is \(r(v|W) = D^{(V)}(W, \star)(\star, v)\).
+	Equivalently, we can first select the rows of \(D^{(V)}\) according to \(W\). The columns of the submatrix \(D^{(V)}(W, \star)\) are exactly the representations with respect to \(W\). Then, we can select a column from the submatrix to obtain the representation for a specific vertex, giving \(r(v|W) = D^{(V)}(W, \star)(v)\).
 
 	If \(E = \{e_1, e_2, \cdots, e_m\}\), then the edge distance matrix of \(G\) has dimension \(n \times m\), and is as follow:
 	\[
@@ -156,9 +162,13 @@
 
 	Notice that the columns of \(D^{(E)}\) are representations with respect to \(V\); that is, for \(e \in E\), \(r(e|V) = D^{(E)}(\star, e)\).
 
-	Thus, the representation with respect to \(W\) is \(r(e|W) = D^{(E)}(W, \star)(\star, e)\).
+	Thus, the representation with respect to \(W\) is \(r(e|W) = D^{(E)}(\star, e)(W)\).
 
 	\section{Distance Similarity Matrix}
+
+	A pair of \(k\)-tuples \(c\) and \(d\) is said to be equal if and only if \(\forall i \in \{1, \cdots, k\}, c(i) = d(i)\). This process, however, may be separated into two steps. One is to perform the pair-wise element comparisons to return Boolean values and keep their arranngement as a resulting \(k\)-Boolean tuple; in other words, \((c = d)\). Then, \(c = d \iff \forall i, (c = d)(i) = \mathtt{True}\). Conversely, \(c \neq d \iff \exists i, (c = d)(i) = \mathtt{False}\).
+
+	This two step evaluation is useful within the context of representations comparisons. For \(u, v \in V\), we may evaluate the tuple \((r(u|V) = r(v|V))\) once. Then, for any \(W \subseteq V\), evaluating whether the representations of \(u\) and \(v\) with respect to \(W\) differs or equal may be taken from slicing the previously computed tuple: \((r(u|V) = r(v|V))(W)\).
 
 	For \(u, v \in V, u \neq v\) and \(W \subseteq V\), whether the representation of \(u\) and \(v\) with respect to \(W\) differs, it may be tested through the following criteria:
 		\[ r(u|W) \neq r(v|W) \iff \mathtt{False} \in (r(u|W) = r(v|W)) \]
