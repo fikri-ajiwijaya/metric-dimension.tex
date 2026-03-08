@@ -4,6 +4,7 @@
 	arxiv,
 	amsmath,
 	amssymb,
+	bm,
 	cleveref
 }
 
@@ -30,147 +31,121 @@
 
 	\section{Preliminaries}
 
-	\subsection{Notations on tuples}
+	...\textit{blah blah blah}...
 
-	Let \(c_1, c_2, \cdots, c_k\) be constants. They may be arranged into a \(k\)-tuple as follow: \((c_1, c_2, \cdots, c_k)\).
+	\section{Metric Dimension}
 
-	Let \(C\) be a \(k\)-tuple. \(C(i)\) is the \(i\)-th element in tuple \(C\).
+	\[ d(u, v) = \text{the distance from } u \text{ to } v \]
+	\[ r(v|W) = (\enspace d(w_1, v),\enspace d(w_2, v),\enspace \cdots,\enspace d(w_k, v)\enspace ) \]
+	\[ W \text{ is a resolving set} \iff \forall u, v \in V, u \neq v \implies r(u|W) \neq r(v|W) \]
+	\[ W \text{ is a non-resolving set} \iff \exists u, v \in V, u \neq v \implies r(u|W) = r(v|W) \]
+	\[ W \text{ is a resolving set}, W \subseteq Z \implies Z \text{ is a resolving set} \]
+	\[ W \text{ is a non-resolving set}, Z \subseteq W \implies Z \text{ is a non-resolving set} \]
+	\[ \mathcal{P}(V) \text{ is partitioned into the set of resolving sets and the set of non-resolving sets} \]
+	\[ \text{The metric dimension of } G \text{ is the minimum cardinality of its resolving set} \]
 
-	Let \(U\) be a set where \(|U| = k\). For \(U\) to have correspondence with \(C\) means there exists a bijective function \({\mathtt{idx} : U \to \{1, \cdots, k\}}\).
+	\[ r(V|W) = \left[\enspace r(v_1|W)\enspace r(v_2|W)\enspace \cdots\enspace r(v_n|W)\enspace \right] \]
+	\(V\) has correspondence with \(r(v|W)\). \\
+	\(V\) has column correspondence \(r(V|W)\).
+	\[ r(v|W) = r(v|V)(W) \]
+	\[ r(v|W) = r(V|W)(\star, v) \]
+	\(V\) has row correspondence \(r(V|V)\).
+	\[ r(V|W) = r(V|V)(W, \star) \]
+	\[ r(v|W) = r(V|V)(W, \star)(v) \]
+	\[ W \text{ is a resolving set} \iff \forall u, v \in V, u \neq v \implies r(V|W)(u) \neq r(V|W)(v) \]
+	\[ W \text{ is a non-resolving set} \iff \exists u, v \in V, u \neq v \implies r(V|W)(u) = r(V|W)(v) \]
 
-	If \(u \in U\), then \(C(u) = C(\mathtt{idx}(u))\). If \(\{u_1, \cdots, u_r\} \subseteq U\), then, preserving the element order of \(C\),
-	\[
-		C(\{u_1,\cdots, u_r\}) = (C(u_1), \cdots, C(u_r))
-	\]
+	\[ d(u, e) = \textrm{min}(\enspace d(u, v),\enspace d(u, w)\enspace ) \]
+	\[ r(e|W) = (\enspace d(w_1, e),\enspace d(w_2, e),\enspace \cdots,\enspace d(w_k, e)\enspace ) \]
+	\[ W \text{ is an edge resolving set} \iff \forall e, f \in E, e \neq f \implies r(e|W) \neq r(f|W) \]
+	\[ W \text{ is an edge non-resolving set} \iff \exists e, f \in E, e \neq f \implies r(e|W) = r(f|W) \]
+	\[ W \text{ is an edge resolving set}, W \subseteq Z \implies Z \text{ is an edge resolving set} \]
+	\[ W \text{ is an edge non-resolving set}, Z \subseteq W \implies Z \text{ is an edge non-resolving set} \]
+	\[ \mathcal{P}(V) \text{ is partitioned into the set of edge resolving sets and the set of edge non-resolving sets} \]
+	\[ \text{The edge metric dimension of } G \text{ is the minimum cardinality of its edge resolving set} \]
 
-	Let \(C_1\) and \(C_2\) be \(k\)-tuples.
-	\[
-		(C_1 = C_2) = (C_1(1) = C_2(1), \cdots, C_1(k) = C_2(k))
-	\]
+	\[ r(E|W) = \left[\enspace r(e_1|W)\enspace r(e_2|W)\enspace \cdots\enspace r(e_m|W)\enspace \right] \]
+	\(V\) has correspondence with \(r(v|W)\). \\
+	\(E\) has column correspondence \(r(E|W)\).
+	\[ r(e|W) = r(e|V)(W) \]
+	\[ r(e|W) = r(E|W)(\star, e) \]
+	\(V\) has row correspondence \(r(E|V)\).
+	\[ r(E|W) = r(E|V)(W, \star) \]
+	\[ r(e|W) = r(E|V)(W, \star)(e) \]
+	\[ W \text{ is an edge resolving set} \iff \forall e, f \in E, e \neq f \implies r(E|W)(e) \neq r(E|W)(f) \]
+	\[ W \text{ is an edge non-resolving set} \iff \exists e, f \in E, e \neq f \implies r(E|W)(e) = r(E|W)(f) \]
 
-	\subsection{Notations on matrices}
+	...\textit{blah blah blah}...
 
-	Let \(a_1, a_2, \cdots, a_n\) be \(m\)-tuples. They may be arranged into the columns of an \(m \times n\) matrix as follow: \(\left[ a_1\enspace a_2\enspace \cdots\enspace a_n \right]\).
-
-	Let \(A\) be an \(n \times m\) matrix. \(A(i, j)\) is the element at the \(i\)-th row and \(j\)-th column in matrix \(A\).
-	\[ A(i, \star) = (A(i, 1), \cdots, A(i, m)) \]
-	\[ A(\star, j) = (A(1, j), \cdots, A(n, j)) \]
-
-	Let \(S\) be a set where \(|S| = n\). For \(S\) to have row correspondence with \(A\) means there exists a bijective function \({\mathtt{idx} : S \to \{1, \cdots, n\}}\).
-
-	If \(s \in S\), then \(A(s, \star) = A(\mathtt{idx}(s), \star)\). If \(\{s_1, \cdots, s_r\} \subseteq S\), then, preserving the row order of \(A\),
-	\[
-		A(\{s_1, \cdots, s_r\}, \star) = \left[
-		\begin{array}{c}
-			A(s_1, \star) \\
-			\vdots \\
-			A(s_r, \star)
-		\end{array}
-		\right]
-	\]
-
-	Let \(T\) be a set where \(|T| = m\). For \(T\) to have column correspondence with \(A\) means there exists a bijective function \({\mathtt{idx} : T \to \{1, \cdots, m\}}\).
-
-	If \(t \in T\), then \(A(\star, t) = A(\star, \mathtt{idx}(t))\).
-
-	\subsection{Notations on graphs}
-
-	\subsubsection{Distance}
-
-	Let \(G\) be a graph. Let \(V\) be the set of vertices in \(G\). Let \(E\) be the set of edges in \(G\).
-
-	For \(u, v \in V\), the distance from \(u\) to \(v\) is denoted by \(d(u, v)\).
-
-	For \(u, v, w \in V\) and \(e \in E\), if \(e\) is an edge between \(v\) and \(w\), then the distance from \(u\) to \(e\) is
-	\[
-		d(u, e) = \mathrm{min}(d(u, v), d(u, w))
-	\]
-
-	\subsubsection{Representation}
-
-	For \(v \in V\) and \(W = \{w_1, w_2, \cdots, w_k\} \subseteq V\), the representation of \(v\) with respect to \(W\) is
-	\[
-		r(v|W) = (d(w_1, v), d(w_2, v), \cdots, d(w_k, v))
-	\]
-
-	For \(e \in E\) and \(W = \{w_1, w_2, \cdots, w_k\} \subseteq V\), the representation of \(e\) with respect to \(W\) is
-	\[
-		r(e|W) = (d(w_1, e), d(w_2, e), \cdots, d(w_k, e))
-	\]
-
-	\subsubsection{Resolving set}
-
-	For \(W\) to be a resolving set means that \(\forall u, v \in V, u \neq v \implies r(u|W) \neq r(v|W)\).
-
-	For \(W\) to be an edge resolving set means that \(\forall e, f \in E, e \neq f \implies r(e|W) \neq r(f|W)\).
-
-	\subsubsection{Non-resolving set}
-
-	If \(W\) is not a resolving set, then \(W\) is a non-resolving set. \(\mathcal{P}(V)\) is partitioned into the set of resolving sets and the set of non-resolving sets.
-
-	If \(W\) is not an edge resolving set, then \(W\) is an edge non-resolving set. \(\mathcal{P}(V)\) is partitioned into the set of edge resolving sets and the set of edge non-resolving sets.
-
-	\subsubsection{Monotonicity}
-
-	If \(W\) is a resolving set, then a superset of \(W\) is a resolving set. If \(W\) is a non-resolving set, then a subset of \(W\) is a non-resolving set.
-
-	If \(W\) is an edge resolving set, then a superset of \(W\) is an edge resolving set. If \(W\) is an edge non-resolving set, then a subset of \(W\) is an edge non-resolving set.
-
-	\subsubsection{Metric dimension}
-
-	The metric dimension of a graph is the minimum cardinality of resolving sets of the graph.
-
-	The edge metric dimension of a graph is the minimum cardinality of edge resolving sets of the graph.
-
-	\clearpage
 	\section{Distance Matrix}
 
-	Here, we discuss the relationship between the distance matrix and representations. Suppose \(G\) is a graph with a set of vertices \(V = \{v_1, v_2, \cdots, v_n\}\) and a set of edges \(E = \{e_1, e_2, \cdots, e_m\}\).
-
-	The distance matrix of \(G\) is an \(n \times n\) matrix defined as follow:
 	\[
 		D^{(V)} = \left[
 		\begin{array}{cccc}
 			d(v_1, v_1) & d(v_1, v_2) & \cdots & d(v_1, v_n) \\
 			d(v_2, v_1) & d(v_2, v_2) & \cdots & d(v_2, v_n) \\
 			\vdots & \vdots & \ddots & \vdots \\
-			d(v_n, v_1) & d(v_n, v_2) & \cdots & d(v_n, v_n)
+			d(v_n, v_1) & d(v_n, v_2) & \cdots & d(v_n, v_n) \\
 		\end{array}
 		\right]
 	\]
-	The construction is made such that \(V\) has both row and column correspondence with \(D^{(V)}\). The columns of this matrix serves as the collection of all vertex representations with respect to \(V\). That is, for any \(v \in V\), its representation may be obtained by slicing the distance matrix, \(r(v|V) = D^{(V)}(\star, v)\). Then, representation with respect to any \(W \subseteq V\) may be acquired by further slicing from the representation with respect to \(V\), \(r(v|W) = D^{(V)}(\star, v)(W)\).
+	\[ D^{(V)} = \left[\enspace r(v_1|V)\enspace r(v_2|V)\enspace \cdots\enspace r(v_n|V)\enspace \right] \]
+	\[ D^{(V)} = r(V|V) \]
+	\(D^{(V)}\) has a dimension of \(|V| \times |V|\). \\
+	\(V\) has row correspondence with \(D^{(V)}\). \\
+	\(V\) has column correspondence with \(D^{(V)}\).
+	\[ r(v|V) = D^{(V)}(\star, v) \]
+	\[ r(V|W) = D^{(V)}(W, \star) \]
+	\[ r(v|W) = D^{(V)}(\star, v)(W) \]
+	\[ r(v|W) = D^{(V)}(W, \star)(\star, v) \]
 
-	Similarly, the edge distance matrix of \(G\) is an \(n \times m\) matrix defined as follow:
 	\[
 		D^{(E)} = \left[
 		\begin{array}{cccc}
 			d(v_1, e_1) & d(v_1, e_2) & \cdots & d(v_1, e_m) \\
 			d(v_2, e_1) & d(v_2, e_2) & \cdots & d(v_2, e_m) \\
 			\vdots & \vdots & \ddots & \vdots \\
-			d(v_n, e_1) & d(v_n, e_2) & \cdots & d(v_n, e_m)
+			d(v_n, e_1) & d(v_n, e_2) & \cdots & d(v_n, e_m) \\
 		\end{array}
 		\right]
 	\]
-	For the edge distance matrix, \(V\) has the row correspondence, while \(E\) has the column correspondence, with \(D^{(E)}\). The columns serves as the collection of all edge representations with respect to \(V\), such that, for any \(e \in E\), its representation is \(r(e|V) = D^{(E)}(\star, e)\). Likewise, the representation with respect to any \(W \subseteq V\) is obtained by means of \(r(e|W) = D^{(E)}(\star, e)(W)\).
+	\[ D^{(E)} = \left[\enspace r(e_1|V)\enspace r(e_2|V)\enspace \cdots\enspace r(e_m|V)\enspace \right] \]
+	\[ D^{(E)} = r(E|V) \]
+	\(D^{(E)}\) has a dimension of \(|V| \times |E|\). \\
+	\(V\) has row correspondence with \(D^{(E)}\). \\
+	\(E\) has column correspondence with \(D^{(E)}\).
+	\[ r(e|V) = D^{(E)}(\star, e) \]
+	\[ r(E|W) = D^{(E)}(W, \star) \]
+	\[ r(e|W) = D^{(E)}(\star, e)(W) \]
+	\[ r(e|W) = D^{(E)}(W, \star)(\star, e) \]
+
+	...\textit{blah blah blah}...
 
 	\section{Distance Similarity Matrix}
 
-	Using our previously defined element-wise tuple comparison operation, we may express the equality between two representations with respect to \(W \subseteq V\) as follow:
-	\[
-		u, v \in V,\enspace r(u|W) = r(v|W) \iff \bigwedge \limits_{\displaystyle i}^{|W|}\enspace (r(u|W) = r(v|W))(i)
-	\]
+	\(V\) has correspondence with \(\bm{(}\ r(u|V) = r(v|V)\ \bm{)}\).
+	\[ \bm{(}\ r(u|W) = r(v|W)\ \bm{)} = \bm{(} r(u|V) = r(v|V)\ \bm{)}(W) \]
 
-	Notice the Boolean tuple \((r(u|W) = r(v|W))\) can also be taken as the slice from where the representation comparison is with respect to \(V\), \((r(u|V) = r(v|V))\). Such, we have \((r(u|W) = r(v|W)) = (r(u|V) = r(v|V))(W)\). In the same way that the distance matrix contains all representations, we'd like to precompute all pair-wise combinations comparison of representations, \(\forall u, v \in V, u \neq v\). This is neatly organized as the distance similarity matrix of \(G\), defined as follow:
-	\[
-		B^{(V)} = \left[\ (r(v_1|V)\!=\!r(v_2|V))\ \cdots\ (r(v_1|V)\!=\!r(v_n|V))\ \cdots\ (r(v_{n-1}|V)\!=\!r(v_n|V))\ \right]
-	\]
-	or, using the precomputed distance matrix,
-	\[
-		B^{(V)} = \left[\ (D^{(V)}(\star, v_1)\!=\!D^{(V)}(\star, v_2))\ \cdots\ (D^{(V)}(\star, v_1)\!=\!D^{(V)}(\star, v_n))\ \cdots\ (D^{(V)}(\star, v_{n-1})\!=\!D^{(V)}(\star, v_n))\ \right]
-	\]
-	The dimension of this matrix is \(n \times \binom{n}{2}\), and it preserves the \(V\) row correspondence with \(B^{(V)}\). Then, determining whether \(W \subseteq V\) is a resolving set is just a matter of showing that no columns in the submatrix \(B^{(V)}(W, \star)\) contains all \(\mathtt{True}\).
+	\[ B^{(V)} = \left[\enspace \bm{(}\ r(v_i|V) = r(v_j|V)\ \bm{)}\enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |V| \]
+	\[ B^{(V)} = \left[\enspace \bm{(}\ D^{(V)}(\star, v_i) = D^{(V)}(\star, v_j)\ \bm{)} \enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |V| \]
+	\(V\) has row correspondence with \(B^{(V)}\).
+	\[ \forall u, v \in V, u \neq v,\enspace \exists B^{(V)}(\star, j) = \bm{(}\ r(u|V) = r(v|V)\ \bm{)},\quad j \in \{1, \cdots, |B^{(V)}|_{col}\} \]
+	\[ W \text{ is a resolving set} \iff \forall B^{(V)}(\star, j)(W) \neq (\mathtt{True})^{|W|},\quad j \in \{1, \cdots, |B^{(V)}|_{col}\} \]
+	\[ W \text{ is a non-resolving set} \iff \exists B^{(V)}(\star, j)(W) = (\mathtt{True})^{|W|},\quad j \in \{1, \cdots, |B^{(V)}|_{col}\} \]
 
-	\section{Reduced Distance Similarity}
+	\(V\) has correspondence with \(\bm{(}\ r(e|V) = r(f|V)\ \bm{)}\).
+	\[ \bm{(}\ r(e|W) = r(f|W)\ \bm{)} = \bm{(} r(e|V) = r(f|V)\ \bm{)}(W) \]
+
+	\[ B^{(E)} = \left[\enspace \bm{(}\ r(e_i|V) = r(e_j|V)\ \bm{)}\enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |E| \]
+	\[ B^{(E)} = \left[\enspace \bm{(}\ D^{(E)}(\star, e_i) = D^{(E)}(\star, e_j)\ \bm{)} \enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |E| \]
+	\(V\) has row correspondence with \(B^{(E)}\).
+	\[ \forall e, f \in E, e \neq f,\enspace \exists B^{(E)}(\star, j) = \bm{(}\ r(e|V) = r(f|V)\ \bm{)},\quad j \in \{1, \cdots, |B^{(E)}|_{col}\} \]
+	\[ W \text{ is an edge resolving set} \iff \forall B^{(E)}(\star, j)(W) \neq (\mathtt{True})^{|W|},\quad j \in \{1, \cdots, |B^{(E)}|_{col}\} \]
+	\[ W \text{ is an edge non-resolving set} \iff \exists B^{(E)}(\star, j)(W) = (\mathtt{True})^{|W|},\quad j \in \{1, \cdots, |B^{(E)}|_{col}\} \]
+
+	...\textit{blah blah blah}...
+
+	\section{Reduced Distance Similarity Matrix}
 
 	...\textit{blah blah blah}...
 
