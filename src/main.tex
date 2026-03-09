@@ -31,6 +31,35 @@
 
 	\section{Preliminaries}
 
+	\[ |C| = \text{the length of } C \]
+	\[ C(i) \text{ is the element at } i \text{-th position} \]
+	For \(U\) to have correspondence with \(C\) means there exists a bijective function \(\mathrm{idx} : U \to \{1, \cdots, |C|\}\).
+	\[ u \in U, C(u) = C(\mathrm{idx}(u)) \]
+	\[ C(\{u_1, \cdots, u_r\} \subseteq U) = (\enspace C(u_1),\enspace \cdots,\enspace C(u_r)\enspace ), \quad \text{preserving element order of } C \]
+
+	\[ (\mathrm{True})^k \text{ is the } k \text{-tuple that contains all } \mathrm{True} \]
+	\[ \bm{(}\ C_1 = C_1 \ \bm{)} = (\enspace C_1(1) = C_2(1),\enspace \cdots,\enspace C_1(k) = C_2(k)\enspace ) \]
+
+	\[ |A|_{row} = \text{the number of rows in } A \]
+	\[ |A|_{col} = \text{the number of columns in } A \]
+	\[ A(i, j) \text{ is the the element at the } i \text{-th row and } j \text{-th column} \]
+	\[ A(i, \star) = (\enspace A(i, 1),\enspace \cdots,\enspace A(i, |A|_{col})\enspace ) \]
+	\[ A(\star, j) = (\enspace A(1, j),\enspace \cdots,\enspace A(|A|_{row}, j)\enspace ) \]
+	For \(S\) to have row correspondence with \(A\) means there exists a bijective function \(\mathrm{idx} : S \to \{1, \cdots, |A|_{row}\}\).
+	\[ s \in S, A(s, \star) = A(\mathrm{idx}(s), \star) \]
+	\[
+		A(\{s_1, \cdots, s_r\} \subseteq S, \star) = \left[
+		\begin{array}{c}
+			A(s_1, \star) \\
+			\vdots \\
+			A(s_r, \star)
+		\end{array}
+		\right],\quad \text{preserving row order of } A
+	\]
+	For \(T\) to have column correspondence with \(A\) means there exists a bijective function \(\mathrm{idx} : T \to \{1, \cdots, |A|_{col}\}\).
+	\[ t \in T, A(\star, t) = A(\star, \mathrm{idx}(t)) \]
+	\[ A(\star, \{t_1, \cdots, t_r\} \subseteq T) = \left[\enspace A(\star, t_1)\enspace \cdots\enspace A(\star, t_r)\enspace \right],\quad \text{preserving column order of } A \]
+
 	...\textit{blah blah blah}...
 
 	\section{Metric Dimension}
@@ -130,8 +159,8 @@
 	\[ B^{(V)} = \left[\enspace \bm{(}\ D^{(V)}(\star, v_i) = D^{(V)}(\star, v_j)\ \bm{)} \enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |V| \]
 	\(V\) has row correspondence with \(B^{(V)}\).
 	\[ \forall u, v \in V, u \neq v,\enspace \exists B^{(V)}(\star, j) = \bm{(}\ r(u|V) = r(v|V)\ \bm{)},\quad j \in \{1, \cdots, |B^{(V)}|_{col}\} \]
-	\[ W \text{ is a resolving set} \iff \forall B^{(V)}(\star, j)(W) \neq (\mathtt{True})^{|W|},\quad j \in \{1, \cdots, |B^{(V)}|_{col}\} \]
-	\[ W \text{ is a non-resolving set} \iff \exists B^{(V)}(\star, j)(W) = (\mathtt{True})^{|W|},\quad j \in \{1, \cdots, |B^{(V)}|_{col}\} \]
+	\[ W \text{ is a resolving set} \iff \forall B^{(V)}(\star, j)(W) \neq (\mathrm{True})^{|W|},\quad j \in \{1, \cdots, |B^{(V)}|_{col}\} \]
+	\[ W \text{ is a non-resolving set} \iff \exists B^{(V)}(\star, j)(W) = (\mathrm{True})^{|W|},\quad j \in \{1, \cdots, |B^{(V)}|_{col}\} \]
 
 	\(V\) has correspondence with \(\bm{(}\ r(e|V) = r(f|V)\ \bm{)}\).
 	\[ \bm{(}\ r(e|W) = r(f|W)\ \bm{)} = \bm{(} r(e|V) = r(f|V)\ \bm{)}(W) \]
