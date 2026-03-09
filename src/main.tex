@@ -42,11 +42,17 @@
 	Let \(U\) be a set with cardinality \(k\).
 
 	Let \(C\), \(C_1\), and \(C_2\) be \(k\)-tuples. \\
-	Let \(B\), \(B_1\), and \(B_2\) be \(k\)-boolean tuples.
+	Let \(B\), \(B_1\), and \(B_2\) be boolean k-tuples. \\
+	Let \(I\) be an integer \(k\)-tuple.
 
 	Let \(A\) be a matrix with \(n\) rows and \(m\) columns.
 
 	\clearpage
+
+	There exists a bijective function \(\mathrm{bool}\) that maps \(v \in V\) to a Boolean variable in satisfiability modulo theories. \\
+	There exists a bijective function \(\mathrm{int}\) that maps \(v \in V\) to an integer variable in satisfiability modulo theories. \\
+	\(X\) denotes a model given a set of constraints in satisfiability modulo theories. \\
+	\(\mathcal{S}(X)\) detones the model space of \(X\).
 
 	\[ |U| = \text{the cardinality of } U \]
 	\[ \mathcal{P}(U) = \text{the power set of } U \]
@@ -61,6 +67,7 @@
 	\[ \bm{(}\ C_1 = C_1 \ \bm{)} = (\enspace C_1(1) = C_2(1),\enspace \cdots,\enspace C_1(k) = C_2(k)\enspace ) \]
 
 	\[ U(B) = \{ u \in U : B(u) = \mathrm{True} \} \]
+	\[ U(I) = \{ u \in U : B(u) \neq 0 \} \]
 	\[ \neg B = (\enspace \neg B(1),\enspace \cdots,\enspace \neg B(k)\enspace ) \]
 	\[ \bm{(}\ B_1 \vee B_2 \ \bm{)} = (\enspace B_1(1) \vee B_2(1),\enspace \cdots,\enspace B_1(k) \vee B_2(k)\enspace ) \]
 
@@ -226,6 +233,9 @@
 
 	\clearpage
 	\section{Constraints Formulation in Satisfiability Modulo Theories}
+
+	\[ \mathcal{S}(X) = \emptyset \iff \text{unsatisfiable} \]
+	\[ \mathcal{S}(X) \neq \emptyset \iff \text{satisfiable} \]
 
 	...\textit{blah blah blah}...
 
