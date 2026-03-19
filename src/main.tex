@@ -78,8 +78,8 @@
 
 	\[ |A|_{\mathrm{row}} = \text{the number of rows in } A \]
 	\[ |A|_{\mathrm{col}} = \text{the number of columns in } A \]
-	\[ \mathcal{A} \overset{\mathrm{row}}{\in} A = \mathcal{A} \text{ is a row in } A \]
-	\[ \mathcal{A} \overset{\mathrm{col}}{\in} A = \mathcal{A} \text{ is a column in } A \]
+	\[ \mathcal{A} \overset{\mathrm{row}}{\in} A = \mathcal{A} \text{ is a row in } A  \text{ as an } m \text{-tuple} \]
+	\[ \mathcal{A} \overset{\mathrm{col}}{\in} A = \mathcal{A} \text{ is a column in } A  \text{ as an } n \text{-tuple} \]
 	\[ A(i, j) \text{ is the the element at the } i \text{-th row and } j \text{-th column} \]
 	\[ A(i, \cdot) = (\enspace A(i, 1),\enspace \cdots,\enspace A(i, |A|_{\mathrm{col}})\enspace ) \]
 	\[ A(\cdot, j) = (\enspace A(1, j),\enspace \cdots,\enspace A(|A|_{\mathrm{row}}, j)\enspace ) \]
@@ -203,9 +203,11 @@
 	\[ B^{(V)} = \left[\enspace \bm{(}\ r(v_i|V) = r(v_j|V)\ \bm{)}\enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |V| \]
 	\[ B^{(V)} = \left[\enspace \bm{(}\ D^{(V)}(\cdot, v_i) = D^{(V)}(\cdot, v_j)\ \bm{)} \enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |V| \]
 	\(V\) has row correspondence with \(B^{(V)}\).
-	\[ \forall u, v \in V, u \neq v,\enspace \exists B^{(V)}(\cdot, j) = \bm{(}\ r(u|V) = r(v|V)\ \bm{)},\quad j \in \{1, \cdots, |B^{(V)}|_{\mathrm{col}}\} \]
-	\[ W \text{ is a resolving set} \iff \forall B^{(V)}(\cdot, j)(W) \neq (\mathrm{True})^{|W|},\quad j \in \{1, \cdots, |B^{(V)}|_{\mathrm{col}}\} \]
-	\[ W \text{ is a non-resolving set} \iff \exists B^{(V)}(\cdot, j)(W) = (\mathrm{True})^{|W|},\quad j \in \{1, \cdots, |B^{(V)}|_{\mathrm{col}}\} \]
+	\[ \forall u, v \in V, u \neq v,\enspace \exists C \overset{\text{col}}{\in} B^{(V)},\enspace C = \bm{(}\ r(u|V) = r(v|V)\ \bm{)} \]
+	\[ W \text{ is a resolving set} \iff \forall C \overset{\text{col}}{\in} B^{(V)},\enspace C(W) \neq (\mathrm{True})^{|W|} \]
+	\[ W \text{ is a non-resolving set} \iff \exists C \overset{\text{col}}{\in} B^{(V)},\enspace C(W) = (\mathrm{True})^{|W|} \]
+
+	\vspace{2em}
 
 	\(V\) has correspondence with \(\bm{(}\ r(e|V) = r(f|V)\ \bm{)}\).
 	\[ \bm{(}\ r(e|W) = r(f|W)\ \bm{)} = \bm{(} r(e|V) = r(f|V)\ \bm{)}(W) \]
@@ -213,28 +215,28 @@
 	\[ B^{(E)} = \left[\enspace \bm{(}\ r(e_i|V) = r(e_j|V)\ \bm{)}\enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |E| \]
 	\[ B^{(E)} = \left[\enspace \bm{(}\ D^{(E)}(\cdot, e_i) = D^{(E)}(\cdot, e_j)\ \bm{)} \enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |E| \]
 	\(V\) has row correspondence with \(B^{(E)}\).
-	\[ \forall e, f \in E, e \neq f,\enspace \exists B^{(E)}(\cdot, j) = \bm{(}\ r(e|V) = r(f|V)\ \bm{)},\quad j \in \{1, \cdots, |B^{(E)}|_{\mathrm{col}}\} \]
-	\[ W \text{ is an edge resolving set} \iff \forall B^{(E)}(\cdot, j)(W) \neq (\mathtt{True})^{|W|},\quad j \in \{1, \cdots, |B^{(E)}|_{\mathrm{col}}\} \]
-	\[ W \text{ is an edge non-resolving set} \iff \exists B^{(E)}(\cdot, j)(W) = (\mathtt{True})^{|W|},\quad j \in \{1, \cdots, |B^{(E)}|_{\mathrm{col}}\} \]
+	\[ \forall e, f \in E, e \neq f,\enspace \exists C \overset{\mathrm{col}}{\in} B^{(E)},\enspace C = \bm{(}\ r(e|V) = r(f|V)\ \bm{)} \]
+	\[ W \text{ is an edge resolving set} \iff \forall C \overset{\mathrm{col}}{\in} B^{(E)},\enspace C(W) \neq (\mathtt{True})^{|W|} \]
+	\[ W \text{ is an edge non-resolving set} \iff \exists C \overset{\mathrm{col}}{\in} B^{(E)},\enspace C(W) = (\mathtt{True})^{|W|} \]
 
 	...\textit{blah blah blah}...
 
 	\clearpage
 	\section{Reduced Distance Similarity Matrix}
 
-	\[ V(B^{(V)}(\cdot, j)) \text{ is a non-resolving set},\quad \forall j \in \{1, \cdots, |B^{(V)}|_{\mathrm{col}}\} \]
-	\[ V(B^{(V)}(\cdot, i)) \subseteq V(B^{(V)}(\cdot, j)) \iff B^{(V)}(\cdot, i) \vee B^{(V)}(\cdot, j) = B^{(V)}(\cdot, j) \]
+	\[ C \overset{\mathrm{col}}{\in} B^{(V)},\enspace V(C) \text{ is a non-resolving set} \]
+	\[ C, \mathcal{C} \overset{\mathrm{col}}{\in} B^{(V)},\enspace V(C) \subseteq V(\mathcal{C}) \iff C \vee \mathcal{C} = \mathcal{C} \]
 	\(P^{(V)}\) is the submatrix of \(B^{(V)}\) obtained by eliminating all strictly dominated columns and reducing multiple identical columns to a single instance.
-	\[ W \text{ is a resolving set} \iff \forall P^{(V)}(\cdot, j)(W) \neq (\mathrm{True})^{|W|},\quad j \in \{1, \cdots, |P^{(V)}|_{\mathrm{col}}\} \]
-	\[ W \text{ is a non-resolving set} \iff \exists P^{(V)}(\cdot, j)(W) = (\mathrm{True})^{|W|},\quad j \in \{1, \cdots, |P^{(V)}|_{\mathrm{col}}\} \]
-	\[ V(P^{(V)}(\cdot, j)) \text{ is a non-resolving set},\quad \forall j \in \{1, \cdots, |P^{(V)}|_{\mathrm{col}}\} \]
+	\[ W \text{ is a resolving set} \iff \forall C \overset{\mathrm{col}}{\in} P^{(V)},\enspace C(W) \neq (\mathrm{True})^{|W|} \]
+	\[ W \text{ is a non-resolving set} \iff \exists C \overset{\mathrm{col}}{\in} P^{(V)},\enspace C(W) = (\mathrm{True})^{|W|} \]
+	\[ C \overset{\mathrm{col}}{\in} P^{(V)},\enspace V(C) \text{ is a non-resolving set} \]
 
-	\[ V(B^{(E)}(\cdot, j)) \text{ is an edge non-resolving set},\quad \forall j \in \{1, \cdots, |B^{(E)}|_{\mathrm{col}}\} \]
-	\[ V(B^{(E)}(\cdot, i)) \subseteq V(B^{(E)}(\cdot, j)) \iff B^{(E)}(\cdot, i) \vee B^{(E)}(\cdot, j) = B^{(E)}(\cdot, j) \]
+	\[ C \overset{\mathrm{col}}{\in} B^{(E)},\enspace V(C) \text{ is an edge non-resolving set} \]
+	\[ C, \mathcal{C} \overset{\mathrm{col}}{\in} B^{(E)},\enspace V(C) \subseteq V(\mathcal{C}) \iff C \vee \mathcal{C} = \mathcal{C} \]
 	\(P^{(E)}\) is the submatrix of \(B^{(E)}\) obtained by eliminating all strictly dominated columns and reducing multiple identical columns to a single instance.
-	\[ W \text{ is an edge resolving set} \iff \forall P^{(E)}(\cdot, j)(W) \neq (\mathtt{True})^{|W|},\quad j \in \{1, \cdots, |P^{(E)}|_{\mathrm{col}}\} \]
-	\[ W \text{ is an edge non-resolving set} \iff \exists P^{(E)}(\cdot, j)(W) = (\mathtt{True})^{|W|},\quad j \in \{1, \cdots, |P^{(E)}|_{\mathrm{col}}\} \]
-	\[ V(P^{(E)}(\cdot, j)) \text{ is an edge non-resolving set},\quad \forall j \in \{1, \cdots, |P^{(E)}|_{\mathrm{col}}\} \]
+	\[ W \text{ is an edge resolving set} \iff \forall C \overset{\mathrm{col}}{\in} P^{(E)},\enspace C(W) \neq (\mathtt{True})^{|W|} \]
+	\[ W \text{ is an edge non-resolving set} \iff \exists C \overset{\mathrm{col}}{\in} P^{(E)},\enspace C(W) = (\mathtt{True})^{|W|} \]
+	\[ C \overset{\mathrm{col}}{\in} P^{(E)},\enspace V(C) \text{ is an edge non-resolving set} \]
 
 	...\textit{blah blah blah}...
 
