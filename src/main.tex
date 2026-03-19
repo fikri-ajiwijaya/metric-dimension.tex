@@ -324,7 +324,9 @@
 	...\textit{blah blah blah}...
 
 	\clearpage
-	\subsection{Minimization}
+	\subsection{Cardinality}
+
+	\[ \cdots \bigwedge \mathrm{AtLeast}(k) \bigwedge \mathrm{AtMost}(k) \implies V(\mathcal{S}(X)) \text{ is the set of resolving sets of cardinality } k \]
 
 	...\textit{blah blah blah}...
 
@@ -337,12 +339,20 @@
 
 	...\textit{blah blah blah}...
 
+	\[ \cdots \bigwedge \sum \limits_{\displaystyle v \in V} \mathrm{int}(v) = k \implies V(\mathcal{S}(X)) \text{ is the set of resolving sets of cardinality } k \]
+
+	...\textit{blah blah blah}...
+
+	\[ \cdots \bigwedge \left( \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{int}(v)\enspace \leq\enspace k - 1 \right) \right)\enspace \implies\enspace V(X) \text{ is a resolving set} \]
+
+	\[ \cdots \bigwedge \left( \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{int}(v)\enspace \leq\enspace k - 1 \right) \right)\enspace \implies\enspace V(X) \text{ is an edge resolving set} \]
+
 	\clearpage
 	\section{Pseudo Boolean}
 
-	\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)\enspace \geq\enspace 1 \right)\enspace \implies\enspace V(X) \text{ is a resolving set} \]
+	\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)\enspace \leq\enspace k - 1 \right)\enspace \implies\enspace V(X) \text{ is a resolving set} \]
 
-	\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)\enspace \geq\enspace 1 \right)\enspace \implies\enspace V(X) \text{ is an edge resolving set} \]
+	\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)\enspace \leq\enspace k - 1 \right)\enspace \implies\enspace V(X) \text{ is an edge resolving set} \]
 
 	...\textit{blah blah blah}...
 
