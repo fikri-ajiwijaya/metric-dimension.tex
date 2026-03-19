@@ -45,7 +45,7 @@
 
 	Let \(C\), \(C_1\), and \(C_2\) be \(k\)-tuples. \\
 	Let \(B\), \(B_1\), and \(B_2\) be boolean k-tuples. \\
-	Let \(I\) be an integer \(k\)-tuple.
+	Let \(I\), \(I_1\), and \(I_2\) be integer \(k\)-tuples.
 
 	Let \(A\) be a matrix with \(n\) rows and \(m\) columns.
 
@@ -54,7 +54,7 @@
 	There exists a bijective function \(\mathrm{bool}\) that maps \(u \in U\) to a Boolean variable in satisfiability modulo theories. \\
 	There exists a bijective function \(\mathrm{int}\) that maps \(u \in U\) to an integer variable in satisfiability modulo theories. \\
 	\(X\) denotes a model given a set of constraints in satisfiability modulo theories. \\
-	\(\mathcal{S}(X)\) detones the model space of \(X\).
+	\(\mathcal{S}(X)\) detones the model space of \(X\), i.e. \(X \in \mathcal{S}(X)\).
 
 	\[ |U| = \text{the cardinality of } U \]
 	\[ \mathcal{P}(U) = \text{the power set of } U \]
@@ -71,11 +71,15 @@
 
 	\[ U(B) = \{ u \in U : B(u) = \mathrm{True} \} \]
 	\[ U(I) = \{ u \in U : B(u) \neq 0 \} \]
+	\[ U(\{B_1, B_2, \cdots\}) = \{\enspace U(B_1),\enspace U(B_2),\enspace \cdots\enspace \} \]
+	\[ U(\{I_1, I_2, \cdots\}) = \{\enspace U(I_1),\enspace U(I_2),\enspace \cdots\enspace \} \]
 	\[ \neg B = (\enspace \neg B(1),\enspace \cdots,\enspace \neg B(k)\enspace ) \]
 	\[ \bm{(}\ B_1 \vee B_2 \ \bm{)} = (\enspace B_1(1) \vee B_2(1),\enspace \cdots,\enspace B_1(k) \vee B_2(k)\enspace ) \]
 
 	\[ |A|_{\mathrm{row}} = \text{the number of rows in } A \]
 	\[ |A|_{\mathrm{col}} = \text{the number of columns in } A \]
+	\[ \mathcal{A} \overset{\mathrm{row}}{\in} A = \mathcal{A} \text{ is a row in } A \]
+	\[ \mathcal{A} \overset{\mathrm{col}}{\in} A = \mathcal{A} \text{ is a column in } A \]
 	\[ A(i, j) \text{ is the the element at the } i \text{-th row and } j \text{-th column} \]
 	\[ A(i, \cdot) = (\enspace A(i, 1),\enspace \cdots,\enspace A(i, |A|_{\mathrm{col}})\enspace ) \]
 	\[ A(\cdot, j) = (\enspace A(1, j),\enspace \cdots,\enspace A(|A|_{\mathrm{row}}, j)\enspace ) \]
