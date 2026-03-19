@@ -241,28 +241,55 @@
 	...\textit{blah blah blah}...
 
 	\clearpage
-	\section{Constraints Formulation in Satisfiability Modulo Theories}
+	\section{Satisfiability Modulo Theories}
 
 	\[ \mathcal{S}(X) = \emptyset \iff \text{unsatisfiable} \]
 	\[ \mathcal{S}(X) \neq \emptyset \iff \text{satisfiable} \]
 
 	\[ \text{Given zero constraints},\enspace V(\mathcal{S}(X)) = \mathcal{P}(V) \]
 
-	\[ W \subseteq V,\qquad \combine{\left(}{\bigwedge \limits_{\displaystyle v \in W} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle v \in \widetilde{W}} \mathrm{bool}(v)}{\right)}\enspace \implies\enspace V(X) = W \]
+	\[ W \subseteq V,\qquad \combine{\left(}{\bigwedge \limits_{\displaystyle v \in W} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle v \in \widetilde{W}} \neg \mathrm{bool}(v)}{\right)}\enspace \implies\enspace V(X) = W \]
 
-	\[ W \subseteq V,\qquad \bigwedge \limits_{\displaystyle v \in \widetilde{W}} \mathrm{bool}(v)\enspace \implies\enspace V(\mathcal{S}(X)) = \mathcal{P}(W) \]
-
-	...\textit{blah blah blah}...
-
-	\subsection{Boolean Satisfiability}
+	\[ W \subseteq V,\quad \bigwedge \limits_{\displaystyle v \in \widetilde{W}} \neg \mathrm{bool}(v) \implies V(\mathcal{S}(X)) = \mathcal{P}(W) \]
 
 	...\textit{blah blah blah}...
 
-	\subsection{Linear Integer Arithmetic}
+	\clearpage
+	\section{Boolean Satisfiability}
+
+	\[ W \text{ is a non-resolving set},\quad \bigwedge \limits_{\displaystyle v \in \widetilde{W}} \neg \mathrm{bool}(v) \implies V(X) \text{ is a non-resolving set} \]
+
+	\[ C \overset{\mathrm{col}}{\in} P^{(V)},\quad \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(v) \implies V(X) \text{ is a non-resolving set} \]
+
+	\[ \bigvee \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(v) \right)\enspace \implies\enspace V(X) \text{ is a non-resolving set} \]
+
+	\[ \bigvee \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(v) \right)\enspace \implies\enspace V(\mathcal{S}(X)) \text{ is the non-resolving set partition} \]
+
+	\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)\enspace \implies\enspace V(\mathcal{S}(X)) \text{ is the resolving set partition} \]
+
+	\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)\enspace \implies\enspace V(X) \text{ is a resolving set} \]
+
+	\[ W \text{ is an edge non-resolving set},\quad \bigwedge \limits_{\displaystyle v \in \widetilde{W}} \neg \mathrm{bool}(v) \implies V(X) \text{ is an edge non-resolving set} \]
+
+	\[ C \overset{\mathrm{col}}{\in} P^{(E)},\quad \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(E) \implies V(X) \text{ is an edge non-resolving set} \]
+
+	\[ \bigvee \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(E) \right)\enspace \implies\enspace V(X) \text{ is an edge non-resolving set} \]
+
+	\[ \bigvee \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(E) \right)\enspace \implies\enspace V(\mathcal{S}(X)) \text{ is the edge non-resolving set partition} \]
+
+	\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(E) \right)\enspace \implies\enspace V(\mathcal{S}(X)) \text{ is the edge resolving set partition} \]
+
+	\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(E) \right)\enspace \implies\enspace V(X) \text{ is an edge resolving set} \]
 
 	...\textit{blah blah blah}...
 
-	\subsection{Pseudo Boolean}
+	\clearpage
+	\section{Linear Integer Arithmetic}
+
+	...\textit{blah blah blah}...
+
+	\clearpage
+	\section{Pseudo Boolean}
 
 	...\textit{blah blah blah}...
 
