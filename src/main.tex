@@ -18,6 +18,8 @@
 	Institut Teknologi Sepuluh Nopember
 }
 
+\newcommand{\combine}[7]{#1 #2 \vphantom{#6} #3 #4 #5 #6 \vphantom{#2} #7}
+
 \begin{document}
 	\maketitle
 
@@ -49,13 +51,14 @@
 
 	\clearpage
 
-	There exists a bijective function \(\mathrm{bool}\) that maps \(v \in V\) to a Boolean variable in satisfiability modulo theories. \\
-	There exists a bijective function \(\mathrm{int}\) that maps \(v \in V\) to an integer variable in satisfiability modulo theories. \\
+	There exists a bijective function \(\mathrm{bool}\) that maps \(u \in U\) to a Boolean variable in satisfiability modulo theories. \\
+	There exists a bijective function \(\mathrm{int}\) that maps \(u \in U\) to an integer variable in satisfiability modulo theories. \\
 	\(X\) denotes a model given a set of constraints in satisfiability modulo theories. \\
 	\(\mathcal{S}(X)\) detones the model space of \(X\).
 
 	\[ |U| = \text{the cardinality of } U \]
 	\[ \mathcal{P}(U) = \text{the power set of } U \]
+	\[ R \subseteq U,\enspace \widetilde{R} = U \backslash R \]
 
 	\[ |C| = \text{the length of } C \]
 	\[ C(i) \text{ is the element at } i \text{-th position} \]
@@ -236,6 +239,24 @@
 
 	\[ \mathcal{S}(X) = \emptyset \iff \text{unsatisfiable} \]
 	\[ \mathcal{S}(X) \neq \emptyset \iff \text{satisfiable} \]
+
+	\[ \text{Given zero constraints},\enspace V(\mathcal{S}(X)) = \mathcal{P}(V) \]
+
+	\[ W \subseteq V,\qquad \combine{\left(}{\bigwedge \limits_{\displaystyle v \in W} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle v \in \widetilde{W}} \mathrm{bool}(v)}{\right)}\enspace \implies\enspace V(X) = W \]
+
+	\[ W \subseteq V,\qquad \bigwedge \limits_{\displaystyle v \in \widetilde{W}} \mathrm{bool}(v)\enspace \implies\enspace V(\mathcal{S}(X)) = \mathcal{P}(W) \]
+
+	...\textit{blah blah blah}...
+
+	\subsection{Boolean Satisfiability}
+
+	...\textit{blah blah blah}...
+
+	\subsection{Linear Integer Arithmetic}
+
+	...\textit{blah blah blah}...
+
+	\subsection{Pseudo Boolean}
 
 	...\textit{blah blah blah}...
 
