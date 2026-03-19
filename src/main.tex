@@ -284,6 +284,51 @@
 	...\textit{blah blah blah}...
 
 	\clearpage
+	\subsection{Transformation}
+
+	\[
+	\begin{array}{l}
+		\displaystyle \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P} \left( \combine{\left(}{\mathrm{False}}{\right)}{\bigvee}{\left(}{\bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)}{\right)} \right) \\ [24pt]
+
+		\displaystyle\qquad = \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P} \left( \combine{\left(}{\combine{\left(}{\bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\neg \bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)}{\right)}}{\right)}{\bigvee}{\left(}{\bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)}{\right)} \right) \\ [24pt]
+
+		\displaystyle\qquad = \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P} \left( \begin{array}{c}
+			\left( \combine{\left(}{\bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)}{\right)}{\bigvee}{\left(}{\bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)}{\right)} \right) \\ [24pt]
+			\bigwedge \\ [16pt]
+			\left( \combine{\left(}{\neg \bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)}{\right)}{\bigvee}{\left(}{\bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)}{\right)} \right)
+		\end{array}
+		\right) \\ [58pt]
+
+		\displaystyle\qquad = \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P} \left( \combine{\left(}{\bigvee \limits_{\displaystyle v \in V} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)\ \implies \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)}{\right)} \right) \\ [24pt]
+
+		\displaystyle\qquad = \combine{\left(}{\bigvee \limits_{\displaystyle v \in V} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P} \left( \bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)\ \implies \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)}{\right)}
+	\end{array}
+	\]
+
+	...\textit{blah blah blah}...
+
+	\[
+	\begin{array}{c}
+		\combine{\left(}{\bigvee \limits_{\displaystyle v \in V} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)\ \implies \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)}{\right)} \\ [24pt]
+		\implies\enspace V(X) \text{ is a resolving set}
+	\end{array}
+	\]
+
+	\[
+	\begin{array}{c}
+		\combine{\left(}{\bigvee \limits_{\displaystyle v \in V} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)\ \implies \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)}{\right)} \\ [24pt]
+		\implies\enspace V(X) \text{ is an edge resolving set}
+	\end{array}
+	\]
+
+	...\textit{blah blah blah}...
+
+	\clearpage
+	\subsection{Minimization}
+
+	...\textit{blah blah blah}...
+
+	\clearpage
 	\section{Linear Integer Arithmetic}
 
 	\[ \combine{\left(}{\bigwedge \limits_{\displaystyle v \in V} 0 \leq \mathrm{int}(v) \leq 1}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{int}(v)\enspace \geq\enspace 1 \right)}{\right)}\enspace \implies\enspace V(X) \text{ is a resolving set} \]
