@@ -69,6 +69,34 @@
 
 	The exact same structure can also be made for the case of edge resolving set. Let us define \(r(E|W) = \left[\ r(e_1|W)\ \cdots\ r(e_m|W)\ \right]\), resulting in a matrix with a dimension of \(|W| \times |E|\), and \(E\) having column correspondence with it by construction. For any \(e \in E\), its representation with respect to \(W\) is \(r(e|W) = r(E|W)(\cdot, e)\), transforming the edge resolving set criteria into \(\forall e, f \in E, e \neq f, r(E|W)(\cdot, e) \neq r(E|W)(\cdot, f)\).
 
+	\section{Distance Matrix}
+
+	When \(W = V\), the matrix \(r(V|V)\) is more commonly known by the name of the distance matrix, which we denote here by \(D^{(V)}\), having a dimension of \(|V| \times |V|\). More formally, defined as
+	\[
+		D^{(V)} = \left[
+		\begin{array}{cccc}
+			d(v_1, v_1) & d(v_1, v_2) & \cdots & d(v_1, v_n) \\
+			d(v_2, v_1) & d(v_2, v_2) & \cdots & d(v_2, v_n) \\
+			\vdots & \vdots & \ddots & \vdots \\
+			d(v_n, v_1) & d(v_n, v_2) & \cdots & d(v_n, v_n) \\
+		\end{array}
+		\right]
+	\]
+	where \(V\) have both row and column correspondence with it. This means that, for any \(W \subseteq V\), we can obtain \(r(V|W)\) directly by row indexing the distance matrix, \(r(V|W) = D^{(V)}(W, \cdot)\). Consequently, all possible representations in \(G\) are already contained within the distance matrix, and can be obtained through \(r(v|W) = D^{(V)}(W, \cdot)(\cdot, v)\), for any \(v \in V\) and any \(W \subseteq V\). Once again, we can now rewrite the resolving set criteria in terms of the distance matrix, \(\forall u, v \in V, u \neq v, D^{(V)}(W, \cdot)(\cdot, u) \neq D^{(V)}(W, \cdot)(\cdot, v)\).
+
+	Likewise, the matrix \(r(E|V)\) is more commonly known by the name of the edge distance matrix, denoted by \(D^{(E)}\), with a dimension of \(|V| \times |E|\). It is formally defined as
+	\[
+		D^{(E)} = \left[
+		\begin{array}{cccc}
+			d(v_1, e_1) & d(v_1, e_2) & \cdots & d(v_1, e_m) \\
+			d(v_2, e_1) & d(v_2, e_2) & \cdots & d(v_2, e_m) \\
+			\vdots & \vdots & \ddots & \vdots \\
+			d(v_n, e_1) & d(v_n, e_2) & \cdots & d(v_n, e_m) \\
+		\end{array}
+		\right]
+	\]
+	where \(V\) has a row correspondence and \(E\) has a column correspondence with it. And for any \(W \subseteq V\), we can obtain \(r(E|W) = D^{(E)}(W, \cdot)\). Therefore all edge representations in \(G\) are contained in this matrix, that can be obtained by \(r(e|W) = D^{(E)}(W, \cdot)(\cdot, e)\) for any \(e \in E\) and any \(W \subseteq V\). The edge resolving set criteria then becomes \(\forall e, f \in E, e \neq f, D^{(E)}(W, \cdot)(\cdot, e) \neq D^{(E)}(W, \cdot)(\cdot, f)\).
+
 	\section{...\textit{blah blah blah}...}
 
 	...\textit{blah blah blah}...
