@@ -21,15 +21,39 @@
 \begin{document}
 	\maketitle
 
-	\begin{abstract}
-		...\textit{blah blah blah}...
-	\end{abstract}
-
 	\section{Introduction}
 
 	The theoretical part of this paper is divided into three major parts. The first of which consists of the heavy lifting of formally defining notations for slicing, dicing, and filtering of matrices, tuples, and sets. While it may seem trivial and verbose at first glance, it is of utmost importance due to the lack of standard notations for these basic operations. Part two and part three extensively relies on using these carefully defined operations, without which would be incomprehensible to read. This rigor is both necessary and unnegotiable. Part two consists of a quick recall on the metric dimension problem definition, then followed by the first major contribution of this paper; that is, the journey in perspective shift of metric dimension reformulated in terms of slicing, dicing, and filtering. After all these gruelling groundwork, we are finally able to introduce our great result in part three, where we formulate constraints for metric dimension in satisfiability modulo theories, through careful solution space analysis.
 
-	...\textit{blah blah blah}...
+	\section{Slicing, Dicing, and Filtering}
+
+	For any set \(U\), we denote its cardinality as \(|U|\) and its power set as \(\mathcal{P}\). Given a subset \(R \subseteq U\), its complement is defined as \(\widetilde{R} = U \backslash R\).
+
+	For a \(k\)-tuple \(C\), we denote its length by \(|C|\) and refer to the element at the \(i\)-th position as \(C(i)\). We say that \(U\) has a correspondence with \(C\) when there exists a bijective function \(\mathrm{idx} : U \to \{1, \cdots, |C|\}\). This allows us to index \(C\) by elements of \(U\), where for any \(u \in U\), we define \(C(u) = C(\mathrm{idx}(u))\). Furthermore, for any subset \(\{u_1, \cdots, u_r\} \subseteq U\), we define the sub-tuple \(C(\{u_1, \cdots, u_r\}) = (C(u_1),\ \cdots,\ C(u_r))\), preserving element order of \(C\).
+
+	We define some element-wise operations on \(k\)-tuples. The element-wise negation, \(\neg C = (\neg C(1), \cdots, \neg C(k))\). The element-wise disjunction, \(C_1 \vee C_2 = (C_1(1) \vee C_2(1), \cdots, C_1(k) \vee C_2(k))\). The element-wise equality, \(C_1\ \ddot{=}\ C_2 = (C_1(1) = C_2(1), \cdots, C_1(k) = C_2(k))\). We also define \((\mathrm{True})^k\) as the \(k\)-tuple consisting of all \(\mathrm{True}\) values.
+
+	Given a Boolean \(k\)-tuple \(B\), where \(U\) has a correspondence with \(B\), we define the filter operation \(U(B) = \{u \in U : B(u) = \mathrm{True}\}\). Similarly, given an integer \(k\)-tuple \(I\) that \(U\) has a correspondence with, \(U(I) = \{u \in U : I(u) \neq 0\}\). We extend this operation for a set of Boolean \(k\)-tuples, \(U(\{B_1, B_2, \cdots\}) = \{U(B_1),\ U(B_2),\ \cdots\}\). Likewise, for a set of integer \(k\)-tuples, \(U(\{I_1, I_2, \cdots\}) = \{U(I_1),\ U(I_2),\ \cdots\}\).
+
+	For a matrix \(A\) with \(n\) rows and \(m\) columns, we use \(|A|_{\mathrm{row}}\) to denote the number of rows in \(A\) and \(|A|_{\mathrm{col}}\) to denote the number of columns in \(A\). We define the notation \(\mathcal{A} \overset{\mathrm{row}}{\in} A\) to say that \(\mathcal{A}\) is a row in \(A\) taken as an \(m\)-tuple, and \(\mathcal{A} \overset{\mathrm{col}}{\in} A\) to say that \(\mathcal{A}\) is a column in \(A\) as taken an \(n\)-tuple. We refer to the element at the \(i\)-th row and \(j\)-th column with \(A(i, j)\), the \(i\)-th row taken as an \(m\)-tuple with \(A(i, \cdot)\), and the \(j\)-th column taken as an \(n\)-tuple with \(A(\cdot, j)\).
+
+	We say that a set \(S\) has a row correspondence with \(A\) when there exists a bijective function \(\mathrm{idx} : S \to \{1, \cdots, |A|_{\mathrm{row}}\}\), and say that a set \(T\) has a column correspondence with \(A\) when there exists a bijective function \(\mathrm{idx} : T \to \{1, \cdots, |A|_{\mathrm{col}}\}\). This allows us to index the rows of \(A\) by elements of \(S\) and the columns of \(A\) by elements of \(T\), where for any \(s \in S\), we define \(A(s, \cdot) = A(\mathrm{idx}(s), \cdot)\), and for any \(t \in T\), we define \(A(\cdot, t) = A(\cdot, \mathrm{idx}(t))\).
+
+	Finally, for any subset \(\{s_1, \cdots, s_r\} \subseteq S\), we define the submatrix by row selection as
+	\[
+		A(\{s_1, \cdots, s_r\}, \cdot) = \left[
+		\begin{array}{c}
+			A(s_1, \cdot) \\
+			\vdots \\
+			A(s_r, \cdot)
+		\end{array}
+		\right],
+	\]
+	preserving row order of \(A\). And for any subset \(\{t_1, \cdots, t_r\} \subseteq T\), we define the submatrix by column selection, as
+	\(
+		A(\cdot, \{t_1, \cdots, t_r\} \subseteq T) = \left[\enspace A(\cdot, t_1)\enspace \cdots\enspace A(\cdot, t_r)\enspace \right]
+	\),
+	preserving column order of \(A\).
 
 	\section{...\textit{blah blah blah}...}
 
