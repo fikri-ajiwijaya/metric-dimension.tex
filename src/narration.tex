@@ -97,6 +97,22 @@
 	\]
 	where \(V\) has a row correspondence and \(E\) has a column correspondence with it. And for any \(W \subseteq V\), we can obtain \(r(E|W) = D^{(E)}(W, \cdot)\). Therefore all edge representations in \(G\) are contained in this matrix, that can be obtained by \(r(e|W) = D^{(E)}(W, \cdot)(\cdot, e)\) for any \(e \in E\) and any \(W \subseteq V\). The edge resolving set criteria then becomes \(\forall e, f \in E, e \neq f, D^{(E)}(W, \cdot)(\cdot, e) \neq D^{(E)}(W, \cdot)(\cdot, f)\).
 
+	There is another perspective to see the distance matrix through. Notice that \(V\) has a correspondence with the representation tuple \(r(v|V)\) for any \(v \in V\). Subsequently, given a fixed \(v \in V\), any \(W \subseteq V\) can be obtained by \(r(v|W) = r(v|V)(W)\). By construction, all representations with respect to \(V\) are contained as columns in \(r(V|V)\). So, for any \(v \in V\), we can get \(r(v|V) = r(V|V)(\cdot, v)\). As such, we have \(r(v|W) = r(V|V)(\cdot, v)(W)\), or using the notation for the distance matrix, \(r(v|W) = D^{(V)}(\cdot, v)(W)\). This results in the fact that we can either select by \(W \subseteq V\) first, or by \(v \in V\) first, where by \(r(v|W) = D^{(V)}(W, \cdot)(\cdot, v) = D^{(V)}(\cdot, v)(W)\). Therefore, an alternative form of the resolving set criteria in terms of the distance matrix is \(\forall u, v \in V, u \neq v, D^{(V)}(\cdot, u)(W) \neq D^{(V)}(\cdot, v)(W)\).
+
+	Similarly, the same is also true for edge representation, where for any \(e \in E\) and any \(W \subseteq V\), we can obtain \(r(e|W) = D^{(E)}(\cdot, e)(W)\). And, an alternative form of the edge resolving set criteria in terms of the edge distance matrix is \(\forall e, f \in E, e \neq f, D^{(E)}(\cdot, e)(W) \neq D^{(E)}(\cdot, f)(W)\).
+
+	\section{Distance Similarity Matrix}
+
+	Let us now shift our focus to the representation comparison process. For any \(u, v \in V\) and any \(W \subseteq V\), the representation \(r(u|W)\) is equal to the representation \(r(v|W)\) if and only if the tuple \(r(u|W)\ \ddot{=}\ r(v|W)\) doesn't contains all \(\mathrm{True}\); or more formaly, \(r(u|W) = r(v|W) \iff (r(u|W)\ \ddot{=}\ r(v|W)) \neq (\mathrm{True})^{|W|}\). If we take the approach of selecting by \(u, v \in V\) first, this becomes \(r(u|V)(W) = r(v|V)(W) \iff (r(u|V)(W)\ \ddot{=}\ r(v|V)(W)) \neq (\mathrm{True})^{|W|}\). Take a note of the tuple element-wise comparison at the right hand side; we may apply the following factorization: \((r(u|V)(W)\ \ddot{=}\ r(v|V)(W)) = (r(u|V)\ \ddot{=}\ r(v|V))(W)\). This simplifies the representation comparison to \(r(u|V)(W) = r(v|V)(W) \iff (r(u|V)\ \ddot{=}\ r(v|V))(W) \neq (\mathrm{True})^{|W|}\). Finally, we can transitively obtain a new form of the resolving set criteria, to be \(\forall u, v \in V, u \neq v, (r(u|V)\ \ddot{=}\ r(v|V))(W) \neq (\mathrm{True})^{|W|}\).
+
+	When \(W = V\), the resolving set criteria further simplies to \(\forall u, v \in V, u \neq v, (r(u|V)\ \ddot{=}\ r(v|V)) \neq (\mathrm{True})^{|V|}\). By using the distance matrix notation, this becomes \(\forall u, v \in V, u \neq v, (D^{(V)}(\cdot, u)\ \ddot{=}\ D^{(V)}(\cdot, v)) \neq (\mathrm{True})^{|V|}\). Observe that the tuple element-wise comparison at the right hand side is practically element-wise comparison of the columns of the distance matrix. This mean, we can systematically arrange all possible element-wise column comparison of the distance matrix into a new structure, called the distance similarity matrix,
+	\[
+		B^{(V)} = \left[\enspace D^{(V)}(\cdot, v_i)\ \ddot{=}\ D^{(V)}(\cdot, v_j) \enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |V|
+	\]
+	which has a dimension of \(|V| \times \binom{|V|}{2}\). As a result, by construction, we are able to transform the resolving set criteria into a case of showing that no columns in this matrix contains all \(\mathrm{True}\) values, i.e. \(\forall C \overset{\mathrm{col}}{\in} B^{(V)}, C \neq (\mathrm{True})^{|V|}\). In addition, the distance similarity matrix preserves the row correspondence that \(V\) has with the original distance matrix, allowing for \(\forall u, v \in V, u \neq v, \exists C \overset{\mathrm{col}}{\in} B^{(V)}, C(W) = (r(u|V)\ \ddot{=}\ r(v|V))(W)\) to apply for any \(W \subseteq V\).
+
+	...\textit{blah blah blah}...
+
 	\section{...\textit{blah blah blah}...}
 
 	...\textit{blah blah blah}...
