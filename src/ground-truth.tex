@@ -4,7 +4,6 @@
 	arxiv,
 	amsmath,
 	amssymb,
-	bm,
 	cleveref
 }
 
@@ -67,14 +66,14 @@
 	\[ C(\{u_1, \cdots, u_r\} \subseteq U) = (\enspace C(u_1),\enspace \cdots,\enspace C(u_r)\enspace ), \quad \text{preserving element order of } C \]
 
 	\[ (\mathrm{True})^k \text{ is the } k \text{-tuple that contains all } \mathrm{True} \]
-	\[ \bm{(}\ C_1 = C_1 \ \bm{)} = (\enspace C_1(1) = C_2(1),\enspace \cdots,\enspace C_1(k) = C_2(k)\enspace ) \]
+	\[ \neg C = (\enspace \neg C(1),\enspace \cdots,\enspace \neg C(k)\enspace ) \]
+	\[ C_1 \vee C_2 = (\enspace C_1(1) \vee C_2(1),\enspace \cdots,\enspace C_1(k) \vee C_2(k)\enspace ) \]
+	\[ C_1\ \ddot{=}\ C_2 = (\enspace C_1(1) = C_2(1),\enspace \cdots,\enspace C_1(k) = C_2(k)\enspace ) \]
 
 	\[ U(B) = \{ u \in U : B(u) = \mathrm{True} \} \]
 	\[ U(I) = \{ u \in U : B(u) \neq 0 \} \]
 	\[ U(\{B_1, B_2, \cdots\}) = \{\enspace U(B_1),\enspace U(B_2),\enspace \cdots\enspace \} \]
 	\[ U(\{I_1, I_2, \cdots\}) = \{\enspace U(I_1),\enspace U(I_2),\enspace \cdots\enspace \} \]
-	\[ \neg B = (\enspace \neg B(1),\enspace \cdots,\enspace \neg B(k)\enspace ) \]
-	\[ \bm{(}\ B_1 \vee B_2 \ \bm{)} = (\enspace B_1(1) \vee B_2(1),\enspace \cdots,\enspace B_1(k) \vee B_2(k)\enspace ) \]
 
 	\[ |A|_{\mathrm{row}} = \text{the number of rows in } A \]
 	\[ |A|_{\mathrm{col}} = \text{the number of columns in } A \]
@@ -197,25 +196,25 @@
 	\clearpage
 	\section{Distance Similarity Matrix}
 
-	\(V\) has correspondence with \(\bm{(}\ r(u|V) = r(v|V)\ \bm{)}\).
-	\[ \bm{(}\ r(u|W) = r(v|W)\ \bm{)} = \bm{(} r(u|V) = r(v|V)\ \bm{)}(W) \]
+	\(V\) has correspondence with \(r(u|V)\ \ddot{=}\ r(v|V)\).
+	\[ r(u|W)\ \ddot{=}\ r(v|W) = (r(u|V)\ \ddot{=}\ r(v|V))(W) \]
 
-	\[ B^{(V)} = \left[\enspace \bm{(}\ r(v_i|V) = r(v_j|V)\ \bm{)}\enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |V| \]
-	\[ B^{(V)} = \left[\enspace \bm{(}\ D^{(V)}(\cdot, v_i) = D^{(V)}(\cdot, v_j)\ \bm{)} \enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |V| \]
+	\[ B^{(V)} = \left[\enspace r(v_i|V)\ \ddot{=}\ r(v_j|V)\enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |V| \]
+	\[ B^{(V)} = \left[\enspace D^{(V)}(\cdot, v_i)\ \ddot{=}\ D^{(V)}(\cdot, v_j) \enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |V| \]
 	\(V\) has row correspondence with \(B^{(V)}\).
-	\[ \forall u, v \in V, u \neq v,\enspace \exists C \overset{\text{col}}{\in} B^{(V)},\enspace C = \bm{(}\ r(u|V) = r(v|V)\ \bm{)} \]
+	\[ \forall u, v \in V, u \neq v,\enspace \exists C \overset{\text{col}}{\in} B^{(V)},\enspace C = r(u|V)\ \ddot{=}\ r(v|V) \]
 	\[ W \text{ is a resolving set} \iff \forall C \overset{\text{col}}{\in} B^{(V)},\enspace C(W) \neq (\mathrm{True})^{|W|} \]
 	\[ W \text{ is a non-resolving set} \iff \exists C \overset{\text{col}}{\in} B^{(V)},\enspace C(W) = (\mathrm{True})^{|W|} \]
 
 	\vspace{2em}
 
-	\(V\) has correspondence with \(\bm{(}\ r(e|V) = r(f|V)\ \bm{)}\).
-	\[ \bm{(}\ r(e|W) = r(f|W)\ \bm{)} = \bm{(} r(e|V) = r(f|V)\ \bm{)}(W) \]
+	\(V\) has correspondence with \(r(e|V)\ \ddot{=}\ r(f|V)\).
+	\[ r(e|W)\ \ddot{=}\ r(f|W) = ((e|V)\ \ddot{=}\ r(f|V))(W) \]
 
-	\[ B^{(E)} = \left[\enspace \bm{(}\ r(e_i|V) = r(e_j|V)\ \bm{)}\enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |E| \]
-	\[ B^{(E)} = \left[\enspace \bm{(}\ D^{(E)}(\cdot, e_i) = D^{(E)}(\cdot, e_j)\ \bm{)} \enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |E| \]
+	\[ B^{(E)} = \left[\enspace r(e_i|V)\ \ddot{=}\ r(e_j|V)\enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |E| \]
+	\[ B^{(E)} = \left[\enspace D^{(E)}(\cdot, e_i)\ \ddot{=}\ D^{(E)}(\cdot, e_j) \enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |E| \]
 	\(V\) has row correspondence with \(B^{(E)}\).
-	\[ \forall e, f \in E, e \neq f,\enspace \exists C \overset{\mathrm{col}}{\in} B^{(E)},\enspace C = \bm{(}\ r(e|V) = r(f|V)\ \bm{)} \]
+	\[ \forall e, f \in E, e \neq f,\enspace \exists C \overset{\mathrm{col}}{\in} B^{(E)},\enspace C = r(e|V)\ \ddot{=}\ r(f|V) \]
 	\[ W \text{ is an edge resolving set} \iff \forall C \overset{\mathrm{col}}{\in} B^{(E)},\enspace C(W) \neq (\mathtt{True})^{|W|} \]
 	\[ W \text{ is an edge non-resolving set} \iff \exists C \overset{\mathrm{col}}{\in} B^{(E)},\enspace C(W) = (\mathtt{True})^{|W|} \]
 
