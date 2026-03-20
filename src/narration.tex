@@ -23,7 +23,7 @@
 
 	\section{Introduction}
 
-	The theoretical part of this paper is divided into three major parts. The first of which consists of the heavy lifting of formally defining notations for slicing, dicing, and filtering of matrices, tuples, and sets. While it may seem trivial and verbose at first glance, it is of utmost importance due to the lack of standard notations for these basic operations. Part two and part three extensively relies on using these carefully defined operations, without which would be incomprehensible to read. This rigor is both necessary and unnegotiable. Part two consists of a quick recall on the metric dimension problem definition, then followed by the first major contribution of this paper; that is, the journey in perspective shift of metric dimension reformulated in terms of slicing, dicing, and filtering. After all these gruelling groundwork, we are finally able to introduce our great result in part three, where we formulate constraints for metric dimension in satisfiability modulo theories, through careful solution space analysis.
+	The theoretical part of this paper is divided into three major parts. The first of which consists of the heavy lifting of formally defining notations for slicing, dicing, and filtering of matrices, tuples, and sets. While it may seem trivial and verbose at first glance, it is of utmost importance due to the lack of standard notations for these basic operations. Part two and part three extensively relies on using these carefully defined operations, without which would be incomprehensible to read. This rigor is both necessary and unnegotiable. Part two consists of a quick recall on the metric dimension problem definition, then followed by the first major contribution of this paper; that is, the journey in perspective shift of metric dimension reformulated in terms of slicing, dicing, and filtering. After all this gruelling groundwork, we are finally able to introduce the theoretical part of our result in part three, where we formulate constraints for metric dimension in satisfiability modulo theories, through careful solution space analysis.
 
 	\section{Slicing, Dicing, and Filtering}
 
@@ -54,6 +54,20 @@
 		A(\cdot, \{t_1, \cdots, t_r\} \subseteq T) = \left[\enspace A(\cdot, t_1)\enspace \cdots\enspace A(\cdot, t_r)\enspace \right]
 	\),
 	preserving column order of \(A\).
+
+	\section{Metric Dimension}
+
+	Let \(G\) be a connected graph with \(n\) vertices \(V = \{v_1, \cdots, v_n\}\) and \(m\) edges \(E = \{e_1, \cdots, e_m\}\). There exists a function \(d(u, v)\) for any \(u, v \in V\), that gives the distance from \(u\) to \(v\). Then, it is defined \(d(u, e)\) for any \(u, v, w \in V\) and \(e \in E\) to be \(d(u, e) = \mathrm{min}(d(u, v),\ d(u, w))\) if \(e\) is the edge that connects \(v\) and \(w\).
+
+	Let us take \(W = \{w_1, \cdots, w_k\} \subseteq V\). The representation of \(v \in V\) with respect to \(W\) is defined as \(r(v|W) = (d(v, w_1), \cdots, d(v, w_k))\). The edge representation of \(e \in E\) with respect to \(W\) is defined as \(r(e|W) = (d(e, w_1), \cdots, d(e, w_k))\). \(W\) is said to be a resolving set when all representations with respect to it are unique; that is, \(\forall u, v \in V, u \neq v, r(u|W) \neq r(v|W)\). Similarly, \(W\) is said to be an edge resolving set when all edge representations with respect to it are unique; that is, \(\forall e, f \in E, e \neq f, r(e|W) \neq r(f|W)\).
+
+	When \(W\) is not a resolving set, \(W\) is called a non-resolving set. \(\mathcal{P}(V)\) is partitioned into the set of resolving sets and the set of non-resolving sets. Likewise, when \(W\) is not an edge resolving set, \(W\) is called an edge non-resolving set. \(\mathcal{P}(V)\) is also partitioned into the set of edge resolving sets and the set of edge non-resolving sets.
+
+	The metric dimension of \(G\) is the minimum cardinality of its resolving sets, and the edge metric dimension of \(G\) is the minimum cardinality of its edge resolving sets.
+
+	Observe that to show \(W\) is a resolving set, we practically must exhaustively calculate all representations against it. Let us define a structure that contains all of these necessary information: \(r(V|W) = \left[\ r(v_1|W)\ \cdots\ r(v_n|W)\ \right]\). This matrix has a dimension of \(|W| \times |V|\), and by construction, \(V\) has a column correspondence with \(r(V|W)\). All possible representations with respect to \(W\) are stored as its columns, such that, for any \(v \in V\), its representation with respect to \(W\) can be obtained by column indexing, \(r(v|W) = r(V|W)(\cdot, v)\). We are now able to redefine the resolving set criteria in terms of this matrix, \(\forall u, v \in V, u \neq v, r(V|W)(\cdot, u) \neq r(V|W)(\cdot, v)\), turning it into a matter of showing that no two columns in \(r(V|W)\) are the same.
+
+	The exact same structure can also be made for the case of edge resolving set. Let us define \(r(E|W) = \left[\ r(e_1|W)\ \cdots\ r(e_m|W)\ \right]\), resulting in a matrix with a dimension of \(|W| \times |E|\), and \(E\) having column correspondence with it by construction. For any \(e \in E\), its representation with respect to \(W\) is \(r(e|W) = r(E|W)(\cdot, e)\), transforming the edge resolving set criteria into \(\forall e, f \in E, e \neq f, r(E|W)(\cdot, e) \neq r(E|W)(\cdot, f)\).
 
 	\section{...\textit{blah blah blah}...}
 
