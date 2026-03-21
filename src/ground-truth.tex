@@ -20,365 +20,367 @@
 \newcommand{\combine}[7]{#1 #2 \vphantom{#6} #3 #4 #5 #6 \vphantom{#2} #7}
 
 \begin{document}
-	\maketitle
 
-	\begin{abstract}
-		...\textit{blah blah blah}...
-	\end{abstract}
+\maketitle
 
-	\section{Introduction}
-
+\begin{abstract}
 	...\textit{blah blah blah}...
+\end{abstract}
 
-	\section{Preliminaries}
+\section{Introduction}
 
-	Let \(G\) be a connected graph. \\
-	Let \(V = \{v_1, \cdots, v_n\}\) be the set of vertices in \(G\). \\
-	Let \(E = \{e_1, \cdots, e_m\}\) be the set of edges in \(G\). \\
-	Let \(W = \{w_1, \cdots, w_k\} \subseteq V\). \\
-	Let \(u, v, w \in V\). \\
-	Let \(e, f \in E\). \\
-	Let \(e\) connects \(v\) and \(w\).
+...\textit{blah blah blah}...
 
-	Let \(S\) be a set with cardinality \(n\). \\
-	Let \(T\) be a set with cardinality \(m\). \\
-	Let \(U\) be a set with cardinality \(k\). \\
-	Let \(s \in S\). \\
-	Let \(S' \subseteq S\). \\
-	Let \(t \in T\). \\
-	Let \(t' \subseteq T\).
+\section{Preliminaries}
 
-	Let \(C\), \(C_1\), and \(C_2\) be \(k\)-tuples. \\
-	Let \(B\), \(B_1\), and \(B_2\) be Boolean k-tuples. \\
-	Let \(I\), \(I_1\), and \(I_2\) be integer \(k\)-tuples.
+Let \(G\) be a connected graph. \\
+Let \(V = \{v_1, \cdots, v_n\}\) be the set of vertices in \(G\). \\
+Let \(E = \{e_1, \cdots, e_m\}\) be the set of edges in \(G\). \\
+Let \(W = \{w_1, \cdots, w_k\} \subseteq V\). \\
+Let \(u, v, w \in V\). \\
+Let \(e, f \in E\). \\
+Let \(e\) connects \(v\) and \(w\).
 
-	Let \(A\) be a matrix with \(n\) rows and \(m\) columns.
+Let \(S\) be a set with cardinality \(n\). \\
+Let \(T\) be a set with cardinality \(m\). \\
+Let \(U\) be a set with cardinality \(k\). \\
+Let \(s \in S\). \\
+Let \(S' \subseteq S\). \\
+Let \(t \in T\). \\
+Let \(t' \subseteq T\).
 
-	\clearpage
+Let \(C\), \(C_1\), and \(C_2\) be \(k\)-tuples. \\
+Let \(B\), \(B_1\), and \(B_2\) be Boolean k-tuples. \\
+Let \(I\), \(I_1\), and \(I_2\) be integer \(k\)-tuples.
 
-	There exists a bijective function \(\mathrm{bool}\) that maps \(u \in U\) to a Boolean variable in satisfiability modulo theories. \\
-	There exists a bijective function \(\mathrm{int}\) that maps \(u \in U\) to an integer variable in satisfiability modulo theories. \\
-	\(X\) denotes a model given a set of constraints in satisfiability modulo theories. \\
-	\(\mathcal{S}(X)\) detones the solution space of \(X\).
+Let \(A\) be a matrix with \(n\) rows and \(m\) columns.
 
-	\[ |U| = \text{the cardinality of } U \]
-	\[ \mathcal{P}(U) = \text{the power set of } U \]
-	\[ R \subseteq U,\enspace \widetilde{R} = U \backslash R \]
+\clearpage
 
-	\[ |C| = \text{the length of } C \]
-	\[ c \in C = c \text{ is an element in } C \]
-	\[ c \in C,\enspace \mathrm{idx}(c) = \text{the index of } c \text{ in } C \]
-	\[ C(i) \text{ is the element at } i \text{-th position} \]
-	For \(U\) to have correspondence with \(C\) means there exists a bijective function \(\mathrm{idx} : U \to \{1, \cdots, |C|\}\).
-	\[ u \in U, C(u) = C(\mathrm{idx}(u)) \]
-	\[ C(\{u_1, u_2, \cdots\} \subseteq U) = (\enspace C(u_1),\enspace C(u_2)\enspace \cdots,\enspace ), \quad \text{preserving element order of } C \]
+There exists a bijective function \(\mathrm{bool}\) that maps \(u \in U\) to a Boolean variable in satisfiability modulo theories. \\
+There exists a bijective function \(\mathrm{int}\) that maps \(u \in U\) to an integer variable in satisfiability modulo theories. \\
+\(X\) denotes a model given a set of constraints in satisfiability modulo theories. \\
+\(\mathcal{S}(X)\) detones the solution space of \(X\).
 
-	\[ (\mathrm{True})^k \text{ is the } k \text{-tuple that contains all } \mathrm{True} \]
-	\[ \neg C = (\enspace \neg C(1),\enspace \cdots,\enspace \neg C(k)\enspace ) \]
-	\[ C_1 \vee C_2 = (\enspace C_1(1) \vee C_2(1),\enspace \cdots,\enspace C_1(k) \vee C_2(k)\enspace ) \]
-	\[ C_1\ \ddot{=}\ C_2 = (\enspace C_1(1) = C_2(1),\enspace \cdots,\enspace C_1(k) = C_2(k)\enspace ) \]
+\[ |U| = \text{the cardinality of } U \]
+\[ \mathcal{P}(U) = \text{the power set of } U \]
+\[ R \subseteq U,\enspace \widetilde{R} = U \backslash R \]
 
-	\[ U(B) = \{ u \in U : B(u) = \mathrm{True} \} \]
-	\[ U(I) = \{ u \in U : I(u) \neq 0 \} \]
-	\[ U(\{B_1, B_2, \cdots\}) = \{\enspace U(B_1),\enspace U(B_2),\enspace \cdots\enspace \} \]
-	\[ U(\{I_1, I_2, \cdots\}) = \{\enspace U(I_1),\enspace U(I_2),\enspace \cdots\enspace \} \]
+\[ |C| = \text{the length of } C \]
+\[ c \in C = c \text{ is an element in } C \]
+\[ c \in C,\enspace \mathrm{idx}(c) = \text{the index of } c \text{ in } C \]
+\[ C(i) \text{ is the element at } i \text{-th position} \]
+For \(U\) to have correspondence with \(C\) means there exists a bijective function \(\mathrm{idx} : U \to \{1, \cdots, |C|\}\).
+\[ u \in U, C(u) = C(\mathrm{idx}(u)) \]
+\[ C(\{u_1, u_2, \cdots\} \subseteq U) = (\enspace C(u_1),\enspace C(u_2)\enspace \cdots,\enspace ), \quad \text{preserving element order of } C \]
 
-	\[ |A|_{\mathrm{row}} = \text{the number of rows in } A \]
-	\[ |A|_{\mathrm{col}} = \text{the number of columns in } A \]
-	\[ \mathcal{R} \overset{\mathrm{row}}{\in} A = \mathcal{R} \text{ is a row in } A  \text{ as an } m \text{-tuple} \]
-	\[ \mathcal{C} \overset{\mathrm{col}}{\in} A = \mathcal{C} \text{ is a column in } A  \text{ as an } n \text{-tuple} \]
-	\[ \mathcal{R} \overset{\mathrm{row}}{\in} A,\enspace \mathrm{idx}(\mathcal{R}) = \text{the row index of } \mathcal{R}  \text{ in } A \]
-	\[ \mathcal{C} \overset{\mathrm{col}}{\in} A,\enspace \mathrm{idx}(\mathcal{C}) = \text{the column index of } \mathcal{C}  \text{ in } A \]
-	\[ A(i, j) \text{ is the the element at the } i \text{-th row and } j \text{-th column} \]
-	\[ A(i, \cdot) = (\enspace A(i, 1),\enspace \cdots,\enspace A(i, |A|_{\mathrm{col}})\enspace ) \]
-	\[ A(\cdot, j) = (\enspace A(1, j),\enspace \cdots,\enspace A(|A|_{\mathrm{row}}, j)\enspace ) \]
-	For \(S\) to have row correspondence with \(A\) means there exists a bijective function \(\mathrm{idx} : S \to \{1, \cdots, |A|_{\mathrm{row}}\}\).
-	\[ s \in S, A(s, \cdot) = A(\mathrm{idx}(s), \cdot) \]
-	\[
-		A(\{s_1, s_2, \cdots\} \subseteq S, \cdot) = \left[
-		\begin{array}{c}
-			A(s_1, \cdot) \\
-			A(s_2, \cdot) \\
-			\vdots
-		\end{array}
-		\right],\quad \text{preserving row order of } A
-	\]
-	For \(T\) to have column correspondence with \(A\) means there exists a bijective function \(\mathrm{idx} : T \to \{1, \cdots, |A|_{\mathrm{col}}\}\).
-	\[ t \in T, A(\cdot, t) = A(\cdot, \mathrm{idx}(t)) \]
-	\[ A(\cdot, \{t_1, t_2, \cdots\} \subseteq T) = \left[\enspace A(\cdot, t_1)\enspace A(\cdot, t_2)\enspace \cdots\enspace \right],\quad \text{preserving column order of } A \]
+\[ (\mathrm{True})^k \text{ is the } k \text{-tuple that contains all } \mathrm{True} \]
+\[ \neg C = (\enspace \neg C(1),\enspace \cdots,\enspace \neg C(k)\enspace ) \]
+\[ C_1 \vee C_2 = (\enspace C_1(1) \vee C_2(1),\enspace \cdots,\enspace C_1(k) \vee C_2(k)\enspace ) \]
+\[ C_1\ \ddot{=}\ C_2 = (\enspace C_1(1) = C_2(1),\enspace \cdots,\enspace C_1(k) = C_2(k)\enspace ) \]
 
-	\[ A(s, t) = A(s, \cdot)(t) = A(\cdot, t)(s) \]
-	\[ A(S, t) = A(S, \cdot)(\cdot, t) = A(\cdot, t)(S) \]
-	\[ A(s, T) = A(s, \cdot)(T) = A(\cdot, T)(s, \cdot) \]
+\[ U(B) = \{ u \in U : B(u) = \mathrm{True} \} \]
+\[ U(I) = \{ u \in U : I(u) \neq 0 \} \]
+\[ U(\{B_1, B_2, \cdots\}) = \{\enspace U(B_1),\enspace U(B_2),\enspace \cdots\enspace \} \]
+\[ U(\{I_1, I_2, \cdots\}) = \{\enspace U(I_1),\enspace U(I_2),\enspace \cdots\enspace \} \]
 
-	...\textit{blah blah blah}...
-
-	\clearpage
-	\section{Metric Dimension}
-
-	\[ d(u, v) = \text{the distance from } u \text{ to } v \text{ in } G \]
-	\[ r(v|W) = (\enspace d(w_1, v),\enspace d(w_2, v),\enspace \cdots,\enspace d(w_k, v)\enspace ) \]
-	\[ W \text{ is a resolving set} \iff \forall u, v \in V, u \neq v \implies r(u|W) \neq r(v|W) \]
-	\[ W \text{ is a non-resolving set} \iff \exists u, v \in V, u \neq v \implies r(u|W) = r(v|W) \]
-	\[ W \text{ is a resolving set}, W \subseteq Z \implies Z \text{ is a resolving set} \]
-	\[ W \text{ is a non-resolving set}, Z \subseteq W \implies Z \text{ is a non-resolving set} \]
-	\[ \mathcal{P}(V) \text{ is partitioned into the set of resolving sets and the set of non-resolving sets} \]
-	\[ \text{The metric dimension of } G \text{ is the minimum cardinality of its resolving set} \]
-
-	\[ r(V|W) = \left[\enspace r(v_1|W)\enspace r(v_2|W)\enspace \cdots\enspace r(v_n|W)\enspace \right] \]
-	\(V\) has correspondence with \(r(v|W)\). \\
-	\(V\) has column correspondence \(r(V|W)\).
-	\[ r(v|W) = r(v|V)(W) \]
-	\[ r(v|W) = r(V|W)(\cdot, v) \]
-	\(V\) has row correspondence \(r(V|V)\).
-	\[ r(V|W) = r(V|V)(W, \cdot) \]
-	\[ r(v|W) = r(V|V)(W, \cdot)(\cdot, v) \]
-	\[ W \text{ is a resolving set} \iff \forall u, v \in V, u \neq v \implies r(V|W)(\cdot, u) \neq r(V|W)(\cdot, v) \]
-	\[ W \text{ is a non-resolving set} \iff \exists u, v \in V, u \neq v \implies r(V|W)(\cdot, u) = r(V|W)(\cdot, v) \]
-
-	\[ d(u, e) = \textrm{min}(\enspace d(u, v),\enspace d(u, w)\enspace ) \]
-	\[ r(e|W) = (\enspace d(w_1, e),\enspace d(w_2, e),\enspace \cdots,\enspace d(w_k, e)\enspace ) \]
-	\[ W \text{ is an edge resolving set} \iff \forall e, f \in E, e \neq f \implies r(e|W) \neq r(f|W) \]
-	\[ W \text{ is an edge non-resolving set} \iff \exists e, f \in E, e \neq f \implies r(e|W) = r(f|W) \]
-	\[ W \text{ is an edge resolving set}, W \subseteq Z \implies Z \text{ is an edge resolving set} \]
-	\[ W \text{ is an edge non-resolving set}, Z \subseteq W \implies Z \text{ is an edge non-resolving set} \]
-	\[ \mathcal{P}(V) \text{ is partitioned into the set of edge resolving sets and the set of edge non-resolving sets} \]
-	\[ \text{The edge metric dimension of } G \text{ is the minimum cardinality of its edge resolving set} \]
-
-	\[ r(E|W) = \left[\enspace r(e_1|W)\enspace r(e_2|W)\enspace \cdots\enspace r(e_m|W)\enspace \right] \]
-	\(V\) has correspondence with \(r(v|W)\). \\
-	\(E\) has column correspondence \(r(E|W)\).
-	\[ r(e|W) = r(e|V)(W) \]
-	\[ r(e|W) = r(E|W)(\cdot, e) \]
-	\(V\) has row correspondence \(r(E|V)\).
-	\[ r(E|W) = r(E|V)(W, \cdot) \]
-	\[ r(e|W) = r(E|V)(W, \cdot)(\cdot, e) \]
-	\[ W \text{ is an edge resolving set} \iff \forall e, f \in E, e \neq f \implies r(E|W)(\cdot, e) \neq r(E|W)(\cdot, f) \]
-	\[ W \text{ is an edge non-resolving set} \iff \exists e, f \in E, e \neq f \implies r(E|W)(\cdot, e) = r(E|W)(\cdot, f) \]
-
-	...\textit{blah blah blah}...
-
-	\clearpage
-	\section{Distance Matrix}
-
-	\[
-		D^{(V)} = \left[
-		\begin{array}{cccc}
-			d(v_1, v_1) & d(v_1, v_2) & \cdots & d(v_1, v_n) \\
-			d(v_2, v_1) & d(v_2, v_2) & \cdots & d(v_2, v_n) \\
-			\vdots & \vdots & \ddots & \vdots \\
-			d(v_n, v_1) & d(v_n, v_2) & \cdots & d(v_n, v_n) \\
-		\end{array}
-		\right]
-	\]
-	\[ D^{(V)} = \left[\enspace r(v_1|V)\enspace r(v_2|V)\enspace \cdots\enspace r(v_n|V)\enspace \right] \]
-	\[ D^{(V)} = r(V|V) \]
-	\(D^{(V)}\) has a dimension of \(|V| \times |V|\). \\
-	\(V\) has row correspondence with \(D^{(V)}\). \\
-	\(V\) has column correspondence with \(D^{(V)}\).
-	\[ r(v|V) = D^{(V)}(\cdot, v) \]
-	\[ r(V|W) = D^{(V)}(W, \cdot) \]
-	\[ r(v|W) = D^{(V)}(\cdot, v)(W) \]
-	\[ r(v|W) = D^{(V)}(W, \cdot)(\cdot, v) \]
-	\[ W \text{ is a resolving set} \iff \forall u, v \in V, u \neq v \implies D^{(V)}(W, \cdot)(\cdot, u) \neq D^{(V)}(W, \cdot)(\cdot, v) \]
-	\[ W \text{ is a non-resolving set} \iff \exists u, v \in V, u \neq v \implies D^{(V)}(W, \cdot)(\cdot, u) = D^{(V)}(W, \cdot)(\cdot, v) \]
-
-	\[
-		D^{(E)} = \left[
-		\begin{array}{cccc}
-			d(v_1, e_1) & d(v_1, e_2) & \cdots & d(v_1, e_m) \\
-			d(v_2, e_1) & d(v_2, e_2) & \cdots & d(v_2, e_m) \\
-			\vdots & \vdots & \ddots & \vdots \\
-			d(v_n, e_1) & d(v_n, e_2) & \cdots & d(v_n, e_m) \\
-		\end{array}
-		\right]
-	\]
-	\[ D^{(E)} = \left[\enspace r(e_1|V)\enspace r(e_2|V)\enspace \cdots\enspace r(e_m|V)\enspace \right] \]
-	\[ D^{(E)} = r(E|V) \]
-	\(D^{(E)}\) has a dimension of \(|V| \times |E|\). \\
-	\(V\) has row correspondence with \(D^{(E)}\). \\
-	\(E\) has column correspondence with \(D^{(E)}\).
-	\[ r(e|V) = D^{(E)}(\cdot, e) \]
-	\[ r(E|W) = D^{(E)}(W, \cdot) \]
-	\[ r(e|W) = D^{(E)}(\cdot, e)(W) \]
-	\[ r(e|W) = D^{(E)}(W, \cdot)(\cdot, e) \]
-	\[ W \text{ is an edge resolving set} \iff \forall e, f \in E, e \neq f \implies D^{(E)}(W, \cdot)(\cdot, e) \neq D^{(E)}(W, \cdot)(\cdot, f) \]
-	\[ W \text{ is an edge non-resolving set} \iff \exists e, f \in E, e \neq f \implies D^{(E)}(W, \cdot)(\cdot, e) = D^{(E)}(W, \cdot)(\cdot, f) \]
-
-	...\textit{blah blah blah}...
-
-	\clearpage
-	\section{Distance Similarity Matrix}
-
-	\(V\) has correspondence with \(r(u|V)\ \ddot{=}\ r(v|V)\).
-	\[ r(u|W)\ \ddot{=}\ r(v|W) = (r(u|V)\ \ddot{=}\ r(v|V))(W) \]
-
-	\[ B^{(V)} = \left[\enspace r(v_i|V)\ \ddot{=}\ r(v_j|V)\enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |V| \]
-	\[ B^{(V)} = \left[\enspace D^{(V)}(\cdot, v_i)\ \ddot{=}\ D^{(V)}(\cdot, v_j) \enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |V| \]
-	\(V\) has row correspondence with \(B^{(V)}\).
-	\[ \forall u, v \in V, u \neq v,\enspace \exists C \overset{\text{col}}{\in} B^{(V)},\enspace C = r(u|V)\ \ddot{=}\ r(v|V) \]
-	\[ W \text{ is a resolving set} \iff \forall C \overset{\text{col}}{\in} B^{(V)},\enspace C(W) \neq (\mathrm{True})^{|W|} \]
-	\[ W \text{ is a non-resolving set} \iff \exists C \overset{\text{col}}{\in} B^{(V)},\enspace C(W) = (\mathrm{True})^{|W|} \]
-
-	\vspace{2em}
-
-	\(V\) has correspondence with \(r(e|V)\ \ddot{=}\ r(f|V)\).
-	\[ r(e|W)\ \ddot{=}\ r(f|W) = ((e|V)\ \ddot{=}\ r(f|V))(W) \]
-
-	\[ B^{(E)} = \left[\enspace r(e_i|V)\ \ddot{=}\ r(e_j|V)\enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |E| \]
-	\[ B^{(E)} = \left[\enspace D^{(E)}(\cdot, e_i)\ \ddot{=}\ D^{(E)}(\cdot, e_j) \enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |E| \]
-	\(V\) has row correspondence with \(B^{(E)}\).
-	\[ \forall e, f \in E, e \neq f,\enspace \exists C \overset{\mathrm{col}}{\in} B^{(E)},\enspace C = r(e|V)\ \ddot{=}\ r(f|V) \]
-	\[ W \text{ is an edge resolving set} \iff \forall C \overset{\mathrm{col}}{\in} B^{(E)},\enspace C(W) \neq (\mathtt{True})^{|W|} \]
-	\[ W \text{ is an edge non-resolving set} \iff \exists C \overset{\mathrm{col}}{\in} B^{(E)},\enspace C(W) = (\mathtt{True})^{|W|} \]
-
-	...\textit{blah blah blah}...
-
-	\clearpage
-	\section{Reduced Distance Similarity Matrix}
-
-	\[ C \overset{\mathrm{col}}{\in} B^{(V)},\enspace V(C) \text{ is a non-resolving set} \]
-	\[ C, \mathcal{C} \overset{\mathrm{col}}{\in} B^{(V)},\enspace V(C) \subseteq V(\mathcal{C}) \iff C \vee \mathcal{C} = \mathcal{C} \]
-	\(P^{(V)}\) is the submatrix of \(B^{(V)}\) obtained by eliminating all strictly dominated columns and reducing multiple identical columns to a single instance.
-	\[ W \text{ is a resolving set} \iff \forall C \overset{\mathrm{col}}{\in} P^{(V)},\enspace C(W) \neq (\mathrm{True})^{|W|} \]
-	\[ W \text{ is a non-resolving set} \iff \exists C \overset{\mathrm{col}}{\in} P^{(V)},\enspace C(W) = (\mathrm{True})^{|W|} \]
-	\[ C \overset{\mathrm{col}}{\in} P^{(V)},\enspace V(C) \text{ is a non-resolving set} \]
-
-	\[ C \overset{\mathrm{col}}{\in} B^{(E)},\enspace V(C) \text{ is an edge non-resolving set} \]
-	\[ C, \mathcal{C} \overset{\mathrm{col}}{\in} B^{(E)},\enspace V(C) \subseteq V(\mathcal{C}) \iff C \vee \mathcal{C} = \mathcal{C} \]
-	\(P^{(E)}\) is the submatrix of \(B^{(E)}\) obtained by eliminating all strictly dominated columns and reducing multiple identical columns to a single instance.
-	\[ W \text{ is an edge resolving set} \iff \forall C \overset{\mathrm{col}}{\in} P^{(E)},\enspace C(W) \neq (\mathtt{True})^{|W|} \]
-	\[ W \text{ is an edge non-resolving set} \iff \exists C \overset{\mathrm{col}}{\in} P^{(E)},\enspace C(W) = (\mathtt{True})^{|W|} \]
-	\[ C \overset{\mathrm{col}}{\in} P^{(E)},\enspace V(C) \text{ is an edge non-resolving set} \]
-
-	...\textit{blah blah blah}...
-
-	\clearpage
-	\section{Satisfiability Modulo Theories}
-
-	\[ \mathcal{S}(X) = \emptyset \iff \text{unsatisfiable} \]
-	\[ \mathcal{S}(X) \neq \emptyset \iff \text{satisfiable} \]
-
-	\[ \text{Given zero constraints},\enspace V(\mathcal{S}(X)) = \mathcal{P}(V) \]
-
-	\[ W \subseteq V,\qquad \combine{\left(}{\bigwedge \limits_{\displaystyle v \in W} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle v \in \widetilde{W}} \neg \mathrm{bool}(v)}{\right)}\enspace \implies\enspace V(X) = W \]
-
-	\[ W \subseteq V,\quad \bigwedge \limits_{\displaystyle v \in \widetilde{W}} \neg \mathrm{bool}(v) \implies V(\mathcal{S}(X)) = \mathcal{P}(W) \]
-
-	...\textit{blah blah blah}...
-
-	\clearpage
-	\section{Boolean Satisfiability}
-
-	\[ W \text{ is a non-resolving set},\quad \bigwedge \limits_{\displaystyle v \in \widetilde{W}} \neg \mathrm{bool}(v) \implies V(X) \text{ is a non-resolving set} \]
-
-	\[ C \overset{\mathrm{col}}{\in} P^{(V)},\quad \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(v) \implies V(X) \text{ is a non-resolving set} \]
-
-	\[ \bigvee \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(v) \right)\enspace \implies\enspace V(X) \text{ is a non-resolving set} \]
-
-	\[ \bigvee \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(v) \right)\enspace \implies\enspace V(\mathcal{S}(X)) \text{ is the non-resolving set partition} \]
-
-	\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)\enspace \implies\enspace V(\mathcal{S}(X)) \text{ is the resolving set partition} \]
-
-	\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)\enspace \implies\enspace V(X) \text{ is a resolving set} \]
-
-	\[ W \text{ is an edge non-resolving set},\quad \bigwedge \limits_{\displaystyle v \in \widetilde{W}} \neg \mathrm{bool}(v) \implies V(X) \text{ is an edge non-resolving set} \]
-
-	\[ C \overset{\mathrm{col}}{\in} P^{(E)},\quad \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(v) \implies V(X) \text{ is an edge non-resolving set} \]
-
-	\[ \bigvee \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(v) \right)\enspace \implies\enspace V(X) \text{ is an edge non-resolving set} \]
-
-	\[ \bigvee \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(v) \right)\enspace \implies\enspace V(\mathcal{S}(X)) \text{ is the edge non-resolving set partition} \]
-
-	\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)\enspace \implies\enspace V(\mathcal{S}(X)) \text{ is the edge resolving set partition} \]
-
-	\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)\enspace \implies\enspace V(X) \text{ is an edge resolving set} \]
-
-	...\textit{blah blah blah}...
-
-	\clearpage
-	\subsection{Transformation}
-
-	\[
-	\begin{array}{l}
-		\displaystyle \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P} \left( \combine{\left(}{\mathrm{False}}{\right)}{\bigvee}{\left(}{\bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)}{\right)} \right) \\ [24pt]
-
-		\displaystyle\qquad = \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P} \left( \combine{\left(}{\combine{\left(}{\bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\neg \bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)}{\right)}}{\right)}{\bigvee}{\left(}{\bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)}{\right)} \right) \\ [24pt]
-
-		\displaystyle\qquad = \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P} \left( \begin{array}{c}
-			\left( \combine{\left(}{\bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)}{\right)}{\bigvee}{\left(}{\bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)}{\right)} \right) \\ [24pt]
-			\bigwedge \\ [16pt]
-			\left( \combine{\left(}{\neg \bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)}{\right)}{\bigvee}{\left(}{\bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)}{\right)} \right)
-		\end{array}
-		\right) \\ [58pt]
-
-		\displaystyle\qquad = \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P} \left( \combine{\left(}{\bigvee \limits_{\displaystyle v \in V} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)\ \implies \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)}{\right)} \right) \\ [24pt]
-
-		\displaystyle\qquad = \combine{\left(}{\bigvee \limits_{\displaystyle v \in V} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P} \left( \bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)\ \implies \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)}{\right)}
-	\end{array}
-	\]
-
-	...\textit{blah blah blah}...
-
-	\[
+\[ |A|_{\mathrm{row}} = \text{the number of rows in } A \]
+\[ |A|_{\mathrm{col}} = \text{the number of columns in } A \]
+\[ \mathcal{R} \overset{\mathrm{row}}{\in} A = \mathcal{R} \text{ is a row in } A  \text{ as an } m \text{-tuple} \]
+\[ \mathcal{C} \overset{\mathrm{col}}{\in} A = \mathcal{C} \text{ is a column in } A  \text{ as an } n \text{-tuple} \]
+\[ \mathcal{R} \overset{\mathrm{row}}{\in} A,\enspace \mathrm{idx}(\mathcal{R}) = \text{the row index of } \mathcal{R}  \text{ in } A \]
+\[ \mathcal{C} \overset{\mathrm{col}}{\in} A,\enspace \mathrm{idx}(\mathcal{C}) = \text{the column index of } \mathcal{C}  \text{ in } A \]
+\[ A(i, j) \text{ is the the element at the } i \text{-th row and } j \text{-th column} \]
+\[ A(i, \cdot) = (\enspace A(i, 1),\enspace \cdots,\enspace A(i, |A|_{\mathrm{col}})\enspace ) \]
+\[ A(\cdot, j) = (\enspace A(1, j),\enspace \cdots,\enspace A(|A|_{\mathrm{row}}, j)\enspace ) \]
+For \(S\) to have row correspondence with \(A\) means there exists a bijective function \(\mathrm{idx} : S \to \{1, \cdots, |A|_{\mathrm{row}}\}\).
+\[ s \in S, A(s, \cdot) = A(\mathrm{idx}(s), \cdot) \]
+\[
+	A(\{s_1, s_2, \cdots\} \subseteq S, \cdot) = \left[
 	\begin{array}{c}
-		\combine{\left(}{\bigvee \limits_{\displaystyle v \in V} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)\ \implies \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)}{\right)} \\ [24pt]
-		\implies\enspace V(X) \text{ is a resolving set}
+		A(s_1, \cdot) \\
+		A(s_2, \cdot) \\
+		\vdots
 	\end{array}
-	\]
+	\right],\quad \text{preserving row order of } A
+\]
+For \(T\) to have column correspondence with \(A\) means there exists a bijective function \(\mathrm{idx} : T \to \{1, \cdots, |A|_{\mathrm{col}}\}\).
+\[ t \in T, A(\cdot, t) = A(\cdot, \mathrm{idx}(t)) \]
+\[ A(\cdot, \{t_1, t_2, \cdots\} \subseteq T) = \left[\enspace A(\cdot, t_1)\enspace A(\cdot, t_2)\enspace \cdots\enspace \right],\quad \text{preserving column order of } A \]
 
-	\[
-	\begin{array}{c}
-		\combine{\left(}{\bigvee \limits_{\displaystyle v \in V} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)\ \implies \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)}{\right)} \\ [24pt]
-		\implies\enspace V(X) \text{ is an edge resolving set}
+\[ A(s, t) = A(s, \cdot)(t) = A(\cdot, t)(s) \]
+\[ A(S, t) = A(S, \cdot)(\cdot, t) = A(\cdot, t)(S) \]
+\[ A(s, T) = A(s, \cdot)(T) = A(\cdot, T)(s, \cdot) \]
+
+...\textit{blah blah blah}...
+
+\clearpage
+\section{Metric Dimension}
+
+\[ d(u, v) = \text{the distance from } u \text{ to } v \text{ in } G \]
+\[ r(v|W) = (\enspace d(w_1, v),\enspace d(w_2, v),\enspace \cdots,\enspace d(w_k, v)\enspace ) \]
+\[ W \text{ is a resolving set} \iff \forall u, v \in V, u \neq v \implies r(u|W) \neq r(v|W) \]
+\[ W \text{ is a non-resolving set} \iff \exists u, v \in V, u \neq v \implies r(u|W) = r(v|W) \]
+\[ W \text{ is a resolving set}, W \subseteq Z \implies Z \text{ is a resolving set} \]
+\[ W \text{ is a non-resolving set}, Z \subseteq W \implies Z \text{ is a non-resolving set} \]
+\[ \mathcal{P}(V) \text{ is partitioned into the set of resolving sets and the set of non-resolving sets} \]
+\[ \text{The metric dimension of } G \text{ is the minimum cardinality of its resolving set} \]
+
+\[ r(V|W) = \left[\enspace r(v_1|W)\enspace r(v_2|W)\enspace \cdots\enspace r(v_n|W)\enspace \right] \]
+\(V\) has correspondence with \(r(v|W)\). \\
+\(V\) has column correspondence \(r(V|W)\).
+\[ r(v|W) = r(v|V)(W) \]
+\[ r(v|W) = r(V|W)(\cdot, v) \]
+\(V\) has row correspondence \(r(V|V)\).
+\[ r(V|W) = r(V|V)(W, \cdot) \]
+\[ r(v|W) = r(V|V)(W, \cdot)(\cdot, v) \]
+\[ W \text{ is a resolving set} \iff \forall u, v \in V, u \neq v \implies r(V|W)(\cdot, u) \neq r(V|W)(\cdot, v) \]
+\[ W \text{ is a non-resolving set} \iff \exists u, v \in V, u \neq v \implies r(V|W)(\cdot, u) = r(V|W)(\cdot, v) \]
+
+\[ d(u, e) = \textrm{min}(\enspace d(u, v),\enspace d(u, w)\enspace ) \]
+\[ r(e|W) = (\enspace d(w_1, e),\enspace d(w_2, e),\enspace \cdots,\enspace d(w_k, e)\enspace ) \]
+\[ W \text{ is an edge resolving set} \iff \forall e, f \in E, e \neq f \implies r(e|W) \neq r(f|W) \]
+\[ W \text{ is an edge non-resolving set} \iff \exists e, f \in E, e \neq f \implies r(e|W) = r(f|W) \]
+\[ W \text{ is an edge resolving set}, W \subseteq Z \implies Z \text{ is an edge resolving set} \]
+\[ W \text{ is an edge non-resolving set}, Z \subseteq W \implies Z \text{ is an edge non-resolving set} \]
+\[ \mathcal{P}(V) \text{ is partitioned into the set of edge resolving sets and the set of edge non-resolving sets} \]
+\[ \text{The edge metric dimension of } G \text{ is the minimum cardinality of its edge resolving set} \]
+
+\[ r(E|W) = \left[\enspace r(e_1|W)\enspace r(e_2|W)\enspace \cdots\enspace r(e_m|W)\enspace \right] \]
+\(V\) has correspondence with \(r(v|W)\). \\
+\(E\) has column correspondence \(r(E|W)\).
+\[ r(e|W) = r(e|V)(W) \]
+\[ r(e|W) = r(E|W)(\cdot, e) \]
+\(V\) has row correspondence \(r(E|V)\).
+\[ r(E|W) = r(E|V)(W, \cdot) \]
+\[ r(e|W) = r(E|V)(W, \cdot)(\cdot, e) \]
+\[ W \text{ is an edge resolving set} \iff \forall e, f \in E, e \neq f \implies r(E|W)(\cdot, e) \neq r(E|W)(\cdot, f) \]
+\[ W \text{ is an edge non-resolving set} \iff \exists e, f \in E, e \neq f \implies r(E|W)(\cdot, e) = r(E|W)(\cdot, f) \]
+
+...\textit{blah blah blah}...
+
+\clearpage
+\section{Distance Matrix}
+
+\[
+	D^{(V)} = \left[
+	\begin{array}{cccc}
+		d(v_1, v_1) & d(v_1, v_2) & \cdots & d(v_1, v_n) \\
+		d(v_2, v_1) & d(v_2, v_2) & \cdots & d(v_2, v_n) \\
+		\vdots & \vdots & \ddots & \vdots \\
+		d(v_n, v_1) & d(v_n, v_2) & \cdots & d(v_n, v_n) \\
 	\end{array}
-	\]
+	\right]
+\]
+\[ D^{(V)} = \left[\enspace r(v_1|V)\enspace r(v_2|V)\enspace \cdots\enspace r(v_n|V)\enspace \right] \]
+\[ D^{(V)} = r(V|V) \]
+\(D^{(V)}\) has a dimension of \(|V| \times |V|\). \\
+\(V\) has row correspondence with \(D^{(V)}\). \\
+\(V\) has column correspondence with \(D^{(V)}\).
+\[ r(v|V) = D^{(V)}(\cdot, v) \]
+\[ r(V|W) = D^{(V)}(W, \cdot) \]
+\[ r(v|W) = D^{(V)}(\cdot, v)(W) \]
+\[ r(v|W) = D^{(V)}(W, \cdot)(\cdot, v) \]
+\[ W \text{ is a resolving set} \iff \forall u, v \in V, u \neq v \implies D^{(V)}(W, \cdot)(\cdot, u) \neq D^{(V)}(W, \cdot)(\cdot, v) \]
+\[ W \text{ is a non-resolving set} \iff \exists u, v \in V, u \neq v \implies D^{(V)}(W, \cdot)(\cdot, u) = D^{(V)}(W, \cdot)(\cdot, v) \]
 
-	...\textit{blah blah blah}...
+\[
+	D^{(E)} = \left[
+	\begin{array}{cccc}
+		d(v_1, e_1) & d(v_1, e_2) & \cdots & d(v_1, e_m) \\
+		d(v_2, e_1) & d(v_2, e_2) & \cdots & d(v_2, e_m) \\
+		\vdots & \vdots & \ddots & \vdots \\
+		d(v_n, e_1) & d(v_n, e_2) & \cdots & d(v_n, e_m) \\
+	\end{array}
+	\right]
+\]
+\[ D^{(E)} = \left[\enspace r(e_1|V)\enspace r(e_2|V)\enspace \cdots\enspace r(e_m|V)\enspace \right] \]
+\[ D^{(E)} = r(E|V) \]
+\(D^{(E)}\) has a dimension of \(|V| \times |E|\). \\
+\(V\) has row correspondence with \(D^{(E)}\). \\
+\(E\) has column correspondence with \(D^{(E)}\).
+\[ r(e|V) = D^{(E)}(\cdot, e) \]
+\[ r(E|W) = D^{(E)}(W, \cdot) \]
+\[ r(e|W) = D^{(E)}(\cdot, e)(W) \]
+\[ r(e|W) = D^{(E)}(W, \cdot)(\cdot, e) \]
+\[ W \text{ is an edge resolving set} \iff \forall e, f \in E, e \neq f \implies D^{(E)}(W, \cdot)(\cdot, e) \neq D^{(E)}(W, \cdot)(\cdot, f) \]
+\[ W \text{ is an edge non-resolving set} \iff \exists e, f \in E, e \neq f \implies D^{(E)}(W, \cdot)(\cdot, e) = D^{(E)}(W, \cdot)(\cdot, f) \]
 
-	\clearpage
-	\subsection{Cardinality}
+...\textit{blah blah blah}...
 
-	\[ \cdots \bigwedge \mathrm{AtLeast}(k) \bigwedge \mathrm{AtMost}(k) \implies V(\mathcal{S}(X)) \text{ is the set of resolving sets of cardinality } k \]
+\clearpage
+\section{Distance Similarity Matrix}
 
-	...\textit{blah blah blah}...
+\(V\) has correspondence with \(r(u|V)\ \ddot{=}\ r(v|V)\).
+\[ r(u|W)\ \ddot{=}\ r(v|W) = (r(u|V)\ \ddot{=}\ r(v|V))(W) \]
 
-	It is possible to find the true minimum iteratively in descending order from the top, (\(k, k - 1, k - 2, \cdots\)), due to monotonicity.
+\[ B^{(V)} = \left[\enspace r(v_i|V)\ \ddot{=}\ r(v_j|V)\enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |V| \]
+\[ B^{(V)} = \left[\enspace D^{(V)}(\cdot, v_i)\ \ddot{=}\ D^{(V)}(\cdot, v_j) \enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |V| \]
+\(V\) has row correspondence with \(B^{(V)}\).
+\[ \forall u, v \in V, u \neq v,\enspace \exists C \overset{\text{col}}{\in} B^{(V)},\enspace C = r(u|V)\ \ddot{=}\ r(v|V) \]
+\[ W \text{ is a resolving set} \iff \forall C \overset{\text{col}}{\in} B^{(V)},\enspace C(W) \neq (\mathrm{True})^{|W|} \]
+\[ W \text{ is a non-resolving set} \iff \exists C \overset{\text{col}}{\in} B^{(V)},\enspace C(W) = (\mathrm{True})^{|W|} \]
 
-	...\textit{blah blah blah}...
+\vspace{2em}
 
-	\clearpage
-	\section{Linear Integer Arithmetic}
+\(V\) has correspondence with \(r(e|V)\ \ddot{=}\ r(f|V)\).
+\[ r(e|W)\ \ddot{=}\ r(f|W) = ((e|V)\ \ddot{=}\ r(f|V))(W) \]
 
-	\[ \combine{\left(}{\bigwedge \limits_{\displaystyle v \in V} 0 \leq \mathrm{int}(v) \leq 1}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{int}(v)\enspace \geq\enspace 1 \right)}{\right)}\enspace \implies\enspace V(X) \text{ is a resolving set} \]
+\[ B^{(E)} = \left[\enspace r(e_i|V)\ \ddot{=}\ r(e_j|V)\enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |E| \]
+\[ B^{(E)} = \left[\enspace D^{(E)}(\cdot, e_i)\ \ddot{=}\ D^{(E)}(\cdot, e_j) \enspace \cdots\enspace \right],\quad 1 \leq i < j \leq |E| \]
+\(V\) has row correspondence with \(B^{(E)}\).
+\[ \forall e, f \in E, e \neq f,\enspace \exists C \overset{\mathrm{col}}{\in} B^{(E)},\enspace C = r(e|V)\ \ddot{=}\ r(f|V) \]
+\[ W \text{ is an edge resolving set} \iff \forall C \overset{\mathrm{col}}{\in} B^{(E)},\enspace C(W) \neq (\mathtt{True})^{|W|} \]
+\[ W \text{ is an edge non-resolving set} \iff \exists C \overset{\mathrm{col}}{\in} B^{(E)},\enspace C(W) = (\mathtt{True})^{|W|} \]
 
-	\[ \combine{\left(}{\bigwedge \limits_{\displaystyle v \in V} 0 \leq \mathrm{int}(v) \leq 1}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{int}(v)\enspace \geq\enspace 1 \right)}{\right)}\enspace \implies\enspace V(X) \text{ is an edge resolving set} \]
+...\textit{blah blah blah}...
 
-	...\textit{blah blah blah}...
+\clearpage
+\section{Reduced Distance Similarity Matrix}
 
-	\[ \cdots \bigwedge \sum \limits_{\displaystyle v \in V} \mathrm{int}(v) = k \implies V(\mathcal{S}(X)) \text{ is the set of resolving sets of cardinality } k \]
+\[ C \overset{\mathrm{col}}{\in} B^{(V)},\enspace V(C) \text{ is a non-resolving set} \]
+\[ C, \mathcal{C} \overset{\mathrm{col}}{\in} B^{(V)},\enspace V(C) \subseteq V(\mathcal{C}) \iff C \vee \mathcal{C} = \mathcal{C} \]
+\(P^{(V)}\) is the submatrix of \(B^{(V)}\) obtained by eliminating all strictly dominated columns and reducing multiple identical columns to a single instance.
+\[ W \text{ is a resolving set} \iff \forall C \overset{\mathrm{col}}{\in} P^{(V)},\enspace C(W) \neq (\mathrm{True})^{|W|} \]
+\[ W \text{ is a non-resolving set} \iff \exists C \overset{\mathrm{col}}{\in} P^{(V)},\enspace C(W) = (\mathrm{True})^{|W|} \]
+\[ C \overset{\mathrm{col}}{\in} P^{(V)},\enspace V(C) \text{ is a non-resolving set} \]
 
-	...\textit{blah blah blah}...
+\[ C \overset{\mathrm{col}}{\in} B^{(E)},\enspace V(C) \text{ is an edge non-resolving set} \]
+\[ C, \mathcal{C} \overset{\mathrm{col}}{\in} B^{(E)},\enspace V(C) \subseteq V(\mathcal{C}) \iff C \vee \mathcal{C} = \mathcal{C} \]
+\(P^{(E)}\) is the submatrix of \(B^{(E)}\) obtained by eliminating all strictly dominated columns and reducing multiple identical columns to a single instance.
+\[ W \text{ is an edge resolving set} \iff \forall C \overset{\mathrm{col}}{\in} P^{(E)},\enspace C(W) \neq (\mathtt{True})^{|W|} \]
+\[ W \text{ is an edge non-resolving set} \iff \exists C \overset{\mathrm{col}}{\in} P^{(E)},\enspace C(W) = (\mathtt{True})^{|W|} \]
+\[ C \overset{\mathrm{col}}{\in} P^{(E)},\enspace V(C) \text{ is an edge non-resolving set} \]
 
-	\[ \cdots \bigwedge \left( \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{int}(v)\enspace \leq\enspace k - 1 \right) \right)\enspace \implies\enspace V(X) \text{ is a resolving set} \]
+...\textit{blah blah blah}...
 
-	\[ \cdots \bigwedge \left( \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{int}(v)\enspace \leq\enspace k - 1 \right) \right)\enspace \implies\enspace V(X) \text{ is an edge resolving set} \]
+\clearpage
+\section{Satisfiability Modulo Theories}
 
-	\clearpage
-	\section{Pseudo Boolean}
+\[ \mathcal{S}(X) = \emptyset \iff \text{unsatisfiable} \]
+\[ \mathcal{S}(X) \neq \emptyset \iff \text{satisfiable} \]
 
-	\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)\enspace \leq\enspace k - 1 \right)\enspace \implies\enspace V(X) \text{ is a resolving set} \]
+\[ \text{Given zero constraints},\enspace V(\mathcal{S}(X)) = \mathcal{P}(V) \]
 
-	\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)\enspace \leq\enspace k - 1 \right)\enspace \implies\enspace V(X) \text{ is an edge resolving set} \]
+\[ W \subseteq V,\qquad \combine{\left(}{\bigwedge \limits_{\displaystyle v \in W} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle v \in \widetilde{W}} \neg \mathrm{bool}(v)}{\right)}\enspace \implies\enspace V(X) = W \]
 
-	...\textit{blah blah blah}...
+\[ W \subseteq V,\quad \bigwedge \limits_{\displaystyle v \in \widetilde{W}} \neg \mathrm{bool}(v) \implies V(\mathcal{S}(X)) = \mathcal{P}(W) \]
 
-	\clearpage
-	\section{Experiments and Results}
+...\textit{blah blah blah}...
 
-	...\textit{blah blah blah}...
+\clearpage
+\section{Boolean Satisfiability}
 
-	\section{Conclusions and Future Works}
+\[ W \text{ is a non-resolving set},\quad \bigwedge \limits_{\displaystyle v \in \widetilde{W}} \neg \mathrm{bool}(v) \implies V(X) \text{ is a non-resolving set} \]
 
-	...\textit{blah blah blah}...
+\[ C \overset{\mathrm{col}}{\in} P^{(V)},\quad \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(v) \implies V(X) \text{ is a non-resolving set} \]
+
+\[ \bigvee \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(v) \right)\enspace \implies\enspace V(X) \text{ is a non-resolving set} \]
+
+\[ \bigvee \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(v) \right)\enspace \implies\enspace V(\mathcal{S}(X)) \text{ is the non-resolving set partition} \]
+
+\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)\enspace \implies\enspace V(\mathcal{S}(X)) \text{ is the resolving set partition} \]
+
+\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)\enspace \implies\enspace V(X) \text{ is a resolving set} \]
+
+\[ W \text{ is an edge non-resolving set},\quad \bigwedge \limits_{\displaystyle v \in \widetilde{W}} \neg \mathrm{bool}(v) \implies V(X) \text{ is an edge non-resolving set} \]
+
+\[ C \overset{\mathrm{col}}{\in} P^{(E)},\quad \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(v) \implies V(X) \text{ is an edge non-resolving set} \]
+
+\[ \bigvee \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(v) \right)\enspace \implies\enspace V(X) \text{ is an edge non-resolving set} \]
+
+\[ \bigvee \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \bigwedge \limits_{\displaystyle v \in V(\neg C)} \neg \mathrm{bool}(v) \right)\enspace \implies\enspace V(\mathcal{S}(X)) \text{ is the edge non-resolving set partition} \]
+
+\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)\enspace \implies\enspace V(\mathcal{S}(X)) \text{ is the edge resolving set partition} \]
+
+\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)\enspace \implies\enspace V(X) \text{ is an edge resolving set} \]
+
+...\textit{blah blah blah}...
+
+\clearpage
+\subsection{Transformation}
+
+\[
+\begin{array}{l}
+	\displaystyle \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P} \left( \combine{\left(}{\mathrm{False}}{\right)}{\bigvee}{\left(}{\bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)}{\right)} \right) \\ [24pt]
+
+	\displaystyle\qquad = \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P} \left( \combine{\left(}{\combine{\left(}{\bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\neg \bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)}{\right)}}{\right)}{\bigvee}{\left(}{\bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)}{\right)} \right) \\ [24pt]
+
+	\displaystyle\qquad = \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P} \left( \begin{array}{c}
+		\left( \combine{\left(}{\bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)}{\right)}{\bigvee}{\left(}{\bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)}{\right)} \right) \\ [24pt]
+		\bigwedge \\ [16pt]
+		\left( \combine{\left(}{\neg \bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)}{\right)}{\bigvee}{\left(}{\bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)}{\right)} \right)
+	\end{array}
+	\right) \\ [58pt]
+
+	\displaystyle\qquad = \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P} \left( \combine{\left(}{\bigvee \limits_{\displaystyle v \in V} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)\ \implies \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)}{\right)} \right) \\ [24pt]
+
+	\displaystyle\qquad = \combine{\left(}{\bigvee \limits_{\displaystyle v \in V} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P} \left( \bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)\ \implies \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)}{\right)}
+\end{array}
+\]
+
+...\textit{blah blah blah}...
+
+\[
+\begin{array}{c}
+	\combine{\left(}{\bigvee \limits_{\displaystyle v \in V} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)\ \implies \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)}{\right)} \\ [24pt]
+	\implies\enspace V(X) \text{ is a resolving set}
+\end{array}
+\]
+
+\[
+\begin{array}{c}
+	\combine{\left(}{\bigvee \limits_{\displaystyle v \in V} \mathrm{bool}(v)}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \bigvee \limits_{\displaystyle v \in V(C)} \mathrm{bool}(v)\ \implies \bigvee \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v) \right)}{\right)} \\ [24pt]
+	\implies\enspace V(X) \text{ is an edge resolving set}
+\end{array}
+\]
+
+...\textit{blah blah blah}...
+
+\clearpage
+\subsection{Cardinality}
+
+\[ \cdots \bigwedge \mathrm{AtLeast}(k) \bigwedge \mathrm{AtMost}(k) \implies V(\mathcal{S}(X)) \text{ is the set of resolving sets of cardinality } k \]
+
+...\textit{blah blah blah}...
+
+It is possible to find the true minimum iteratively in descending order from the top, (\(k, k - 1, k - 2, \cdots\)), due to monotonicity.
+
+...\textit{blah blah blah}...
+
+\clearpage
+\section{Linear Integer Arithmetic}
+
+\[ \combine{\left(}{\bigwedge \limits_{\displaystyle v \in V} 0 \leq \mathrm{int}(v) \leq 1}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{int}(v)\enspace \geq\enspace 1 \right)}{\right)}\enspace \implies\enspace V(X) \text{ is a resolving set} \]
+
+\[ \combine{\left(}{\bigwedge \limits_{\displaystyle v \in V} 0 \leq \mathrm{int}(v) \leq 1}{\right)}{\bigwedge}{\left(}{\bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{int}(v)\enspace \geq\enspace 1 \right)}{\right)}\enspace \implies\enspace V(X) \text{ is an edge resolving set} \]
+
+...\textit{blah blah blah}...
+
+\[ \cdots \bigwedge \sum \limits_{\displaystyle v \in V} \mathrm{int}(v) = k \implies V(\mathcal{S}(X)) \text{ is the set of resolving sets of cardinality } k \]
+
+...\textit{blah blah blah}...
+
+\[ \cdots \bigwedge \left( \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{int}(v)\enspace \leq\enspace k - 1 \right) \right)\enspace \implies\enspace V(X) \text{ is a resolving set} \]
+
+\[ \cdots \bigwedge \left( \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{int}(v)\enspace \leq\enspace k - 1 \right) \right)\enspace \implies\enspace V(X) \text{ is an edge resolving set} \]
+
+\clearpage
+\section{Pseudo Boolean}
+
+\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(V)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)\enspace \leq\enspace k - 1 \right)\enspace \implies\enspace V(X) \text{ is a resolving set} \]
+
+\[ \bigwedge \limits_{\displaystyle C \overset{\mathrm{col}}{\in} P^{(E)}} \left( \sum \limits_{\displaystyle v \in V(\neg C)} \mathrm{bool}(v)\enspace \leq\enspace k - 1 \right)\enspace \implies\enspace V(X) \text{ is an edge resolving set} \]
+
+...\textit{blah blah blah}...
+
+\clearpage
+\section{Experiments and Results}
+
+...\textit{blah blah blah}...
+
+\section{Conclusions and Future Works}
+
+...\textit{blah blah blah}...
+
 \end{document}
