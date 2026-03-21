@@ -124,37 +124,31 @@
 	The matrix \(r(V|W)\) has a dimension of \(|W| \times |V|\), and \(V\) has a column correspondence with it. The matrix \(r(E|W)\) has a dimension of \(|W| \times |E|\), and \(E\) has a column correspondence with it.
 
 	By construction, the columns of the representation matrix contain all representations with respect to \(W\). Similarly, the columns of the edge representation matrix contain all edge representations with respect to \(W\). Consequently, this allows us to rewrite \cref{eq:repr-v-canon} and \cref{eq:repr-e-canon} to select a column from these matrices.
-	\begin{equation}
-		\label{eq:repr-VWv}
+	\begin{equation*}
 		r(v|W) = r(V|W)(\cdot, v)
-	\end{equation}
-	\begin{equation}
-		\label{eq:repr-EWe}
+	\end{equation*}
+	\begin{equation*}
 		r(e|W) = r(E|W)(\cdot, e)
-	\end{equation}
+	\end{equation*}
 
-	We are now able to rewrite \cref{eq:resl-v-canon} to use \cref{eq:repr-VWv}, and \cref{eq:resl-e-canon} to use \cref{eq:repr-EWe}.
-	\begin{equation}
-		\label{eq:resl-VWv}
+	We are now able to rewrite \cref{eq:resl-v-canon} in terms of representation matrix, and \cref{eq:resl-e-canon} in terms of edge representation matrix.
+	\begin{equation*}
 		W \text{ is a resolving set} \iff \forall u, v \in V, u \neq v,\enspace r(V|W)(\cdot, u) \neq r(V|W)(\cdot, v)
-	\end{equation}
-	\begin{equation}
-		\label{eq:resl-EWe}
+	\end{equation*}
+	\begin{equation*}
 		W \text{ is an edge resolving set} \iff \forall e, f \in E, e \neq f,\enspace r(E|W)(\cdot, e) \neq r(E|W)(\cdot, f)
-	\end{equation}
-	This has transformed determining that \(W\) is a resolving set as a matter of showing all columns of the representation matrix with respect to \(W\) are unique. Similarly, determining that \(W\) is an edge resolving set has become a matter of showing all columns of the edge representation matrix with respect to \(W\) are unique.
+	\end{equation*}
+	Transforming the resolving set criteria into a matter of showing that all columns of the representation matrix are unique. Similarly, the edge resolving set becomes a matter of showing that all columns of the edge representation matrix are unique.
 
 	Let's now shift our focus a little bit. Observe that \(V\) has correspondence with both \(r(v|V)\) and \(r(e|V)\). This mean we can rewrite \cref{eq:repr-v-canon} and \cref{eq:repr-e-canon} to select \(W\) from representation and edge representation with respect to \(V\).
-	\begin{equation}
-		\label{eq:repr-vVW}
+	\begin{equation*}
 		r(v|W) = r(v|V)(W)
-	\end{equation}
-	\begin{equation}
-		\label{eq:repr-eVW}
+	\end{equation*}
+	\begin{equation*}
 		r(e|W) = r(e|V)(W)
-	\end{equation}
+	\end{equation*}
 
-	Using \cref{eq:repr-vVW} for factorization, we may rewrite \cref{eq:repr-VW} to be a submatrix of \(r(V|V)\) by row selection. Likewise, with \cref{eq:repr-eVW}, we may factorize \cref{eq:repr-EW} to be a submatrix of \(r(E|V)\) by row selection.
+	We can then factorize \cref{eq:repr-VW} to be a submatrix of \(r(V|V)\) by row selection. Likewise, we can factorize \cref{eq:repr-EW} to be a submatrix of \(r(E|V)\) by row selection.
 	\begin{equation*}
 		r(V|W) = r(V|V)(W, \cdot)
 	\end{equation*}
@@ -164,10 +158,10 @@
 
 	Both \(r(V|V)\) and \(r(E|V)\) are more commonly known as the distance matrix and the edge distance matrix of \(G\), where by we can obtain any distance in \(G\) from either of these matrices.
 	\begin{equation*}
-		\forall u, v \in V,\enspace d(u, v) = r(V|V)(\cdot, u)(v)
+		u, v \in V,\enspace d(u, v) = r(V|V)(\cdot, u)(v)
 	\end{equation*}
 	\begin{equation*}
-		\forall v \in V, \forall e \in E, \enspace d(v, e) = r(E|V)(\cdot, v)(e)
+		v \in V, e \in E, \enspace d(v, e) = r(E|V)(\cdot, v)(e)
 	\end{equation*}
 
 	\section{Distance Similarity Matrix}
