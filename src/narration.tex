@@ -17,6 +17,8 @@
 	Institut Teknologi Sepuluh Nopember
 }
 
+\newcommand{\combine}[7]{#1 #2 \vphantom{#6} #3 #4 #5 #6 \vphantom{#2} #7}
+
 \begin{document}
 
 \maketitle
@@ -131,6 +133,35 @@ The matrices \(r(V|V)\) and \(r(E|V)\) are more commonly known as the distance m
 \[
 	v \in V, e \in E, \enspace d(v, e) = r(E|V)(\cdot, v)(e)
 \]
+
+\section{...\textit{blah blah blah}...}
+
+...\textit{blah blah blah}...
+
+\section{Satisfiability Modulo Theories}
+
+Given a set of constraints in satisfiability modulo theories, we use \(X\) to denote a model as a tuple, and \(\mathcal{S}(X)\) to detone the solution space of \(X\). Bear in mind that ``the model solution space'' \(\subseteq\) ``the model state space''. When there exists a model, we say that the set of constraints is \(\mathrm{satisfiable}\), and there doesn't exists a model that satisfies the set of constraints, we say it to be \(\mathrm{unsatisfiable}\). We may write both of these assertions in terms of solution space, as \(\mathcal{S}(X) = \emptyset \iff \text{unsatisfiable}\), and conversely, \(\mathcal{S}(X) \neq \emptyset \iff \text{satisfiable}\).
+
+For the rest of this paper, we take that for any set \(U\), there exists the appropriate bijective function \(\mathrm{bool}\) that maps any \(u \in U\) to a Boolean variable in satisfiability modulo theories, and a bijective function \(\mathrm{int}\) that maps any \(u \in U\) to an integer variable in satisfiability modulo theories.
+
+When the contraints involves all and only those variables in \(\mathrm{bool}(U)\), it means the model \(X\) is a Boolean \(|U|\)-tuple, and a correspondence between \(U\) and \(X\) exists. By the same token, when the constraints involves all and only those variables in \(\mathrm{int}(U)\), it means the model \(X\) is an integer \(|U|\)-tuple, and a correspondence between \(U\) and \(X\) also exists.
+
+Trivially, we may observe that given zero constraints, \(U(\mathcal{S}(X)) = \mathcal{P}(U)\). More interestingly, we may construct a set of constraints that ensures only one solution exists corresponding to a specific subset \(R \subseteq U\), as follow
+\[
+	\combine{\left(}{\bigwedge \limits_{\displaystyle r \in R} \mathrm{bool}(r)}{\right)}{\wedge}{\left(}{\bigwedge \limits_{\displaystyle r \in \widetilde{R}} \neg \mathrm{bool}(r)}{\right)} \implies U(X) = R
+\]
+for Boolean variables, or alternatively
+\[
+	\combine{\left(}{\bigwedge \limits_{\displaystyle r \in R} \mathrm{int}(r) \neq 0}{\right)}{\wedge}{\left(}{\bigwedge \limits_{\displaystyle r \in \widetilde{R}} \mathrm{int}(r) = 0}{\right)} \implies U(X) = R
+\]
+as follow for integer variables. The main point being that we must specify constraints for both variables that are in and that aren't in \(R\). When we omit the constraints specifications for the variables that are in \(R\), we acquire the intriguing results of
+\[
+	\bigwedge \limits_{\displaystyle r \in \widetilde{R}} \neg \mathrm{bool}(r) \implies U(\mathcal{S}(X)) = \mathcal{P}(R)
+\]
+\[
+	\bigwedge \limits_{\displaystyle r \in \widetilde{R}} \mathrm{int}(r) = 0 \implies U(\mathcal{S}(X)) = \mathcal{P}(R)
+\]
+that is, the solution space becomes the power set of \(R\). It is compelling to see from the perspective of constraint formulations, \(\mathcal{P}(R)\) is defined by what isn't in \(R\) rather than what is.
 
 \section{...\textit{blah blah blah}...}
 
