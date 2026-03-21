@@ -40,7 +40,13 @@
 	Let \(e, f \in E\). \\
 	Let \(e\) connects \(v\) and \(w\).
 
-	Let \(U\) be a set with cardinality \(k\).
+	Let \(S\) be a set with cardinality \(n\). \\
+	Let \(T\) be a set with cardinality \(m\). \\
+	Let \(U\) be a set with cardinality \(k\). \\
+	Let \(s \in S\). \\
+	Let \(S' \subseteq S\). \\
+	Let \(t \in T\). \\
+	Let \(t' \subseteq T\).
 
 	Let \(C\), \(C_1\), and \(C_2\) be \(k\)-tuples. \\
 	Let \(B\), \(B_1\), and \(B_2\) be Boolean k-tuples. \\
@@ -60,10 +66,12 @@
 	\[ R \subseteq U,\enspace \widetilde{R} = U \backslash R \]
 
 	\[ |C| = \text{the length of } C \]
+	\[ c \in C = c \text{ is an element in } C \]
+	\[ c \in C,\enspace \mathrm{idx}(c) = \text{the index of } c \text{ in } C \]
 	\[ C(i) \text{ is the element at } i \text{-th position} \]
 	For \(U\) to have correspondence with \(C\) means there exists a bijective function \(\mathrm{idx} : U \to \{1, \cdots, |C|\}\).
 	\[ u \in U, C(u) = C(\mathrm{idx}(u)) \]
-	\[ C(\{u_1, \cdots, u_r\} \subseteq U) = (\enspace C(u_1),\enspace \cdots,\enspace C(u_r)\enspace ), \quad \text{preserving element order of } C \]
+	\[ C(\{u_1, u_2, \cdots\} \subseteq U) = (\enspace C(u_1),\enspace C(u_2)\enspace \cdots,\enspace ), \quad \text{preserving element order of } C \]
 
 	\[ (\mathrm{True})^k \text{ is the } k \text{-tuple that contains all } \mathrm{True} \]
 	\[ \neg C = (\enspace \neg C(1),\enspace \cdots,\enspace \neg C(k)\enspace ) \]
@@ -77,25 +85,31 @@
 
 	\[ |A|_{\mathrm{row}} = \text{the number of rows in } A \]
 	\[ |A|_{\mathrm{col}} = \text{the number of columns in } A \]
-	\[ \mathcal{A} \overset{\mathrm{row}}{\in} A = \mathcal{A} \text{ is a row in } A  \text{ as an } m \text{-tuple} \]
-	\[ \mathcal{A} \overset{\mathrm{col}}{\in} A = \mathcal{A} \text{ is a column in } A  \text{ as an } n \text{-tuple} \]
+	\[ \mathcal{R} \overset{\mathrm{row}}{\in} A = \mathcal{R} \text{ is a row in } A  \text{ as an } m \text{-tuple} \]
+	\[ \mathcal{C} \overset{\mathrm{col}}{\in} A = \mathcal{C} \text{ is a column in } A  \text{ as an } n \text{-tuple} \]
+	\[ \mathcal{R} \overset{\mathrm{row}}{\in} A,\enspace \mathrm{idx}(\mathcal{R}) = \text{the row index of } \mathcal{R}  \text{ in } A \]
+	\[ \mathcal{C} \overset{\mathrm{col}}{\in} A,\enspace \mathrm{idx}(\mathcal{C}) = \text{the column index of } \mathcal{C}  \text{ in } A \]
 	\[ A(i, j) \text{ is the the element at the } i \text{-th row and } j \text{-th column} \]
 	\[ A(i, \cdot) = (\enspace A(i, 1),\enspace \cdots,\enspace A(i, |A|_{\mathrm{col}})\enspace ) \]
 	\[ A(\cdot, j) = (\enspace A(1, j),\enspace \cdots,\enspace A(|A|_{\mathrm{row}}, j)\enspace ) \]
 	For \(S\) to have row correspondence with \(A\) means there exists a bijective function \(\mathrm{idx} : S \to \{1, \cdots, |A|_{\mathrm{row}}\}\).
 	\[ s \in S, A(s, \cdot) = A(\mathrm{idx}(s), \cdot) \]
 	\[
-		A(\{s_1, \cdots, s_r\} \subseteq S, \cdot) = \left[
+		A(\{s_1, s_2, \cdots\} \subseteq S, \cdot) = \left[
 		\begin{array}{c}
 			A(s_1, \cdot) \\
-			\vdots \\
-			A(s_r, \cdot)
+			A(s_2, \cdot) \\
+			\vdots
 		\end{array}
 		\right],\quad \text{preserving row order of } A
 	\]
 	For \(T\) to have column correspondence with \(A\) means there exists a bijective function \(\mathrm{idx} : T \to \{1, \cdots, |A|_{\mathrm{col}}\}\).
 	\[ t \in T, A(\cdot, t) = A(\cdot, \mathrm{idx}(t)) \]
-	\[ A(\cdot, \{t_1, \cdots, t_r\} \subseteq T) = \left[\enspace A(\cdot, t_1)\enspace \cdots\enspace A(\cdot, t_r)\enspace \right],\quad \text{preserving column order of } A \]
+	\[ A(\cdot, \{t_1, t_2, \cdots\} \subseteq T) = \left[\enspace A(\cdot, t_1)\enspace A(\cdot, t_2)\enspace \cdots\enspace \right],\quad \text{preserving column order of } A \]
+
+	\[ A(s, t) = A(s, \cdot)(t) = A(\cdot, t)(s) \]
+	\[ A(S, t) = A(S, \cdot)(\cdot, t) = A(\cdot, t)(S) \]
+	\[ A(s, T) = A(s, \cdot)(T) = A(\cdot, T)(s, \cdot) \]
 
 	...\textit{blah blah blah}...
 
