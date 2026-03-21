@@ -134,7 +134,7 @@ The matrices \(r(V|V)\) and \(r(E|V)\) are more commonly known as the distance m
 	v \in V, e \in E, \enspace d(v, e) = r(E|V)(v, e)
 \]
 
-From now on, we shall refer to the distance matrix by \(D^{(V)}\) and to the edge distance matrix by \(D^{(E)}\). Adjusting the resolving set criteria and the edge resolving set criteria to use the distance matrix and the edge distance matrix directly, and using the identities \(r(v|W) = r(V|V)(\cdot, v)(W)\) and \(r(e|W) = r(E|V)(\cdot, e)(W)\), we obtain
+From now on, we shall refer to the distance matrix by \(D^{(V)}\) and to the edge distance matrix by \(D^{(E)}\). Adjusting the resolving set and edge resolving set criteria to use the distance matrix and the edge distance matrix directly, and using the identities \(r(v|W) = r(V|V)(\cdot, v)(W)\) and \(r(e|W) = r(E|V)(\cdot, e)(W)\), we obtain
 \[
 	W \text{ is a resolving set} \iff \forall C, \mathcal{C} \overset{\mathrm{col}}{\in} D^{(V)},\ \mathrm{idx}(C) \neq \mathrm{idx}(\mathcal{C}),\ C(W) \neq \mathcal{C}(W)
 \]
@@ -175,6 +175,46 @@ Ultimately, we are able to rewrite the resolving set and edge resolving set crit
 \]
 \[
 	W \text{ is an edge resolving set} \iff \forall K \overset{\mathrm{col}}{\in} B^{(E)},\ K(W) \neq (\mathrm{True})^{|W|}
+\]
+
+\section{Reduced Distance Similarity Matrix}
+
+So far, we have always been focused on seeing \(W\) from the perspective of resolving set and edge resolving set. Let's take a step back, breathe, then make a leap of faith, shifting our perspective to see from the side of non-resolving set and edge non-resolving set. Currently, our criteria for them in terms of the distance similarity matrix and the edge distance similarity matrix are as follow,
+\[
+	W \text{ is a non-resolving set} \iff \exists K \overset{\mathrm{col}}{\in} B^{(V)},\ K(W) = (\mathrm{True})^{|W|}
+\]
+\[
+	W \text{ is an edge non-resolving set} \iff \exists K \overset{\mathrm{col}}{\in} B^{(E)},\ K(W) = (\mathrm{True})^{|W|}
+\]
+taken from the converse of the resolving set and edge resolving set criteria, literally.
+
+We may reverse engineer a way to guarantee the right hand side of these criteria to be true. For any \(K \overset{\mathrm{col}}{\in} B^{(V)}\), take \(W = V(K)\). By definition, a vertex is in \(W\) because its corresponding element in the Boolean \(n\)-tuple \(K\) has the value of \(\mathrm{True}\). As such, by construction, it must be that \(K(W) = (\mathrm{True})^{|W|}\). The exact same line of reasoning also applies in the case of \(K \overset{\mathrm{col}}{\in} B^{(E)}\).
+
+Therefore, we are able to say that, filtering \(V\) by any column in \(B^{(V)}\) results in a non-resolving set, and filtering \(V\) by any column in \(B^{(E)}\) results in an edge non-resolving set. Concretely, for any	\(K \overset{\mathrm{col}}{\in} B^{(V)}\), \(V(K)\) is a non-resolving set, and, for any	\(K \overset{\mathrm{col}}{\in} B^{(E)}\), \(V(K)\) is an edge non-resolving set.
+
+Let us now introduce the idea of dominating columns in \(B^{(V)}\) and \(B^{(E)}\),
+for any \(K, \mathcal{K} \overset{\mathrm{col}}{\in} B^{(V)}\) or \(B^{(E)}\), \({V(K) \subseteq V(\mathcal{K}}) \implies \mathcal{K}\) dominates \(K\). Trivially, a column dominates itself. Instead of filtering, we may alternatively use element-wise Boolean tuple disjunction to show dominated columns, where by \(V(K) \subseteq V(\mathcal{K}) \iff K \vee \mathcal{K} = \mathcal{K}\). When \(\mathrm{idx}(K) \neq \mathrm{idx}(\mathcal{K})\) and \(V(K) \subset V(\mathcal{K})\), we say that column \(\mathcal{K}\) strictly dominates column \(K\).
+
+Recall the downward monotonicity property of both non-resolving sets and edge non-resolving sets. This allows us to take \(W \subseteq V(K)\) for any \(K \overset{\mathrm{col}}{\in} B^{(V)}\) or \(K \overset{\mathrm{col}}{\in} B^{(E)}\), and it remains true that \(K(W) = (\mathrm{True})^{|W|}\). We may also apply this property to dominating columns, such that, we have \(K(W) = (\mathrm{True})^{|W|}\), \(\mathcal{K}\) dominates \(K \implies {\mathcal{K}(W) = (\mathrm{True})^{|W|}}\). That is, given that \(\mathcal{K}\) dominates \(K\), if \(K\) shows that \(W\) is a non-resolving set or an edge non-resolving set, then \(\mathcal{K}\) would also show the same fact.
+
+Let us define new structures called the reduced distance similarity matrix, denoted by \(P^{(V)}\), and the reduced edge distance similarity matrix, denoted by \(P^{(E)}\). \(P^{(V)}\) is the submatrix of \(B^{(V)}\) by column removals, obtained by eliminating all strictly dominated columns and reducing multiple identical columns to a single instance. Likewise, \(P^{(E)}\) is the submatrix of \(B^{(E)}\) by column removals, obtained by the same method.
+
+With both the downward monotonicity property applied and the idea of dominating columns, the process of obtaining the reduced distance similarity matrix preserves all informations contained withing the distance similarity matrix for the purposes of the non-resolving set criteria. The same can be said for reduced edge distance similarity matrix for the edge non-resolving set criteria.
+
+Let us rewrite the non-resolving set and edge non-resolving set criteria to use these reduced structures.
+\[
+	W \text{ is a non-resolving set} \iff \exists K \overset{\mathrm{col}}{\in} P^{(V)},\ K(W) = (\mathrm{True})^{|W|}
+\]
+\[
+	W \text{ is an edge non-resolving set} \iff \exists K \overset{\mathrm{col}}{\in} P^{(E)},\ K(W) = (\mathrm{True})^{|W|}
+\]
+
+Then, by taking the converse, literally, we obtain the resolving set and edge resolving set criteria in terms of the reduced distance similarity matrix and the reduced edge distance similarity matrix.
+\[
+	W \text{ is a resolving set} \iff \forall K \overset{\mathrm{col}}{\in} P^{(V)},\ K(W) \neq (\mathrm{True})^{|W|}
+\]
+\[
+	W \text{ is an edge resolving set} \iff \forall K \overset{\mathrm{col}}{\in} P^{(E)},\ K(W) \neq (\mathrm{True})^{|W|}
 \]
 
 \section{...\textit{blah blah blah}...}
