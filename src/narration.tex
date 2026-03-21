@@ -128,10 +128,18 @@ Notice that, because \(r(v|V) = r(V|V)(\cdot, v)\), we obtain \(r(v|W) = r(V|V)(
 
 The matrices \(r(V|V)\) and \(r(E|V)\) are more commonly known as the distance matrix and the edge distance matrix of \(G\), where by we can obtain any distance in \(G\) from either of these matrices.
 \[
-	u, v \in V,\enspace d(u, v) = r(V|V)(\cdot, u)(v)
+	u, v \in V,\enspace d(u, v) = r(V|V)(u, v)
 \]
 \[
-	v \in V, e \in E, \enspace d(v, e) = r(E|V)(\cdot, v)(e)
+	v \in V, e \in E, \enspace d(v, e) = r(E|V)(v, e)
+\]
+
+From now on, we shall refer to the distance matrix by \(D^{(V)}\) and to the edge distance matrix by \(D^{(E)}\). Adjusting the resolving set criteria and the edge resolving set criteria to use the distance matrix and the edge distance matrix directly, and using the identities \(r(v|W) = r(V|V)(\cdot, v)(W)\) and \(r(e|W) = r(E|V)(\cdot, e)(W)\), we obtain
+\[
+	W \text{ is a resolving set} \iff \forall C, \mathcal{C} \overset{\mathrm{col}}{\in} D^{(V)},\ \mathrm{idx}(C) \neq \mathrm{idx}(\mathcal{C}),\ C(W) \neq \mathcal{C}(W)
+\]
+\[
+	W \text{ is an edge resolving set} \iff \forall C, \mathcal{C} \overset{\mathrm{col}}{\in} D^{(E)},\ \mathrm{idx}(C) \neq \mathrm{idx}(\mathcal{C}),\ C(W) \neq \mathcal{C}(W)
 \]
 
 \section{...\textit{blah blah blah}...}
