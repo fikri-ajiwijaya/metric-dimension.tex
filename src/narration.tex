@@ -29,6 +29,41 @@
 
 ...\textit{blah blah blah}...
 
+\section{Slicing, Dicing, and Filtering}
+
+For any set \(U\) with \(k\) elements, we denote its cardinality by \(|U| = k\), and its power set by \(\mathcal{P}(U)\). For any subset \(R \subseteq U\), we denote its complement by \(\widetilde{R} = U \backslash R\).
+
+For any \(k\)-tuple \(C\), we denote its length by \(|C| = k\), and its element at the \(i\)-th position by \(C(i)\). Let us use \(c \in C\) to denote that \(c\) is an element in \(C\), and \(\mathrm{idx}(c)\) to denote the element index of \(c\) in \(C\).
+
+A correspondence is said to exists between a set \(U\) and a \(k\)-tuple \(C\) if and only if there exists a bijective function \(\mathrm{idx} : U \to \{1, \cdots, |C|\}\). For any element \(u \in U\), let us define selecting \(C\) by \(u\) be an element in \(C\) as \(C(u) = C(\mathrm{idx}(u))\). For any subset \(U' = \{u, \cdots\} \subseteq U\), let us define filtering \(C\) by \(U'\) (preserving element order in \(C\)) to be a \(|U'|\)-subtuple as \(C(U') = (\ C(u),\ \cdots\ )\).
+
+Let us define some element-wise operations on \(k\)-tuples; the element-wise negation, \(\neg C = (\ \neg C(i),\ \cdots\ )\); the element-wise disjunction, \(C_1 \vee C_2 = (\ C_1(i) \vee C_2(i),\ \cdots\ )\); and the element-wise equality, \(C_1\ \ddot{=}\ C_2 = (\ C_1(i) = C_2(i),\ \cdots\ )\). Let us also define \((\mathrm{True})^k\) as the Boolean \(k\)-tuple consisting of all \(\mathrm{True}\) values.
+
+For any Boolean \(k\)-tuple \(B\) and any set \(U\), where there exists a correspondence between them, let us define filtering \(U\) by \(B\) as \(U(B) = \{u \in U : B(u) = \mathrm{True}\}\). And for any integer \(k\)-tuple \(I\), where there exists a correspondence between it and the set \(U\), let us define filtering \(U\) by \(I\) as \(U(I) = \{u \in U : I(u) \neq 0\}\). Then, let us extend this to dicing, that for any set of \(k\)-tuples \(\mathcal{C} = \{C, \cdots\}\), where there exists a correspondence between \(U\) and each \(k\)-tuple in \(\mathcal{C}\), let us define dicing \(U\) by \(\mathcal{C}\) as \(U(\mathcal{C}) = \{\ U(C),\ \cdots\ \}\).
+
+For any \(n \times m\) matrix \(A\), we denote the number of rows in \(A\) by \(|A|_{\mathrm{row}} = n\), the number of columns in \(A\) by \(|A|_{\mathrm{col}} = m\), and its element at the \(i\)-th row and \(j\)-th column by \(A(i, j)\). Let us use \(\mathcal{R} \overset{\mathrm{row}}{\in} A\) to denote that \(\mathcal{R}\) is a row in \(A\) as an \(m\)-tuple, \(\mathcal{K} \overset{\mathrm{col}}{\in} A\) to denote that \(\mathcal{K}\) is a column in \(A\) as an \(n\)-tuple, \(\mathrm{idx}(\mathcal{R})\) to denote the row index of \(\mathcal{R}\) in \(A\), and \(\mathrm{idx}(\mathcal{K})\) to denote the column index of \(\mathcal{K}\) in \(A\). Let us define \(A(i, \cdot)\) to be the slicing the \(i\)-th row of \(A\) as an \(m\)-tuple, and \(A(\cdot, j)\) to be slicing the \(j\)-th column of \(A\) as an \(n\)-tuple.
+
+A row correspondence is said to exists between a set \(S\) and an \(n \times m\) matrix \(A\) if and only if there exists a bijective function \(\mathrm{idx} : S \to \{1, \cdots, |A|_{\mathrm{row}}\}\), and a column correspondence is said to exists between a set \(T\) and a matrix \(A\) if and only if there exists a bijective function \(\mathrm{idx} : T \to \{1, \cdots, |A|_{\mathrm{col}}\}\). For any element \(s \in S\), let us define row slicing \(A\) by \(s\) to be an \(m\)-tuple as \(A(s, \cdot) = A(\mathrm{idx}(s), \cdot)\), and, for any element \(t \in T\), let us define column slicing \(A\) by \(t\) to be an \(n\)-tuple as \(A(\cdot, t) = A(\cdot, \mathrm{idx}(t))\). Then, for any subset \(S' = \{s, \cdots\} \subseteq S\), let us define row filtering \(A\) by \(S'\) (preserving row order in \(A\)) to be an \(|S'| \times m\) submatrix as
+\[
+	A(S', \cdot) = \left[
+	\begin{array}{c}
+		A(s, \cdot) \\
+		\vdots
+	\end{array}
+	\right] ,
+\]
+and, for any subset \(T' = \{t, \cdots\} \subseteq T\), let us define column filtering \(A\) by \(T'\) (preserving column order in \(A\)) to be an \(n \times |T'|\) submatrix as \(A(\cdot, T) = \left[\ A(\cdot, t)\ \cdots\ \right]\).
+
+Finally, let us assert some matrix element selection, subcolumn slicing, subrow slicing, and submatrix dicing identities. They are,
+\[
+\begin{array}{l@{\ }l@{\ }ll}
+	A(s, t) &= A(s, \cdot)(t) &= A(\cdot, t)(s) &, \\
+	A(S', t) &= A(S', \cdot)(\cdot, t) &= A(\cdot, t)(S') &, \\
+	A(s, T') &= A(s, \cdot)(T') &= A(\cdot, T')(s, \cdot) &, \text{ and} \\
+	A(S', T') &= A(S', \cdot)(\cdot, T') &= A(\cdot, T')(S', \cdot) &.
+\end{array}
+\]
+
 \section{...\textit{blah blah blah}...}
 
 ...\textit{blah blah blah}...
