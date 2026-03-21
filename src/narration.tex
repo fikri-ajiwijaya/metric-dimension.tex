@@ -101,6 +101,37 @@ Finally, let us assert some matrix element selection, subcolumn slicing, subrow 
 \end{array}
 \]
 
+\section{Distance Matrix}
+
+Observe that \(V\) has correspondence with both \(r(v|V)\) and \(r(e|V)\). This meas we may rewrite the representation definition with respect to \(W\) to filter from the representation with respect to \(V\), that is \(r(v|W) = r(v|V)(W)\). Likewise, we are able to rewrite the edge representation definition in terms of tuple filtering as \(r(e|W) = r(e|V)(W)\).
+
+Let's now shift our focus a little bit. Let us define a new structure called the representation matrix with respect to \(W\) as \(r(V|W) = \left[\ r(v|W)\ \cdots\ \right]\). We are now able to rewrite the representation definition in terms of the representation matrix by column slicing, that is \(r(v|W) = r(V|W)(\cdot, v)\). Likewise, by defining the edge representation matrix \(r(E|W) = \left[\ r(e|W)\ \cdots\ \right]\), we can rewrite the edge representation definition to be \(r(e|W) = r(E|W)(\cdot, e)\).
+
+Let us rewrite the resolving set and edge resolving set criteria in terms of this new structure.
+\[
+	W \text{ is a resolving set} \iff \forall u, v \in V, u \neq v,\enspace r(V|W)(\cdot, u) \neq r(V|W)(\cdot, v)
+\]
+\[
+	W \text{ is an edge resolving set} \iff \forall e, f \in E, e \neq f,\enspace r(E|W)(\cdot, e) \neq r(E|W)(\cdot, f)
+\]
+By careful examination, these criteria essentially now says that determining \(W\) to be a resolving set is a matter of showing that no two columns in the representation matrix with respect to \(W\) are the same, and, by the same reasoning, determining \(W\) to be an edge resolving set has become a matter of showing that all columns of the edge representation matrix are unique. Using column notations directly, this may be expressed better as follow:
+\[
+	W \text{ is a resolving set} \iff \forall C, \mathcal{C} \overset{\mathrm{col}}{\in} r(V|W),\ \mathrm{idx}(C) \neq \mathrm{idx}(\mathcal{C}),\ C \neq \mathcal{C}
+\]
+\[
+	W \text{ is an edge resolving set} \iff \forall C, \mathcal{C} \overset{\mathrm{col}}{\in} r(E|W),\ \mathrm{idx}(C) \neq \mathrm{idx}(\mathcal{C}),\ C \neq \mathcal{C}
+\]
+
+Notice that, because \(r(v|V) = r(V|V)(\cdot, v)\), we obtain \(r(v|W) = r(V|V)(\cdot, v)(W)\), and similarly, we also obtain \(r(e|W) = r(E|V)(\cdot, e)(W)\). Using the subcolumn slicing identity, we then have \(r(v|W) = r(V|V)(W, \cdot)(\cdot, v)\) and \(r(e|W) = r(E|V)(W, \cdot)(\cdot, e)\). By forgoing the final column slicing, we have an alternative way to attain the representation matrix with respect to \(W\) as a submatrix of \(r(V|V)\) by row filtering, that is \(r(V|W) = r(V|V)(W, \cdot)\). Likewise, we have the alternative edge representation submatrix form as \(r(E|W) = r(E|V)(W, \cdot)\).
+
+The matrices \(r(V|V)\) and \(r(E|V)\) are more commonly known as the distance matrix and the edge distance matrix of \(G\), where by we can obtain any distance in \(G\) from either of these matrices.
+\[
+	u, v \in V,\enspace d(u, v) = r(V|V)(\cdot, u)(v)
+\]
+\[
+	v \in V, e \in E, \enspace d(v, e) = r(E|V)(\cdot, v)(e)
+\]
+
 \section{...\textit{blah blah blah}...}
 
 ...\textit{blah blah blah}...
