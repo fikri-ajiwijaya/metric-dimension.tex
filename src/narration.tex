@@ -29,6 +29,43 @@
 
 ...\textit{blah blah blah}...
 
+\section{Preliminaries}
+
+Let \(G\) be a connected graph with \(n\) vertices \(V = \{v, \cdots\}\) and \(m\) edges \(E = \{e, \cdots\}\). There exists a function \(d(u, v)\), for any \(u, v \in V\), that gives the distance from \(u\) to \(v\). Then, for any \(u, v, w \in V\) and \(e \in E\), if \(e\) is the edge that connects \(v\) and \(w\), it is defined \(d(u, e) = \mathrm{min}(d(u, v), d(u, w))\). For the rest of this paper, let us take a subset of \(k\) vertices \(W = \{w, \cdots\} \subseteq V\).
+
+The representation of \(v \in V\) with respect to \(W\) is defined as the \(k\)-tuple \(r(v|W) = (\ d(v, w),\ \cdots\ )\), and the edge representation of \(e \in E\) with respect to \(W\) is defined as the \(k\)-tuple \(r(e|W) = (\ d(e, w),\ \cdots\ )\). \(W\) is said to be a resolving set when all representations with respect to it are unique, and \(W\) is said to be an edge resolving set when all edge representations with respect to it are unique.
+\[
+	W \text{ is a resolving set} \iff \forall u, v \in V, u \neq v,\enspace r(u|W) \neq r(v|W)
+\]
+\[
+	W \text{ is an edge resolving set} \iff \forall e, f \in E, e \neq f,\enspace r(e|W) \neq r(f|W)
+\]
+Conversely, \(W\) is said to be a non-resolving set when there exists a pair of non-unique representations, and \(W\) is said to be an edge non-resolving set when there exists a pair of non-unique edge representations.
+\[
+	W \text{ is a non-resolving set} \iff \exists u, v \in V, u \neq v,\enspace r(u|W) = r(v|W)
+\]
+\[
+	W \text{ is an edge non-resolving set} \iff \exists e, f \in E, e \neq f,\enspace r(e|W) = r(f|W)
+\]
+The power set \(\mathcal{P}(V)\) is therefore partitioned into the set of resolving sets and the set of non-resolving sets. Likewise, it is also partitioned into the set of edge resolving sets and the set of edge non-resolving sets.
+
+Both resolving sets and edge resolving sets has the property of upward monotonicity.
+\[
+	W \text{ is a resolving set},\enspace W \subseteq Z \implies Z \text{ is a resolving set}
+\]
+\[
+	W \text{ is an edge resolving set},\enspace W \subseteq Z \implies Z \text{ is an edge resolving set}
+\]
+While both non-resolving sets and edge resolving sets has the property of downward monotonicity.
+\[
+	W \text{ is a non-resolving set},\enspace Z \subseteq W \implies Z \text{ is a non-resolving set}
+\]
+\[
+	W \text{ is an edge non-resolving set},\enspace Z \subseteq W \implies Z \text{ is an edge non-resolving set}
+\]
+
+Ultimately, the metric dimension of \(G\) is the minimum cardinality of its resolving sets, and the edge metric dimension of \(G\) is the minimum cardinality of its edge resolving sets.
+
 \section{Slicing, Dicing, and Filtering}
 
 For any set \(U\) with \(k\) elements, we denote its cardinality by \(|U| = k\), and its power set by \(\mathcal{P}(U)\). For any subset \(R \subseteq U\), we denote its complement by \(\widetilde{R} = U \backslash R\).
