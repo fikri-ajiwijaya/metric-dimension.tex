@@ -4,7 +4,6 @@
 	arxiv,
 	amsmath,
 	amssymb,
-	bm,
 	cleveref
 }
 
@@ -20,6 +19,10 @@
 
 \begin{document}
 	\maketitle
+
+	\begin{abstract}
+		...\textit{blah blah blah}...
+	\end{abstract}
 
 	\section{Introduction}
 
@@ -57,49 +60,115 @@
 
 	\section{Metric Dimension}
 
-	Let \(G\) be a connected graph with \(n\) vertices \(V = \{v_1, \cdots, v_n\}\) and \(m\) edges \(E = \{e_1, \cdots, e_m\}\). There exists a function \(d(u, v)\) for any \(u, v \in V\), that gives the distance from \(u\) to \(v\). Then, it is defined \(d(u, e)\) for any \(u, v, w \in V\) and \(e \in E\) to be \(d(u, e) = \mathrm{min}(d(u, v),\ d(u, w))\) if \(e\) is the edge that connects \(v\) and \(w\).
+	Let \(G\) be a connected graph with \(n\) vertices \(V = \{v_1, \cdots, v_n\}\) and \(m\) edges \(E = \{e_1, \cdots, e_m\}\). There exists a function \(d(u, v)\), for any \(u, v \in V\), that gives the distance from \(u\) to \(v\). Then, for any \(u, v, w \in V\) and \(e \in E\), if \(e\) is the edge that connects \(v\) and \(w\), it is defined \(d(u, e) = \mathrm{min}(d(u, v),\ d(u, w))\). For the reset of this paper, let us take a subset of \(k\) vertices \(W = \{w_1, \cdots, w_k\} \subseteq V\).
 
-	Let us take \(W = \{w_1, \cdots, w_k\} \subseteq V\). The representation of \(v \in V\) with respect to \(W\) is defined as \(r(v|W) = (d(v, w_1), \cdots, d(v, w_k))\). The edge representation of \(e \in E\) with respect to \(W\) is defined as \(r(e|W) = (d(e, w_1), \cdots, d(e, w_k))\). \(W\) is said to be a resolving set when all representations with respect to it are unique; that is, \(\forall u, v \in V, u \neq v, r(u|W) \neq r(v|W)\). Similarly, \(W\) is said to be an edge resolving set when all edge representations with respect to it are unique; that is, \(\forall e, f \in E, e \neq f, r(e|W) \neq r(f|W)\).
+	The representation of \(v \in V\) with respect to \(W\) is the \(k\)-tuple \(r(v|W)\), and the edge representation of \(e \in E\) with respect to \(W\) is the \(k\)-tuple \(r(e|W)\), defined as follow
+	\begin{equation}
+		\label{eq:repr-v-canon}
+		r(v|W) = (d(v, w_1), \cdots, d(v, w_k)) ,
+	\end{equation}
+	\begin{equation}
+		\label{eq:repr-e-canon}
+		r(e|W) = (d(e, w_1), \cdots, d(e, w_k)) .
+	\end{equation}
 
-	When \(W\) is not a resolving set, \(W\) is called a non-resolving set. \(\mathcal{P}(V)\) is partitioned into the set of resolving sets and the set of non-resolving sets. Likewise, when \(W\) is not an edge resolving set, \(W\) is called an edge non-resolving set. \(\mathcal{P}(V)\) is also partitioned into the set of edge resolving sets and the set of edge non-resolving sets.
+	\(W\) is said to be a resolving set when all representations with respect to it are unique. And \(W\) is said to be an edge resolving set when all edge representations with respect to it are unique.
+	\begin{equation}
+		\label{eq:resl-v-canon}
+		W \text{ is a resolving set} \iff \forall u, v \in V, u \neq v,\enspace r(u|W) \neq r(v|W)
+	\end{equation}
+	\begin{equation}
+		\label{eq:resl-e-canon}
+		W \text{ is an edge resolving set} \iff \forall e, f \in E, e \neq f,\enspace r(e|W) \neq r(f|W)
+	\end{equation}
+
+	Conversely, \(W\) is said to be a non-resolving set when there exists a pair of non-unique representations. And \(W\) is said to be an edge non-resolving set when there exists a pair of non-unique edge representations.
+	\begin{equation*}
+		W \text{ is a non-resolving set} \iff \exists u, v \in V, u \neq v,\enspace r(u|W) = r(v|W)
+	\end{equation*}
+	\begin{equation*}
+		W \text{ is an edge non-resolving set} \iff \exists e, f \in E, e \neq f,\enspace r(e|W) = r(f|W)
+	\end{equation*}
+
+	The power set \(\mathcal{P}(V)\) is therefore partitioned into the set of resolving sets and the set of non-resolving sets. Likewise, it is also partitioned into the set of edge resolving sets and the set of edge non-resolving sets.
+
+	Both resolving sets and edge resolving sets has the property of upward monotonicity.
+	\begin{equation*}
+		W \text{ is a resolving set},\enspace W \subseteq Z \implies Z \text{ is a resolving set}
+	\end{equation*}
+	\begin{equation*}
+		W \text{ is an edge resolving set},\enspace W \subseteq Z \implies Z \text{ is an edge resolving set}
+	\end{equation*}
+
+	Both non-resolving sets and edge resolving sets has the property of downward monotonicity.
+	\begin{equation*}
+		W \text{ is a non-resolving set},\enspace Z \subseteq W \implies Z \text{ is a non-resolving set}
+	\end{equation*}
+	\begin{equation*}
+		W \text{ is an edge non-resolving set},\enspace Z \subseteq W \implies Z \text{ is an edge non-resolving set}
+	\end{equation*}
 
 	The metric dimension of \(G\) is the minimum cardinality of its resolving sets, and the edge metric dimension of \(G\) is the minimum cardinality of its edge resolving sets.
 
-	Observe that to show \(W\) is a resolving set, we practically must exhaustively calculate all representations against it. Let us define a structure that contains all of these necessary information: \(r(V|W) = \left[\ r(v_1|W)\ \cdots\ r(v_n|W)\ \right]\). This matrix has a dimension of \(|W| \times |V|\), and by construction, \(V\) has a column correspondence with \(r(V|W)\). All possible representations with respect to \(W\) are stored as its columns, such that, for any \(v \in V\), its representation with respect to \(W\) can be obtained by column indexing, \(r(v|W) = r(V|W)(\cdot, v)\). We are now able to redefine the resolving set criteria in terms of this matrix, \(\forall u, v \in V, u \neq v, r(V|W)(\cdot, u) \neq r(V|W)(\cdot, v)\), turning it into a matter of showing that no two columns in \(r(V|W)\) are the same.
-
-	The exact same structure can also be made for the case of edge resolving set. Let us define \(r(E|W) = \left[\ r(e_1|W)\ \cdots\ r(e_m|W)\ \right]\), resulting in a matrix with a dimension of \(|W| \times |E|\), and \(E\) having column correspondence with it by construction. For any \(e \in E\), its representation with respect to \(W\) is \(r(e|W) = r(E|W)(\cdot, e)\), transforming the edge resolving set criteria into \(\forall e, f \in E, e \neq f, r(E|W)(\cdot, e) \neq r(E|W)(\cdot, f)\).
-
 	\section{Distance Matrix}
 
-	When \(W = V\), the matrix \(r(V|V)\) is more commonly known by the name of the distance matrix, which we denote here by \(D^{(V)}\), having a dimension of \(|V| \times |V|\). More formally, defined as
-	\[
-		D^{(V)} = \left[
-		\begin{array}{cccc}
-			d(v_1, v_1) & d(v_1, v_2) & \cdots & d(v_1, v_n) \\
-			d(v_2, v_1) & d(v_2, v_2) & \cdots & d(v_2, v_n) \\
-			\vdots & \vdots & \ddots & \vdots \\
-			d(v_n, v_1) & d(v_n, v_2) & \cdots & d(v_n, v_n) \\
-		\end{array}
-		\right]
-	\]
-	where \(V\) have both row and column correspondence with it. This means that, for any \(W \subseteq V\), we can obtain \(r(V|W)\) directly by row indexing the distance matrix, \(r(V|W) = D^{(V)}(W, \cdot)\). Consequently, all possible representations in \(G\) are already contained within the distance matrix, and can be obtained through \(r(v|W) = D^{(V)}(W, \cdot)(\cdot, v)\), for any \(v \in V\) and any \(W \subseteq V\). Once again, we can now rewrite the resolving set criteria in terms of the distance matrix, \(\forall u, v \in V, u \neq v, D^{(V)}(W, \cdot)(\cdot, u) \neq D^{(V)}(W, \cdot)(\cdot, v)\).
+	Let us define the representation matrix and the edge representation matrix with respect to \(W\).
+	\begin{equation}
+		\label{eq:repr-VW}
+		r(V|W) = \left[\enspace r(v_1|W)\enspace \cdots\enspace r(v_n|W)\enspace \right]
+	\end{equation}
+	\begin{equation}
+		\label{eq:repr-EW}
+		r(E|W) = \left[\enspace r(e_1|W)\enspace \cdots\enspace r(e_m|W)\enspace \right]
+	\end{equation}
+	The matrix \(r(V|W)\) has a dimension of \(|W| \times |V|\), and \(V\) has a column correspondence with it. The matrix \(r(E|W)\) has a dimension of \(|W| \times |E|\), and \(E\) has a column correspondence with it.
 
-	Likewise, the matrix \(r(E|V)\) is more commonly known by the name of the edge distance matrix, denoted by \(D^{(E)}\), with a dimension of \(|V| \times |E|\). It is formally defined as
-	\[
-		D^{(E)} = \left[
-		\begin{array}{cccc}
-			d(v_1, e_1) & d(v_1, e_2) & \cdots & d(v_1, e_m) \\
-			d(v_2, e_1) & d(v_2, e_2) & \cdots & d(v_2, e_m) \\
-			\vdots & \vdots & \ddots & \vdots \\
-			d(v_n, e_1) & d(v_n, e_2) & \cdots & d(v_n, e_m) \\
-		\end{array}
-		\right]
-	\]
-	where \(V\) has a row correspondence and \(E\) has a column correspondence with it. And for any \(W \subseteq V\), we can obtain \(r(E|W) = D^{(E)}(W, \cdot)\). Therefore all edge representations in \(G\) are contained in this matrix, that can be obtained by \(r(e|W) = D^{(E)}(W, \cdot)(\cdot, e)\) for any \(e \in E\) and any \(W \subseteq V\). The edge resolving set criteria then becomes \(\forall e, f \in E, e \neq f, D^{(E)}(W, \cdot)(\cdot, e) \neq D^{(E)}(W, \cdot)(\cdot, f)\).
+	By construction, the columns of the representation matrix contain all representations with respect to \(W\). Similarly, the columns of the edge representation matrix contain all edge representations with respect to \(W\). Consequently, this allows us to rewrite \cref{eq:repr-v-canon} and \cref{eq:repr-e-canon} to select a column from these matrices.
+	\begin{equation}
+		\label{eq:repr-VWv}
+		r(v|W) = r(V|W)(\cdot, v)
+	\end{equation}
+	\begin{equation}
+		\label{eq:repr-EWe}
+		r(e|W) = r(E|W)(\cdot, e)
+	\end{equation}
 
-	There is another perspective to see the distance matrix through. Notice that \(V\) has a correspondence with the representation tuple \(r(v|V)\) for any \(v \in V\). Subsequently, given a fixed \(v \in V\), any \(W \subseteq V\) can be obtained by \(r(v|W) = r(v|V)(W)\). By construction, all representations with respect to \(V\) are contained as columns in \(r(V|V)\). So, for any \(v \in V\), we can get \(r(v|V) = r(V|V)(\cdot, v)\). As such, we have \(r(v|W) = r(V|V)(\cdot, v)(W)\), or using the notation for the distance matrix, \(r(v|W) = D^{(V)}(\cdot, v)(W)\). This results in the fact that we can either select by \(W \subseteq V\) first, or by \(v \in V\) first, where by \(r(v|W) = D^{(V)}(W, \cdot)(\cdot, v) = D^{(V)}(\cdot, v)(W)\). Therefore, an alternative form of the resolving set criteria in terms of the distance matrix is \(\forall u, v \in V, u \neq v, D^{(V)}(\cdot, u)(W) \neq D^{(V)}(\cdot, v)(W)\).
+	We are now able to rewrite \cref{eq:resl-v-canon} to use \cref{eq:repr-VWv}, and \cref{eq:resl-e-canon} to use \cref{eq:repr-EWe}.
+	\begin{equation}
+		\label{eq:resl-VWv}
+		W \text{ is a resolving set} \iff \forall u, v \in V, u \neq v,\enspace r(V|W)(\cdot, u) \neq r(V|W)(\cdot, v)
+	\end{equation}
+	\begin{equation}
+		\label{eq:resl-EWe}
+		W \text{ is an edge resolving set} \iff \forall e, f \in E, e \neq f,\enspace r(E|W)(\cdot, e) \neq r(E|W)(\cdot, f)
+	\end{equation}
+	This has transformed determining that \(W\) is a resolving set as a matter of showing all columns of the representation matrix with respect to \(W\) are unique. Similarly, determining that \(W\) is an edge resolving set has become a matter of showing all columns of the edge representation matrix with respect to \(W\) are unique.
 
-	Similarly, the same is also true for edge representation, where for any \(e \in E\) and any \(W \subseteq V\), we can obtain \(r(e|W) = D^{(E)}(\cdot, e)(W)\). And, an alternative form of the edge resolving set criteria in terms of the edge distance matrix is \(\forall e, f \in E, e \neq f, D^{(E)}(\cdot, e)(W) \neq D^{(E)}(\cdot, f)(W)\).
+	Let's now shift our focus a little bit. Observe that \(V\) has correspondence with both \(r(v|V)\) and \(r(e|V)\). This mean we can rewrite \cref{eq:repr-v-canon} and \cref{eq:repr-e-canon} to select \(W\) from representation and edge representation with respect to \(V\).
+	\begin{equation}
+		\label{eq:repr-vVW}
+		r(v|W) = r(v|V)(W)
+	\end{equation}
+	\begin{equation}
+		\label{eq:repr-eVW}
+		r(e|W) = r(e|V)(W)
+	\end{equation}
+
+	Using \cref{eq:repr-vVW} for factorization, we may rewrite \cref{eq:repr-VW} to be a submatrix of \(r(V|V)\) by row selection. Likewise, with \cref{eq:repr-eVW}, we may factorize \cref{eq:repr-EW} to be a submatrix of \(r(E|V)\) by row selection.
+	\begin{equation*}
+		r(V|W) = r(V|V)(W, \cdot)
+	\end{equation*}
+	\begin{equation*}
+		r(E|W) = r(E|V)(W, \cdot)
+	\end{equation*}
+
+	Both \(r(V|V)\) and \(r(E|V)\) are more commonly known as the distance matrix and the edge distance matrix of \(G\), where by we can obtain any distance in \(G\) from either of these matrices.
+	\begin{equation*}
+		\forall u, v \in V,\enspace d(u, v) = r(V|V)(\cdot, u)(v)
+	\end{equation*}
+	\begin{equation*}
+		\forall v \in V, \forall e \in E, \enspace d(v, e) = r(E|V)(\cdot, v)(e)
+	\end{equation*}
 
 	\section{Distance Similarity Matrix}
 
