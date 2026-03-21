@@ -142,6 +142,41 @@ From now on, we shall refer to the distance matrix by \(D^{(V)}\) and to the edg
 	W \text{ is an edge resolving set} \iff \forall C, \mathcal{C} \overset{\mathrm{col}}{\in} D^{(E)},\ \mathrm{idx}(C) \neq \mathrm{idx}(\mathcal{C}),\ C(W) \neq \mathcal{C}(W)
 \]
 
+\section{Distance Similarity Matrix}
+
+For any pair of \(n\)-tuples \(C\) and \(\mathcal{C}\), we may evaluate their equality by element-wise comparison, where by \({C = \mathcal{C}} \iff {(C\ \ddot{=}\ \mathcal{C}) = (\mathrm{True})^n}\). Conversely, we may evaluate their inquality also element-wise as \({C \neq \mathcal{C}} \iff {(C\ \ddot{=}\ \mathcal{C}) \neq (\mathrm{True})^n}\). Filtering both \(C\) and \(\mathcal{C}\) by \(W\), we obtain the filtered inequality criteria \({C(W) \neq \mathcal{C}(W)} \iff {(C(W)\ \ddot{=}\ \mathcal{C}(W)) \neq (\mathrm{True})^{|W|}}\). Note that, we may factor out the filter by \(W\) within the element-wise comparison, where \(C(W)\ \ddot{=}\ \mathcal{C}(W) = (C\ \ddot{=}\ \mathcal{C})(W)\), resulting in \({C(W) \neq \mathcal{C}(W)} \iff {(C\ \ddot{=}\ \mathcal{C})(W) \neq (\mathrm{True})^{|W|}}\). Such, we may rewrite the resolving set and edge resolving set criteria in terms of element-wise equality.
+\[
+	W \text{ is a resolving set} \iff \forall C, \mathcal{C} \overset{\mathrm{col}}{\in} D^{(V)},\ \mathrm{idx}(C) \neq \mathrm{idx}(\mathcal{C}),\ (C\ \ddot{=}\ \mathcal{C})(W) \neq (\mathrm{True})^{|W|}
+\]
+\[
+	W \text{ is an edge resolving set} \iff \forall C, \mathcal{C} \overset{\mathrm{col}}{\in} D^{(E)},\ \mathrm{idx}(C) \neq \mathrm{idx}(\mathcal{C}),\ (C\ \ddot{=}\ \mathcal{C})(W) \neq (\mathrm{True})^{|W|}
+\]
+
+Let us define another new structures called the distance similarity matrix, denoted by \(B^{(V)}\), and the edge distance similarity matrix, denoted by \(B^{(E)}\).
+\[
+	B^{(V)} = \left[\ C\ \ddot{=}\ \mathcal{C}\ \cdots\ \right],\enspace C, \mathcal{C} \overset{\mathrm{col}}{\in} D^{(V)},\enspace 1 \leq \mathrm{idx}(C) < \mathrm{idx}(\mathcal{C}) \leq |V|
+\]
+\[
+	B^{(E)} = \left[\ C\ \ddot{=}\ \mathcal{C}\ \cdots\ \right],\enspace C, \mathcal{C} \overset{\mathrm{col}}{\in} D^{(E)},\enspace 1 \leq \mathrm{idx}(C) < \mathrm{idx}(\mathcal{C}) \leq |E|
+\]
+The dimension of \(B^{(V)}\) is \(\displaystyle |V| \times \binom{|V|}{2}\), and the dimension of \(B^{(E)}\) is \(\displaystyle |V| \times \binom{|E|}{2}\).
+
+By construction, \(B^{(V)}\) contains all possible element-wise pair-wise column comparisons of \(D^{(V)}\), and \(B^{(E)}\) contains all possible element-wise pair-wise column comparisons of \(D^{(E)}\).
+\[
+	\forall C, \mathcal{C} \overset{\mathrm{col}}{\in} D^{(V)},\ \mathrm{idx}(C) \neq \mathrm{idx}(\mathcal{C}),\ \exists K \in B^{(V)},\ (C\ \ddot{=}\ \mathcal{C}) = K
+\]
+\[
+	\forall C, \mathcal{C} \overset{\mathrm{col}}{\in} D^{(E)},\ \mathrm{idx}(C) \neq \mathrm{idx}(\mathcal{C}),\ \exists K \in B^{(E)},\ (C\ \ddot{=}\ \mathcal{C}) = K
+\]
+
+Ultimately, we are able to rewrite the resolving set and edge resolving set criteria in terms of the distance similarity matrix and the edge distance similarity matrix.
+\[
+	W \text{ is a resolving set} \iff \forall K \overset{\mathrm{col}}{\in} B^{(V)},\ K(W) \neq (\mathrm{True})^{|W|}
+\]
+\[
+	W \text{ is an edge resolving set} \iff \forall K \overset{\mathrm{col}}{\in} B^{(E)},\ K(W) \neq (\mathrm{True})^{|W|}
+\]
+
 \section{...\textit{blah blah blah}...}
 
 ...\textit{blah blah blah}...
