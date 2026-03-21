@@ -141,12 +141,14 @@
 	Transforming the resolving set criteria into a matter of showing that all columns of the representation matrix are unique. Similarly, the edge resolving set becomes a matter of showing that all columns of the edge representation matrix are unique.
 
 	Let's now shift our focus a little bit. Observe that \(V\) has correspondence with both \(r(v|V)\) and \(r(e|V)\). This mean we can rewrite \cref{eq:repr-v-canon} and \cref{eq:repr-e-canon} to select \(W\) from representation and edge representation with respect to \(V\).
-	\begin{equation*}
+	\begin{equation}
+		\label{eq:repr-vVW}
 		r(v|W) = r(v|V)(W)
-	\end{equation*}
-	\begin{equation*}
+	\end{equation}
+	\begin{equation}
+		\label{eq:repr-eVW}
 		r(e|W) = r(e|V)(W)
-	\end{equation*}
+	\end{equation}
 
 	We can then factorize \cref{eq:repr-VW} to be a submatrix of \(r(V|V)\) by row selection. Likewise, we can factorize \cref{eq:repr-EW} to be a submatrix of \(r(E|V)\) by row selection.
 	\begin{equation*}
@@ -165,6 +167,30 @@
 	\end{equation*}
 
 	\section{Distance Similarity Matrix}
+
+	Let us redefine representation and edge representation equality in terms of tuple element-wise equality.
+	\begin{equation*}
+		r(u|W) = r(v|W) \iff (r(u|W)\ \ddot{=}\ r(v|W)) = (\mathrm{True})^{|W|}
+	\end{equation*}
+	\begin{equation*}
+		r(e|W) = r(f|W) \iff (r(e|W)\ \ddot{=}\ r(f|W)) = (\mathrm{True})^{|W|}
+	\end{equation*}
+
+	Applying \cref{eq:repr-vVW} and \cref{eq:repr-eVW}, we obtain
+	\begin{equation*}
+		r(u|W) = r(v|W) \iff (r(u|V)(W)\ \ddot{=}\ r(v|V)(W)) = (\mathrm{True})^{|W|}
+	\end{equation*}
+	\begin{equation*}
+		r(e|W) = r(f|W) \iff (r(e|V)(W)\ \ddot{=}\ r(f|V)(W)) = (\mathrm{True})^{|W|}
+	\end{equation*}
+
+	And then we may factor out the selection by \(W\), resulting in
+	\begin{equation*}
+		r(u|W) = r(v|W) \iff (r(u|V)\ \ddot{=}\ r(v|V))(W) = (\mathrm{True})^{|W|}
+	\end{equation*}
+	\begin{equation*}
+		r(e|W) = r(f|W) \iff (r(e|V)\ \ddot{=}\ r(f|V))(W) = (\mathrm{True})^{|W|}
+	\end{equation*}
 
 	Let us now shift our focus to the representation comparison process. For any \(u, v \in V\) and any \(W \subseteq V\), the representation \(r(u|W)\) is equal to the representation \(r(v|W)\) if and only if the tuple \(r(u|W)\ \ddot{=}\ r(v|W)\) doesn't contains all \(\mathrm{True}\); or more formaly, \(r(u|W) = r(v|W) \iff (r(u|W)\ \ddot{=}\ r(v|W)) \neq (\mathrm{True})^{|W|}\). If we take the approach of selecting by \(u, v \in V\) first, this becomes \(r(u|V)(W) = r(v|V)(W) \iff (r(u|V)(W)\ \ddot{=}\ r(v|V)(W)) \neq (\mathrm{True})^{|W|}\). Take a note of the tuple element-wise comparison at the right hand side; we may apply the following factorization: \((r(u|V)(W)\ \ddot{=}\ r(v|V)(W)) = (r(u|V)\ \ddot{=}\ r(v|V))(W)\). This simplifies the representation comparison to \(r(u|V)(W) = r(v|V)(W) \iff (r(u|V)\ \ddot{=}\ r(v|V))(W) \neq (\mathrm{True})^{|W|}\). Finally, we can transitively obtain a new form of the resolving set criteria, to be \(\forall u, v \in V, u \neq v, (r(u|V)\ \ddot{=}\ r(v|V))(W) \neq (\mathrm{True})^{|W|}\).
 
