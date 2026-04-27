@@ -237,7 +237,7 @@ for Boolean variables, or alternatively
 \[
 	\combine{\left(}{\bigwedge \limits_{\displaystyle r \in R} \mathrm{int}(r) \neq 0}{\right)}{\wedge}{\left(}{\bigwedge \limits_{\displaystyle r \in \widetilde{R}} \mathrm{int}(r) = 0}{\right)} \implies U(X) = R
 \]
-as follow for integer variables. The main point being that we must specify constraints for both variables that are in and that aren't in \(R\). When we omit the constraints specifications for the variables that are in \(R\), we acquire the intriguing results of
+for integer variables. The point being that we must specify constraints for both variables that are in and that aren't in \(R\). When we omit the constraints specifications for the variables that are in \(R\), we acquire the intriguing results of
 \[
 	\bigwedge \limits_{\displaystyle r \in \widetilde{R}} \neg \mathrm{bool}(r) \implies U(\mathcal{S}(X)) = \mathcal{P}(R)
 \]
@@ -245,6 +245,32 @@ as follow for integer variables. The main point being that we must specify const
 	\bigwedge \limits_{\displaystyle r \in \widetilde{R}} \mathrm{int}(r) = 0 \implies U(\mathcal{S}(X)) = \mathcal{P}(R)
 \]
 that is, the solution space becomes the power set of \(R\). It is compelling to see from the perspective of constraint formulations, \(\mathcal{P}(R)\) is defined by what isn't in \(R\) rather than what is.
+
+Finally, we have constraint constructs that allows us to specify the number of Boolean variables that can be true within a specific set with
+\[
+\begin{array}{ll}
+	\mathrm{AtLeast}(R, k) & \text{and} \\ [4pt]
+	\mathrm{AtMost}(R, k)
+\end{array}
+\]
+that means to have at least \(k\) Boolean variables in \(R\) being true, and at most \(k\) Boolean variables in \(R\) bein true, respectively. This can be better understood by seeing the direct equivalent constraints for integer variables, which are
+\[
+\begin{array}{ll}
+	\displaystyle \left( \ \bigwedge \limits_{\displaystyle r \in R} 0 \leq r \leq 1 \right) \wedge \left( \ \sum \limits_{\displaystyle r \in R} r \leq k \right) & \text{and} \\ [18pt]
+	\displaystyle \left( \ \bigwedge \limits_{\displaystyle r \in R} 0 \leq r \leq 1 \right) \wedge \left( \ \sum \limits_{\displaystyle r \in R} r \geq k \right)
+\end{array}
+\]
+Do note that this specific formulation requires limiting the values of the integer variables to be zero and one.
+
+With Boolean variables, to specify that we'd like to have exactly \(k\) variables with true values, we have to use both at least and at most constraints, as follow
+\[
+	\mathrm{AtLeast}(R, k) \wedge \mathrm{AtMost}(R, k)
+\]
+meanwhile, we may simplify this when using integer variables, like so
+\[
+	\displaystyle \left( \ \bigwedge \limits_{\displaystyle r \in R} 0 \leq r \leq 1 \right) \wedge \left( \ \sum \limits_{\displaystyle r \in R} r = k \right)
+\]
+but, the decision on whether to use Boolean constraints, or integer constraints, or pseudo Boolean for that matter, is a choice based on which performs the best, that requires real experimental comparison rather than theoretical.
 
 \section{...\textit{blah blah blah}...}
 
